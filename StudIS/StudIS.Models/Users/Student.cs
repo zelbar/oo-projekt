@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudIS.Models
+namespace StudIS.Models.Users
 {
     public class Student : User
     {
-        public virtual string JMBAG { get; set; }
-        public virtual IList<Course> CoruseList { get; set; }
+        public virtual string StudentIdentificationNumber { get; set; }
+        public virtual IList<Course> CoursesEnrolledIn { get; set; }
     }
 }

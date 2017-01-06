@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudIS.Models
 {
-    public abstract class User
+    public class Assessment
     {
         public virtual int Id { get; set; }
+        public virtual int CourseId { get; set; }
         public virtual string Name { get; set; }
-        public virtual string Surname { get; set; }
-        public virtual string NationalIdentificationNumber { get; set; }
-        public virtual Credentials UserCredentials { get; set; }
+        public virtual float MaximumPoints { get; set; }
+        public virtual float MinimumPointsToPass { get; set; }
     }
 }
