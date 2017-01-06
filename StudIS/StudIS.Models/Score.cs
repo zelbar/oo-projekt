@@ -10,7 +10,7 @@ namespace StudIS.Models
     {
         public virtual int Id { get; set; }
         public virtual float Value { get; set; }
-        public virtual Assessment Assessment { get; set; }
+        public virtual Component Component { get; set; }
         public virtual Users.Student Student { get; set; }
     }
 }

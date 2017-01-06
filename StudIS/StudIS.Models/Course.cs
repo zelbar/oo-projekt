@@ -15,6 +15,6 @@ namespace StudIS.Models
 
         public virtual IList<Users.Lecturer> LecturersInCharge { get; set; }
         public virtual IList<Users.Student> StudentsEnrolled { get; set; }
-        public virtual IList<Assessment> Assessments { get; set; }
+        public virtual IList<Component> Components { get; set; }
     }
 }

@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Course.cs" />
-    <Compile Include="Assessment.cs" />
+    <Compile Include="Component.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Users\Administrator.cs" />
     <Compile Include="Users\Credentials.cs" />

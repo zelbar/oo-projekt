@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudIS.Models
 {
-    public class Assessment
+    public class Component
     {
         public virtual int Id { get; set; }
         public virtual int CourseId { get; set; }
