@@ -13,43 +13,43 @@ namespace StudIS.DAL.Repositories
         {
             Id = 1,
             Name = "Objektno oblikovanje",
-            NaturalIdentifier = "FER2016OO",
+            NaturalIdentifier = "ObjOblFER2016OO",
             EctsCredits = 5,
             Components = null,
             LecturersInCharge = null,
             StudentsEnrolled = null
         };
-        public Course create(Course course)
+        public Course Create(Course course)
         {
             throw new NotImplementedException();
         }
 
-        public bool deleteById(int id)
+        public bool DeleteById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool deleteByNaturalIdentifier(string naturalIdentifier)
+        public bool DeleteByNaturalIdentifier(string naturalIdentifier)
         {
             throw new NotImplementedException();
         }
 
-        public Course getById(int id)
+        public Course GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Course getByNaturalIdentifier(string naturalIdentifier)
+        public Course GetByNaturalIdentifier(string naturalIdentifier)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Course> getByUser(User user)
+        public IList<Course> GetByUser(User user)
         {
             throw new NotImplementedException();
         }
 
-        public Course update(Course course)
+        public Course Update(Course course)
         {
             throw new NotImplementedException();
         }

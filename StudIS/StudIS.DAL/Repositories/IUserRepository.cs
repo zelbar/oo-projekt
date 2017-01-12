@@ -9,14 +9,14 @@ namespace StudIS.DAL.Repositories
 {
     interface IUserRepository
     {
-        User getById(int id);
-        User getByEmail(string email);
-        User getByNationalIdentificationNumbe(string nationalIdentificationNumbe);
-        IList<User> getByCourse(Course course);
-        bool deleteById(int id);
-        bool deleteByNationalIdentificationNumbe(string nationalIdentificationNumbe);
-        User update(User user);
-        User create(User user);
+        User GetById(int id);
+        User GetByEmail(string email);
+        User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe);
+        IList<User> GetByCourse(Course course);
+        bool DeleteById(int id);
+        bool DeleteByNationalIdentificationNumbe(string nationalIdentificationNumbe);
+        User Update(User user);
+        User Create(User user);
         
     }
 }

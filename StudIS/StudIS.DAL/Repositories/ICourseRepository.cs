@@ -9,12 +9,12 @@ namespace StudIS.DAL.Repositories
 {
     interface ICourseRepository
     {
-        Course getById(int id);
-        Course getByNaturalIdentifier(string naturalIdentifier);
-        IList<Course> getByUser(User user);
-        bool deleteById(int id);
-        bool deleteByNaturalIdentifier(string naturalIdentifier);
-        Course update(Course course);
-        Course create(Course course);
+        Course GetById(int id);
+        Course GetByNaturalIdentifier(string naturalIdentifier);
+        IList<Course> GetByUser(User user);
+        bool DeleteById(int id);
+        bool DeleteByNaturalIdentifier(string naturalIdentifier);
+        Course Update(Course course);
+        Course Create(Course course);
     }
 }

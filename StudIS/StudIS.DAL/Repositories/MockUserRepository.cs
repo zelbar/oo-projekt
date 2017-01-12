@@ -22,42 +22,42 @@ namespace StudIS.DAL.Repositories
         };
 
 
-        public User create(User user)
+        public User Create(User user)
         {
             throw new NotImplementedException();
         }
 
-        public bool deleteById(int id)
+        public bool DeleteById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool deleteByNationalIdentificationNumbe(string nationalIdentificationNumbe)
+        public bool DeleteByNationalIdentificationNumbe(string nationalIdentificationNumbe)
         {
             throw new NotImplementedException();
         }
 
-        public IList<User> getByCourse(Course course)
+        public IList<User> GetByCourse(Course course)
         {
             throw new NotImplementedException();
         }
 
-        public User getByEmail(string email)
+        public User GetByEmail(string email)
         {
             return MockUser;
         }
 
-        public User getById(int id)
+        public User GetById(int id)
         {
             return MockUser;
         }
 
-        public User getByNationalIdentificationNumbe(string nationalIdentificationNumbe)
+        public User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe)
         {
             return MockUser;
         }
 
-        public User update(User user)
+        public User Update(User user)
         {
             throw new NotImplementedException();
         }
