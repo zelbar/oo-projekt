@@ -14,8 +14,8 @@ namespace StudIS.DAL.Mappings
         {
             Id(x => x.Id).GeneratedBy.Native();
             Map(x => x.Value).Not.Nullable();
-            References(x => x.Component).LazyLoad();
-            References(x => x.Student).LazyLoad();
+            HasOne(x => x.Component).LazyLoad();
+            HasOne(x => x.Student).LazyLoad();
         }
     }
 }

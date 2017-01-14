@@ -17,7 +17,7 @@ namespace StudIS.DAL.Mappings
                 .Not.Nullable().Unique();
             Map(x => x.Name).Not.Nullable();
             Map(x => x.EctsCredits).Not.Nullable();
-            References(x => x.Components).LazyLoad();
+            HasMany(x => x.Components).LazyLoad();
         }
     }
 }
