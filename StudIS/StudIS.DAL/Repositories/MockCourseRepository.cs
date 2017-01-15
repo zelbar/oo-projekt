@@ -19,6 +19,16 @@ namespace StudIS.DAL.Repositories
             LecturersInCharge = null,
             StudentsEnrolled = null
         };
+
+        public IList<Course> GetAll()
+        {
+            var rv = new List<Course>()
+            {
+                MockCourse
+            };
+            return rv;
+        }
+
         public Course Create(Course course)
         {
             throw new NotImplementedException();

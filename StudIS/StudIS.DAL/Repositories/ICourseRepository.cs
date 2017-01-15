@@ -9,6 +9,7 @@ namespace StudIS.DAL.Repositories
 {
     interface ICourseRepository
     {
+        IList<Course> GetAll();
         Course GetById(int id);
         Course GetByNaturalIdentifier(string naturalIdentifier);
         IList<Course> GetByUser(User user);

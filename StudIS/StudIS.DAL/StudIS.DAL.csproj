@@ -65,6 +65,7 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\MockCourseRepository.cs" />
     <Compile Include="Repositories\MockUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

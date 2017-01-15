@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using StudIS.DAL.Mappings;
 
 namespace StudIS.DAL
 {
@@ -38,8 +39,12 @@ namespace StudIS.DAL
                 .Database(SQLiteConfiguration.Standard
                     .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                     .AdoNetBatchSize(100))
-                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ExpenditureCategoryMap>())
-                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf)
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<AdministratorMap>())
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<LecturerMap>())
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<StudentMap>())
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<CourseMap>())
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ComponentMap>())
+                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ScoreMap>())
                 .BuildConfiguration();
 
             var sessionFactory = nhConfig.BuildSessionFactory();

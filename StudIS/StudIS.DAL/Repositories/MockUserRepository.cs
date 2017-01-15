@@ -21,6 +21,14 @@ namespace StudIS.DAL.Repositories
             CoursesEnrolledIn = null
         };
 
+        public IList<User> GetAll()
+        {
+            var rv = new List<User>()
+            {
+                MockUser
+            };
+            return rv;
+        }
 
         public User Create(User user)
         {
@@ -32,7 +40,7 @@ namespace StudIS.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public bool DeleteByNationalIdentificationNumbe(string nationalIdentificationNumbe)
+        public bool DeleteByNationalIdentificationNumber(string nationalIdentificationNumbe)
         {
             throw new NotImplementedException();
         }
