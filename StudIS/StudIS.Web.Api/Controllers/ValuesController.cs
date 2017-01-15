@@ -7,7 +7,6 @@ using System.Web.Http;
 
 namespace StudIS.Web.Api.Controllers
 {
-    [Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values
