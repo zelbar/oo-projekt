@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 
-namespace StudIS.DAL.Repositories
+namespace StudIS.Models.RepositoryInterfaces
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         IList<User> GetAll();
         User GetById(int id);

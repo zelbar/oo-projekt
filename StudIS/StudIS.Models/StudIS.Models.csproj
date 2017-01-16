@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Course.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="Repository interfaces\ICourseRepository.cs" />
+    <Compile Include="Repository interfaces\IUserRepository.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Users\Administrator.cs" />
     <Compile Include="Users\Credentials.cs" />

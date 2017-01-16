@@ -7,6 +7,7 @@ using StudIS.Models;
 using FluentNHibernate;
 using FluentNHibernate.Data;
 using NHibernate;
+using StudIS.Models.RepositoryInterfaces;
 
 namespace StudIS.DAL.Repositories
 {
