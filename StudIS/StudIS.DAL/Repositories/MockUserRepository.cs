@@ -17,7 +17,6 @@ namespace StudIS.DAL.Repositories
             Name = "Tibor",
             Surname = "Žukina",
             NationalIdentificationNumber = "12345",
-            UserCredentials = null,
             StudentIdentificationNumber = "0036412345",
             CoursesEnrolledIn = null
         };
