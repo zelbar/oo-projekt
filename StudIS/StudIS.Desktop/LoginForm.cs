@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StudIS.Models;
-using StudIS.DAL;
 
 namespace StudIS.Desktop
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
-            var userRepo = new DAL.Repositories.UserRepository();
-            MessageBox.Show(userRepo.GetAll().ToString());
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Logging you in...");
         }
     }
 }

@@ -10,6 +10,12 @@ namespace StudIS.DAL.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
+        private Course MockCourse = new Course()
+        {
+            Id = 1,
+            EctsCredits = 4,
+            //
+        };
         private User MockUser = new Student()
         {
             Id = 1,
@@ -19,6 +25,12 @@ namespace StudIS.DAL.Repositories
             UserCredentials = null,
             StudentIdentificationNumber = "0036412345",
             CoursesEnrolledIn = null
+        };
+        private Credentials MockCredentials = new Credentials()
+        {
+            //CredentialsUser = User,
+            Email = "tibor@svemir.hr",
+            PasswordHash = "123abc".GetHashCode().ToString()
         };
 
         public IList<User> GetAll()
