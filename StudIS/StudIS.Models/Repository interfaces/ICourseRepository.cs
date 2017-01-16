@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 
-namespace StudIS.DAL.Repositories
+namespace StudIS.Models.RepositoryInterfaces
 {
-    interface ICourseRepository
+    public interface ICourseRepository
     {
         IList<Course> GetAll();
         Course GetById(int id);

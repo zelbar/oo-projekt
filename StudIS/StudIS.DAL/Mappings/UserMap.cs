@@ -17,7 +17,8 @@ namespace StudIS.DAL.Mappings
             Map(x => x.Surname).Not.Nullable();
             Map(x => x.NationalIdentificationNumber)
                 .Not.Nullable().Unique();
-            HasOne(x => x.UserCredentials);
+            Map(x => x.Email).Unique().Not.Nullable();
+            Map(x => x.PasswordHash).Not.Nullable();
 
             DiscriminateSubClassesOnColumn("role");
         }

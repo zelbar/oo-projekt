@@ -7,6 +7,8 @@ using StudIS.Models;
 using FluentNHibernate;
 using FluentNHibernate.Data;
 using NHibernate;
+using StudIS.Models.RepositoryInterfaces;
+using NHibernate.Criterion;
 
 namespace StudIS.DAL.Repositories
 {
@@ -89,7 +91,12 @@ namespace StudIS.DAL.Repositories
 
         public User GetByEmail(string email)
         {
-            throw new NotImplementedException();
+           
+
+            using (var session = _nhs.OpenSession())
+            {
+                return session.CreateCriteria<User>().Add(Expression.Like("email", email)).UniqueResult<User>();
+            }
         }
 
         public User GetById(int id)

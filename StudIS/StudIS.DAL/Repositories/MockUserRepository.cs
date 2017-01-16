@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 using StudIS.Models.Users;
+using StudIS.Models.RepositoryInterfaces;
 
 namespace StudIS.DAL.Repositories
 {
@@ -22,7 +23,6 @@ namespace StudIS.DAL.Repositories
             Name = "Tibor",
             Surname = "Žukina",
             NationalIdentificationNumber = "12345",
-            UserCredentials = null,
             StudentIdentificationNumber = "0036412345",
             CoursesEnrolledIn = null
         };
