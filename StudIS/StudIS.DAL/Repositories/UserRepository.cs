@@ -9,17 +9,18 @@ using FluentNHibernate.Data;
 using NHibernate;
 using StudIS.Models.RepositoryInterfaces;
 using NHibernate.Criterion;
+using StudIS.DAL;
 
 namespace StudIS.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public UserRepository()
+        public UserRepository(INHibernateService nhs)
         {
-            _nhs = new NhibernateService();
+            _nhs = nhs;
         }
 
-        private readonly NhibernateService _nhs;
+        private readonly INHibernateService _nhs;
 
         public IList<User> GetAll()
         {

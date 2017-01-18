@@ -17,7 +17,8 @@ namespace StudIS.Desktop
         public Form1()
         {
             InitializeComponent();
-            var userRepo = new DAL.Repositories.UserRepository();
+            var nhs = new NHibernateService();
+            var userRepo = new DAL.Repositories.UserRepository(nhs);
             MessageBox.Show(userRepo.GetAll().ToString());
         }
     }

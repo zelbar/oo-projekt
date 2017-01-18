@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INHibernateService.cs" />
     <Compile Include="Mappings\AdministratorMap.cs" />
     <Compile Include="Mappings\ScoreMap.cs" />
     <Compile Include="Mappings\ComponentMap.cs" />

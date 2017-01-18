@@ -11,7 +11,7 @@ using StudIS.DAL.Mappings;
 namespace StudIS.DAL
 {
 
-    public class NhibernateService
+    public class NHibernateService : INHibernateService
     {
         private static ISessionFactory _sessionFactory;
 
@@ -36,12 +36,13 @@ namespace StudIS.DAL
         private ISessionFactory OpenSessionFactory()
         {
             var nhConfig = Fluently.Configure()
+                .Diagnostics(diag => diag.Enable().OutputToConsole())
                 .Database(SQLiteConfiguration.Standard
                     .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                     .AdoNetBatchSize(100))
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<AdministratorMap>())
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<LecturerMap>())
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<StudentMap>())
+                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<AdministratorMap>())
+                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<LecturerMap>())
+                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<StudentMap>())
                 .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<CourseMap>())
                 .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ComponentMap>())
                 .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ScoreMap>())

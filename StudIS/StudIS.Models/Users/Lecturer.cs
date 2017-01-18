@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudIS.Models.Users
 {
-    public class Lecturer:User
+    public class Lecturer : User
     {
         public virtual IList<Course> CoursesInChargeOf { get; set; }
     }
