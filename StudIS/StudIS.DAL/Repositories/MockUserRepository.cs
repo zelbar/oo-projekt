@@ -11,11 +11,15 @@ namespace StudIS.DAL.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
-        private Course MockCourse = new Course()
+        private static Course MockCourse = new Course()
         {
             Id = 1,
-            EctsCredits = 4,
-            //
+            Name = "Objektno oblikovanje",
+            NaturalIdentifier = "ObjOblFER2016OO",
+            EctsCredits = 5,
+            Components = null,
+            LecturersInCharge = null,
+            StudentsEnrolled = null
         };
         private User MockUser = new Student()
         {
@@ -25,7 +29,8 @@ namespace StudIS.DAL.Repositories
             Name = "Tibor",
             Surname = "Žukina",
             NationalIdentificationNumber = "12345",
-            StudentIdentificationNumber = "0036412345"
+            StudentIdentificationNumber = "0036412345",
+            CoursesEnrolledIn = new List<Course>() { MockCourse }
         };
 
         public IList<User> GetAll()

@@ -8,7 +8,7 @@ using StudIS.Models.RepositoryInterfaces;
 
 namespace StudIS.DAL.Repositories
 {
-    class MockCourseRepository : ICourseRepository
+    public class MockCourseRepository : ICourseRepository
     {
         private Course MockCourse = new Course()
         {
