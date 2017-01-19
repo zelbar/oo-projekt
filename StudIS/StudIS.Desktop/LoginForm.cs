@@ -7,19 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StudIS.Models.Users;
+using StudIS.DAL;
+using StudIS.DAL.Repositories;
+using StudIS.Services;
+using StudIS.Desktop.Controllers;
 
 namespace StudIS.Desktop
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private readonly LoginFormController _controller;
+
+        public LoginForm(LoginFormController controller)
         {
+            _controller = controller;
             InitializeComponent();
         }
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Logging you in...");
+            var email = this.emailTextBox.Text;
+            var password = this.passwordTextBox.Text;
+
+            var loginResult = _controller.Login(email, password.GetHashCode().ToString());
         }
     }
 }

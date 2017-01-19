@@ -7,6 +7,8 @@ using StudIS.DAL;
 using StudIS.Models;
 using StudIS.Models.Users;
 using StudIS.DAL.Repositories;
+using StudIS.Services;
+using StudIS.Desktop.Controllers;
 
 namespace StudIS.Desktop
 {
@@ -30,14 +32,20 @@ namespace StudIS.Desktop
                 CoursesEnrolledIn = null
             };
 
-            var service = new NHibernateService();
-            var rep = new UserRepository(service);
-            rep.Create(MockUser);
+            var nhService = new NHibernateService();
+            var session = nhService.OpenSession();
 
-            var session = service.OpenSession();
+            var userRepository = new UserRepository(session);
+            var courseRepository = new MockCourseRepository();
+            var loginService = new LoginService(userRepository);
+
+            var mainFormController = new MainFormController(userRepository, courseRepository);
+            var loginFormController = new LoginFormController(loginService, mainFormController);
+            var courseFormController = new CourseFormController(courseRepository, userRepository);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new MainForm(mainFormController, loginFormController, courseFormController));
         }
     }
 }

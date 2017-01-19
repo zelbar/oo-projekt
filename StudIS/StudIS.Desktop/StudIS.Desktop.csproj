@@ -62,18 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CourseFormController.cs" />
+    <Compile Include="Controllers\LoginFormController.cs" />
+    <Compile Include="Controllers\MainFormController.cs" />
     <Compile Include="CourseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CourseForm.Designer.cs">
       <DependentUpon>CourseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="IWindowFormsFactory.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +135,10 @@
       <Project>{fb0ea76d-e7c2-4d8c-90e5-b059c43f2bd4}</Project>
       <Name>StudIS.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StudIS.Services\StudIS.Services.csproj">
+      <Project>{8e2a5d97-74de-490b-8601-7d104e4ef542}</Project>
+      <Name>StudIS.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
@@ -150,6 +152,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
