@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudIS.Models.Users
 {
-    public class Administrator
+    public class Administrator : User
     {
     }
 }
