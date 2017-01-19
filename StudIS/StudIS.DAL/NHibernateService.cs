@@ -41,7 +41,7 @@ namespace StudIS.DAL
                 //    .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                 //    .AdoNetBatchSize(100))
                 .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Program Files (x86)\\StudIS\\StudIS_DB.mdf;Integrated Security=True")
+                    .ConnectionString("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\data\\StudIS\\StudIS_DB.mdf;Integrated Security=True")
                     .AdoNetBatchSize(100))
                 .Mappings(mappings => mappings.FluentMappings.Add<AdministratorMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<LecturerMap>())
@@ -50,7 +50,7 @@ namespace StudIS.DAL
                 .Mappings(mappings => mappings.FluentMappings.Add<ComponentMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<ScoreMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<StudentMap>())
-                .ExposeConfiguration(cfg => new NHibernate.Tool.hbm2ddl.SchemaExport(cfg).Execute(true, true, false))
+                //.ExposeConfiguration(cfg => new NHibernate.Tool.hbm2ddl.SchemaExport(cfg).Execute(true, true, false))
                 .BuildConfiguration();
            
             
