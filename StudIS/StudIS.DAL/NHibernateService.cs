@@ -40,12 +40,13 @@ namespace StudIS.DAL
                 .Database(SQLiteConfiguration.Standard
                     .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                     .AdoNetBatchSize(100))
-                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<AdministratorMap>())
-                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<LecturerMap>())
-                //.Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<StudentMap>())
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<CourseMap>())
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ComponentMap>())
-                .Mappings(mappings => mappings.FluentMappings.AddFromAssemblyOf<ScoreMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<AdministratorMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<LecturerMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<UserMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<CourseMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<ComponentMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<ScoreMap>())
+                .Mappings(mappings => mappings.FluentMappings.Add<StudentMap>())
                 .BuildConfiguration();
 
             var sessionFactory = nhConfig.BuildSessionFactory();
