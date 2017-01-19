@@ -183,7 +183,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(9, 49);
+            this.passwordLabel.Location = new System.Drawing.Point(7, 49);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(44, 13);
             this.passwordLabel.TabIndex = 2;

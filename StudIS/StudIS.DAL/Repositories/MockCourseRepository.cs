@@ -25,7 +25,17 @@ namespace StudIS.DAL.Repositories
         {
             var rv = new List<Course>()
             {
-                MockCourse
+                MockCourse,
+                new Course()
+                {
+                    Id = 2,
+                    Name = "Napredni algoritmi i strukture podataka",
+                    NaturalIdentifier = "NASP-FER-2016OO",
+                    EctsCredits = 5,
+                    Components = null,
+                    LecturersInCharge = null,
+                    StudentsEnrolled = null
+                }
             };
             return rv;
         }
