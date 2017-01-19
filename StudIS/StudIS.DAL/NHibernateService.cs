@@ -40,6 +40,9 @@ namespace StudIS.DAL
                 .Database(SQLiteConfiguration.Standard
                     .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                     .AdoNetBatchSize(100))
+                //.Database(MsSqlConfiguration.MsSql2012
+                //    .ConnectionString("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Zlatko\\Source\\Repos\\OO-projekt\\StudIS\\StudIS.DAL\\Database1.mdf;Integrated Security=True")
+                //    .AdoNetBatchSize(100))
                 .Mappings(mappings => mappings.FluentMappings.Add<AdministratorMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<LecturerMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<UserMap>())
@@ -47,9 +50,13 @@ namespace StudIS.DAL
                 .Mappings(mappings => mappings.FluentMappings.Add<ComponentMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<ScoreMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<StudentMap>())
+                // .ExposeConfiguration(cfg => new NHibernate.Tool.hbm2ddl.SchemaExport(cfg).Execute(true, true, false))
                 .BuildConfiguration();
+           
+            
 
             var sessionFactory = nhConfig.BuildSessionFactory();
+           
 
             return sessionFactory;
         }
