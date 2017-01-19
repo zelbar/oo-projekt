@@ -15,67 +15,55 @@ namespace StudIS.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public UserRepository(INHibernateService nhs)
-        {
-            _nhs = nhs;
-        }
+        private readonly ISession _session;
 
-        private readonly INHibernateService _nhs;
+        public UserRepository(ISession session)
+        {
+            _session = session;
+        }
 
         public IList<User> GetAll()
         {
-            using (var session = _nhs.OpenSession())
-            {
-                return session.QueryOver<User>().List();
-            }
+            return _session.QueryOver<User>().List();
         }
 
         public User Create(User user)
         {
-            using (var session = _nhs.OpenSession())
+            using (var transaction = _session.BeginTransaction())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    session.Save(user);
-                    transaction.Commit();
-                    return user;
-                }
+                _session.Save(user);
+                transaction.Commit();
+                return user;
             }
         }
 
         public bool DeleteById(int id)
         {
-            using (var session = _nhs.OpenSession())
+            using (var transaction = _session.BeginTransaction())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var user = GetById(id);
+                var user = GetById(id);
 
-                    if (user == null)
-                        return false;
+                if (user == null)
+                    return false;
 
-                    session.Delete(user);
-                    transaction.Commit();
-                    return true;
-                }
+                _session.Delete(user);
+                transaction.Commit();
+                return true;
             }
         }
 
         public bool DeleteByNationalIdentificationNumber(string nationalIdentificationNumber)
         {
-            using (var session = _nhs.OpenSession())
+            using (var transaction = _session.BeginTransaction())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var user = GetByNationalIdentificationNumbe(nationalIdentificationNumber);
+                var user = GetByNationalIdentificationNumbe(nationalIdentificationNumber);
 
-                    if (user == null)
-                        return false;
+                if (user == null)
+                    return false;
 
-                    session.Delete(user);
-                    transaction.Commit();
-                    return true;
-                }
+                _session.Delete(user);
+                transaction.Commit();
+                return true;
             }
         }
 
@@ -92,20 +80,14 @@ namespace StudIS.DAL.Repositories
 
         public User GetByEmail(string email)
         {
-           
-
-            using (var session = _nhs.OpenSession())
-            {
-                return session.CreateCriteria<User>().Add(Expression.Like("Email", email)).UniqueResult<User>();
-            }
+            return _session.CreateCriteria<User>()
+                .Add(Expression.Like("Email", email))
+                .UniqueResult<User>();
         }
 
         public User GetById(int id)
         {
-            using (var session = _nhs.OpenSession())
-            {
-                return session.Get<User>(id);
-            }
+             return _session.Get<User>(id);
         }
 
         public User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe)
@@ -115,14 +97,11 @@ namespace StudIS.DAL.Repositories
 
         public User Update(User user)
         {
-            using (var session = _nhs.OpenSession())
+            using (var transaction = _session.BeginTransaction())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    session.Update(user);
-                    transaction.Commit();
-                    return user;
-                }
+                _session.Update(user);
+                transaction.Commit();
+                return user;
             }
         }
     }
