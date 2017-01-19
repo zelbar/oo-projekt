@@ -15,5 +15,13 @@ namespace StudIS.Models
         //public virtual Credentials UserCredentials { get; set; }
         public virtual string Email { get; set; }
         public virtual string PasswordHash { get; set; }
+        public virtual string FullName
+        {
+            get
+            {
+                return Name + " " + Surname;
+            }
+        }
+
     }
 }
