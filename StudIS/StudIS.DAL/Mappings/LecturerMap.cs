@@ -14,8 +14,8 @@ namespace StudIS.DAL.Mappings
         public LecturerMap()
         {
             DiscriminatorValue("lecturer");
-            
-            References(x => x.CoursesInChargeOf);
+
+            HasMany(x => x.CoursesInChargeOf);
         }
     }
 }

@@ -16,7 +16,8 @@ namespace StudIS.DAL.Mappings
             DiscriminatorValue("student");
 
             Map(x => x.StudentIdentificationNumber);
-            References(x => x.CoursesEnrolledIn);
+            //References(x => x.CoursesEnrolledIn);
+            HasMany(x => x.CoursesEnrolledIn);
         }
     }
 }
