@@ -96,7 +96,7 @@ namespace StudIS.DAL.Repositories
 
             using (var session = _nhs.OpenSession())
             {
-                return session.CreateCriteria<User>().Add(Expression.Like("email", email)).UniqueResult<User>();
+                return session.CreateCriteria<User>().Add(Expression.Like("Email", email)).UniqueResult<User>();
             }
         }
 
