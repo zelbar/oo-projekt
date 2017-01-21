@@ -16,11 +16,11 @@ namespace StudIS.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ISession _session;
+        private ISession _session;
 
-        public UserRepository(ISession session)
+        public UserRepository(INHibernateService nhs)
         {
-            _session = session;
+            _session = nhs.OpenSession();
         }
 
         public IList<User> GetAll()
@@ -104,6 +104,13 @@ namespace StudIS.DAL.Repositories
                 transaction.Commit();
                 return user;
             }
+        }
+
+        ~UserRepository()
+        {
+            _session.Close();
+            _session.Dispose();
+            _session = null;
         }
     }
 }

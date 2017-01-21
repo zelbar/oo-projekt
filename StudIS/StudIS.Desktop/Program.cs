@@ -33,9 +33,8 @@ namespace StudIS.Desktop
             };
 
             var nhService = new NHibernateService();
-            var session = nhService.OpenSession();
 
-            var userRepository = new UserRepository(session);
+            var userRepository = new UserRepository(nhService);
             var courseRepository = new MockCourseRepository();
             var loginService = new LoginService(userRepository);
 
