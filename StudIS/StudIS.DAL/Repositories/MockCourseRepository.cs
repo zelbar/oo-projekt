@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 using StudIS.Models.RepositoryInterfaces;
+using StudIS.Models.Users;
 
 namespace StudIS.DAL.Repositories
 {
@@ -74,5 +75,7 @@ namespace StudIS.DAL.Repositories
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

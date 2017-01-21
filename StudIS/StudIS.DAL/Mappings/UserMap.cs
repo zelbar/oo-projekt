@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 using FluentNHibernate.Mapping;
+using StudIS.Models.Users;
 
 namespace StudIS.DAL.Mappings
 {

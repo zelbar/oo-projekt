@@ -10,6 +10,7 @@ using NHibernate;
 using StudIS.Models.RepositoryInterfaces;
 using NHibernate.Criterion;
 using StudIS.DAL;
+using StudIS.Models.Users;
 
 namespace StudIS.DAL.Repositories
 {

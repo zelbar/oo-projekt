@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
+using StudIS.Models.Users;
 
 namespace StudIS.Models.RepositoryInterfaces
 {
