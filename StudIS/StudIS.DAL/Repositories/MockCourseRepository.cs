@@ -66,16 +66,38 @@ namespace StudIS.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Course> GetByUser(User user)
+        public IList<Course> GetByUserId(int userId)
         {
-            throw new NotImplementedException();
+            Course MockCourse = new Course()
+            {
+                Id = 1,
+                Name = "Objektno oblikovanje",
+                NaturalIdentifier = "ObjOblFER2016OO",
+                EctsCredits = 5,
+                Components = null,
+                LecturersInCharge = null,
+                StudentsEnrolled = null
+            };
+            Course MockCourse2 = new Course()
+            {
+                Id = 2,
+                Name = "NASP",
+                NaturalIdentifier = "NASPFER2016OO",
+                EctsCredits = 5,
+                Components = null,
+                LecturersInCharge = null,
+                StudentsEnrolled = null
+            };
+            var list = new List<Course>();
+            list.Add(MockCourse);
+            list.Add(MockCourse2);
+            return list;
         }
 
         public Course Update(Course course)
         {
             throw new NotImplementedException();
         }
-
 
     }
 }
