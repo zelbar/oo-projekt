@@ -84,17 +84,18 @@ namespace StudIS.Desktop
                 StudentsEnrolled = null
             };
 
-            userRepository.Create(MockUser);
-            userRepository.Create(MockUser2);
+           // userRepository.Create(MockUser);
+            //userRepository.Create(MockUser2);
+
             var studentList = new List<Student>();
             studentList.Add((Student)userRepository.GetById(1));
             studentList.Add((Student)userRepository.GetById(2));
 
             MockCourse.StudentsEnrolled = studentList;
+            userRepository.GetByCourse(MockCourse);
 
-
-            courseRep.Create(MockCourse);
-            courseRep.Create(MockCourse2);
+            //courseRep.Create(MockCourse);
+            //courseRep.Create(MockCourse2);
             #endregion
 
 

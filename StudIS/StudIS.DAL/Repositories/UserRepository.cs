@@ -70,13 +70,16 @@ namespace StudIS.DAL.Repositories
 
         public IList<User> GetByCourse(Course course)
         {
-            throw new NotImplementedException();
-
-            // How to query admins in this manner?
-            //using (var session = _nhs.OpenSession())
-            //{
-            //    var rv = session.QueryOver<User>().Where(x => x.)
-            //}
+           var users =_session.QueryOver<Student>()
+                                        .Right.JoinQueryOver<Course>(x => x.CoursesEnrolledIn)
+                                        .Where(c => c.Id==course.Id)
+                                        .List();
+            var returnUsers = new List<User>();
+            foreach(var single in users)
+            {
+                returnUsers.Add((User)single);
+            }
+            return returnUsers;
         }
 
         public User GetByEmail(string email)
@@ -88,12 +91,14 @@ namespace StudIS.DAL.Repositories
 
         public User GetById(int id)
         {
-             return _session.Get<User>(id);
+            return _session.Get<User>(id);
         }
 
-        public User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe)
+        public User GetByNationalIdentificationNumbe(string nationalIdentificationNumber)
         {
-            throw new NotImplementedException();
+            return _session.CreateCriteria<User>()
+                 .Add(Expression.Like("NationalIdentificationNumber", nationalIdentificationNumber))
+                  .UniqueResult<User>();
         }
 
         public User Update(User user)
