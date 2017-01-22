@@ -18,6 +18,8 @@ namespace StudIS.DAL.Mappings
             Map(x => x.Name).Not.Nullable();
             Map(x => x.EctsCredits).Not.Nullable();
             HasMany(x => x.Components).LazyLoad();
+            HasManyToMany(x => x.LecturersInCharge).LazyLoad();
+            HasManyToMany(x => x.StudentsEnrolled).LazyLoad();
         }
     }
 }

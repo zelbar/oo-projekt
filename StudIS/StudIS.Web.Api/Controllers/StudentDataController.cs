@@ -1,5 +1,6 @@
 ﻿using StudIS.DAL;
 using StudIS.DAL.Repositories;
+using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models;
 using StudIS.Web.Api.Models;
 using System;
@@ -13,11 +14,11 @@ namespace StudIS.Web.Api.Controllers
 {
     public class StudentDataController : ApiController
     {
-        private INHibernateService _nhService;
+        private IUserRepository _usrRep;
 
-        public StudentDataController(INHibernateService nhService)
+        public StudentDataController(IUserRepository usrRep)
         {
-            _nhService = nhService;
+            _usrRep = usrRep;
         }
 
         public List<SimpleCourseModel> getCoursesByStudentId(int id)

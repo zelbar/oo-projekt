@@ -17,7 +17,7 @@ namespace StudIS.DAL.Mappings
 
             Map(x => x.StudentIdentificationNumber);
             //References(x => x.CoursesEnrolledIn);
-            HasMany(x => x.CoursesEnrolledIn);
+            HasManyToMany(x => x.CoursesEnrolledIn);
         }
     }
 }

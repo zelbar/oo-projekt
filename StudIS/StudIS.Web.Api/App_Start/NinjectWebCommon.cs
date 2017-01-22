@@ -69,7 +69,8 @@ namespace StudIS.Web.Api.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<INHibernateService>().To<NHibernateService>();
-            kernel.Bind<IUserRepository>().To<UserRepository>();
+            var nhService = new NHibernateService();
+            kernel.Bind<IUserRepository>().To<UserRepository>().WithConstructorArgument("nhs",nhService);
         }        
     }
 }

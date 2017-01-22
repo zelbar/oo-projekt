@@ -15,11 +15,11 @@ namespace StudIS.Web.Api.Controllers
 {
     public class LoginController : ApiController
     {
-        private INHibernateService _nhService;
+        private IUserRepository _usrRep;
 
-        public LoginController(INHibernateService nhService)
+        public LoginController(IUserRepository usrRep)
         {
-            _nhService = nhService;
+            _usrRep = usrRep;
         }
         /// <summary>
         /// Returns simple student model for mobile application, returns null if the data is wrong or a user is not student
@@ -32,9 +32,7 @@ namespace StudIS.Web.Api.Controllers
         [HttpGet]
         public SimpleStudentModel Index(String email, String passwordHash)
         {
-            INHibernateService nHib = _nhService;
-            var repository = new UserRepository(nHib.OpenSession());
-            var service = new LoginService(repository);
+            var service = new LoginService(_usrRep);
 
             var user = service.LoginUser(email, passwordHash);
             if (user == null)
@@ -44,12 +42,6 @@ namespace StudIS.Web.Api.Controllers
             else
                 return null;
 
-        }
-        [HttpGet]
-        public string Index(string email)
-        {
-
-            return "žabica"+email;
         }
     }
 }
