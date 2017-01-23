@@ -8,9 +8,15 @@ namespace StudIS.Web.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(Boolean error = false)
         {
-            return View();
+            if ((String)Session["userType"] == "Student")
+                return RedirectToAction("Index", "Student");
+            else if ((String)Session["userType"] == "Lecturer")
+                return RedirectToAction("Index", "Lecturer");
+
+
+            return View(error);
         }
 
         public ActionResult About()

@@ -83,19 +83,32 @@ namespace StudIS.Desktop
                 LecturersInCharge = null,
                 StudentsEnrolled = null
             };
+            Student ja = new Student()
+            {
+                Name = "Zlatko",
+                Surname = "Hrastić",
+                CoursesEnrolledIn = null,
+                Email = "zlatko.hrastic@fer.hr",
+                NationalIdentificationNumber = "343999999",
+                StudentIdentificationNumber = "0036476522",
+                PasswordHash = EncryptionService.EncryptSHA1("jabuka")
 
-           // userRepository.Create(MockUser);
+            };
+            var service = new UserServices(userRepository);
+            service.createUser(ja);
+
+            // userRepository.Create(MockUser);
             //userRepository.Create(MockUser2);
 
-            var studentList = new List<Student>();
-            studentList.Add((Student)userRepository.GetById(1));
-            studentList.Add((Student)userRepository.GetById(2));
+            //var studentList = new List<Student>();
+            //studentList.Add((Student)userRepository.GetById(1));
+            //studentList.Add((Student)userRepository.GetById(2));
 
-            MockCourse.StudentsEnrolled = studentList;
-            userRepository.GetByCourse(MockCourse);
+            //MockCourse.StudentsEnrolled = studentList;
+            //userRepository.GetByCourse(MockCourse);
 
-            //courseRep.Create(MockCourse);
-            //courseRep.Create(MockCourse2);
+            ////courseRep.Create(MockCourse);
+            ////courseRep.Create(MockCourse2);
             #endregion
 
 
