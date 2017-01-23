@@ -32,7 +32,7 @@ namespace StudIS.Web.Api.Controllers
         /// </summary>
         /// <param name="id">id of the student</param>
         /// <returns></returns>
-        public List<SimpleCourseModel> getCoursesByStudentId(int id)
+        public List<SimpleCourseModel> GetCoursesByStudentId(int id)
         {
             var courses=_corRep.GetByUserId(id);
             if (courses == null)
@@ -51,11 +51,20 @@ namespace StudIS.Web.Api.Controllers
 
         }
 
-        public IList<Score> getScoreData(int studentId,int courseId)
+        public IList<Score> GetScoreData(int studentId,int courseId)
         {
             var scoreServices = new ScoreServices(_scrRep,_corRep);
             var scoreList=scoreServices.GetScorebyStudentAndCourse(studentId, courseId);
             return scoreList;
+        }
+
+        public SimpleStudentModel GetStudentData(int id)
+        {
+            var studentServices = new StudentServices(_usrRep);
+            var student = studentServices.getStudentdata(id);
+            if (student != null)
+                return new SimpleStudentModel(student);
+            else return null;
         }
     }
 }
