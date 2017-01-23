@@ -7,6 +7,7 @@ using StudIS.Models;
 using StudIS.Models.RepositoryInterfaces;
 using NHibernate;
 using NHibernate.Criterion;
+using StudIS.Models.Users;
 
 namespace StudIS.DAL.Repositories
 {
@@ -78,9 +79,14 @@ namespace StudIS.DAL.Repositories
 
         public IList<Course> GetByUserId(int userId)
         {
-            return _session.CreateCriteria<Course>()
-                .Add(Expression.Like("Student_Id", userId))
-                .List<Course>();
+
+            var users = _session.QueryOver<Course>()
+                             .Right.JoinQueryOver<User>(c => c.StudentsEnrolled)
+                             .Where(u => u.Id == userId)
+                             .List();
+
+
+            return users;
         }
 
         public Course Update(Course course)

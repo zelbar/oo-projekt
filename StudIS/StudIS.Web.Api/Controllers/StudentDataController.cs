@@ -2,6 +2,7 @@
 using StudIS.DAL.Repositories;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models;
+using StudIS.Services;
 using StudIS.Web.Api.Models;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,25 @@ namespace StudIS.Web.Api.Controllers
     public class StudentDataController : ApiController
     {
         private IUserRepository _usrRep;
+        private ICourseRepository _corRep;
+        private IScoreRepository _scrRep;
 
-        public StudentDataController(IUserRepository usrRep)
+        public StudentDataController(IUserRepository usrRep,ICourseRepository corRep,IScoreRepository scrRep)
         {
             _usrRep = usrRep;
+            _corRep = corRep;
+            _scrRep = scrRep;
+
         }
 
+        /// <summary>
+        /// Returns simpleCourse model for student with given id, returns null otherwise
+        /// </summary>
+        /// <param name="id">id of the student</param>
+        /// <returns></returns>
         public List<SimpleCourseModel> getCoursesByStudentId(int id)
         {
-            var repository = new MockCourseRepository();
-            var courses=repository.GetByUserId(id);
+            var courses=_corRep.GetByUserId(id);
             if (courses == null)
                 return null;
             else
@@ -39,6 +49,13 @@ namespace StudIS.Web.Api.Controllers
             }
 
 
+        }
+
+        public IList<Score> getScoreData(int studentId,int courseId)
+        {
+            var scoreServices = new ScoreServices(_scrRep,_corRep);
+            var scoreList=scoreServices.GetScorebyStudentAndCourse(studentId, courseId);
+            return scoreList;
         }
     }
 }

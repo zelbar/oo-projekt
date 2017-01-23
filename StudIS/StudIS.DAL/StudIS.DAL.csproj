@@ -103,6 +103,7 @@
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\MockCourseRepository.cs" />
     <Compile Include="Repositories\MockUserRepository.cs" />
+    <Compile Include="Repositories\ScoreRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
