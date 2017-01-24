@@ -33,6 +33,8 @@ namespace StudIS.Desktop
             _courseFormController = courseFormController;
             _userFormController = userFormController;
 
+            var loginForm = new LoginForm(loginFormController);
+            loginForm.Show();
             InitializeComponent();
         }
 
@@ -80,7 +82,7 @@ namespace StudIS.Desktop
             {
                 try
                 {
-                    _userFormController.NewUser(email, user);
+                    var success = _userFormController.NewUser(email, user);
                 }
                 catch (Exception)
                 {
@@ -101,7 +103,7 @@ namespace StudIS.Desktop
             {
                 try
                 {
-                    _userFormController.EditUser(email);
+                    var success = _userFormController.EditUser(email);
                 }
                 catch(Exception)
                 {
@@ -122,7 +124,7 @@ namespace StudIS.Desktop
             {
                 try
                 {
-                    var sccess = _userFormController.DeleteUser(email);
+                    var success = _userFormController.DeleteUser(email);
                 }
                 catch (Exception)
                 {

@@ -15,21 +15,24 @@ namespace StudIS.Desktop.Controllers
         private readonly LoginService _loginService;
         private readonly MainFormController _mainFormController;
 
-        public LoginFormController(LoginService loginService, MainFormController mainFormController)
+        public LoginFormController(
+            MainFormController mainFormController,
+            LoginService loginService)
         {
-            _loginService = loginService;
             _mainFormController = mainFormController;
+            _loginService = loginService;
         }
 
         public bool Login(string email, string password)
         {
-            var result = _loginService.LoginUser(email, password);
+            var passwordHash = EncryptionService.EncryptSHA1(password);
+            var user = _loginService.LoginUser(email, passwordHash);
 
-            if (result != null)
+            if (user != null)
             {
-                if (result.GetType() != typeof(Administrator))
+                if (!UserServices.isUserAdministrator(user))
                 {
-                    MessageBox.Show(result.FullName + " nije u ulozi administratora");
+                    MessageBox.Show(user.FullName + " nije u ulozi administratora");
                     return false;
                 }
                 else
