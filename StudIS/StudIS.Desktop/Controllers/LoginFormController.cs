@@ -12,8 +12,8 @@ namespace StudIS.Desktop.Controllers
 {
     public class LoginFormController
     {
-        private readonly LoginService _loginService;
         private readonly MainFormController _mainFormController;
+        private readonly LoginService _loginService;
 
         public LoginFormController(
             MainFormController mainFormController,

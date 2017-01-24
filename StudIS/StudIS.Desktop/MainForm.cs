@@ -33,8 +33,6 @@ namespace StudIS.Desktop
             _courseFormController = courseFormController;
             _userFormController = userFormController;
 
-            var loginForm = new LoginForm(loginFormController);
-            loginForm.Show();
             InitializeComponent();
         }
 
@@ -93,7 +91,6 @@ namespace StudIS.Desktop
 
         private void editButton_Click(object sender, EventArgs e)
         {
-
             User user;
             string email;
 
@@ -125,6 +122,10 @@ namespace StudIS.Desktop
                 try
                 {
                     var success = _userFormController.DeleteUser(email);
+                    if (success)
+                    {
+                        MessageBox.Show("Korisnik izbrisan!");
+                    }
                 }
                 catch (Exception)
                 {

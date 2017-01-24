@@ -66,8 +66,7 @@ namespace StudIS.Desktop.Controllers
                 return false;
             }
 
-            _userRepository.DeleteById(user.Id);
-            return true;
+            return _userRepository.DeleteById(user.Id);
         }
     }
 }

@@ -25,12 +25,20 @@ namespace StudIS.Desktop
             InitializeComponent();
         }
 
+        public bool LoginResult { get; set; } = false;
+
         private void submitButton_Click(object sender, EventArgs e)
         {
             var email = this.emailTextBox.Text;
             var password = this.passwordTextBox.Text;
 
             var loginResult = _controller.Login(email, password);
+
+            if (loginResult)
+            {
+                this.LoginResult = true;
+                this.Close();
+            }
         }
     }
 }

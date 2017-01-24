@@ -136,13 +136,20 @@ namespace StudIS.Desktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var loginForm = new LoginForm(loginFormController);
+
             var mainForm = new MainForm(
                 mainFormController, 
                 loginFormController, 
                 courseFormController, 
                 userFormController);
 
-            Application.Run(mainForm);
+            Application.Run(loginForm);
+            var loginResult = loginForm.LoginResult;
+            if (loginResult)
+            {
+                Application.Run(mainForm);
+            }
         }
     }
 }
