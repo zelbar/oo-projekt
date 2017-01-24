@@ -211,6 +211,9 @@
     <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ScoredCourseViewModel.cs" />
+    <Compile Include="Models\ScoreViewModel.cs" />
+    <Compile Include="Models\StudentCourseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -290,6 +293,7 @@
     <Content Include="Views\Shared\_PartialLayout.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Lecturer\Index.cshtml" />
+    <Content Include="Views\Student\ScoreInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

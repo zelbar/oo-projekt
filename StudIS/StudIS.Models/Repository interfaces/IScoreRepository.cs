@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudIS.Models.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,6 @@ namespace StudIS.Models.RepositoryInterfaces
         Score Update(Score score);
         Score CreateOrUpdate(Score score);
         Score GetById(int id);
-        Score GetByStudentIdAndComponentId(int studentId, int componentId);
+        Score GetByStudentIdAndComponentId(Student student, Component component);
     }
 }

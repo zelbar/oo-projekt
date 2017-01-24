@@ -100,6 +100,7 @@
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="NHibernateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ComponentRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\MockCourseRepository.cs" />
     <Compile Include="Repositories\MockUserRepository.cs" />
