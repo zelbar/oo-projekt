@@ -21,13 +21,16 @@ namespace StudIS.Services
         /// </summary>
         /// <param name="email"></param>
         /// <param name="passwordHash"></param>
-        /// <returns>returns user if user exists, null othervise</returns>
-        public User LoginUser(String email, String passwordHash)
+        /// <returns>returns user if user exists, null otherwise</returns>
+        public User LoginUser(string email, string password)
         {
             var user = _userRepositry.GetByEmail(email);
+
             if (user == null)
+            {
                 return null;
-            else if (user.PasswordHash == passwordHash)
+            }
+            else if (user.PasswordHash == EncryptionService.EncryptSHA1(password))
             {
                 return user;
             }
