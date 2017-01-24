@@ -28,29 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.studentRadioButton = new System.Windows.Forms.RadioButton();
-            this.lecturerRadioButton = new System.Windows.Forms.RadioButton();
-            this.adminRadioButton = new System.Windows.Forms.RadioButton();
             this.emailLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.newButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.studentRadioButton = new System.Windows.Forms.RadioButton();
+            this.lecturerRadioButton = new System.Windows.Forms.RadioButton();
+            this.adminRadioButton = new System.Windows.Forms.RadioButton();
+            this.userTypeGroupBox = new System.Windows.Forms.GroupBox();
             this.userTypeGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // userTypeGroupBox
+            // emailLabel
             // 
-            this.userTypeGroupBox.Controls.Add(this.adminRadioButton);
-            this.userTypeGroupBox.Controls.Add(this.lecturerRadioButton);
-            this.userTypeGroupBox.Controls.Add(this.studentRadioButton);
-            this.userTypeGroupBox.Location = new System.Drawing.Point(13, 13);
-            this.userTypeGroupBox.Name = "userTypeGroupBox";
-            this.userTypeGroupBox.Size = new System.Drawing.Size(259, 99);
-            this.userTypeGroupBox.TabIndex = 0;
-            this.userTypeGroupBox.TabStop = false;
-            this.userTypeGroupBox.Text = "Vrsta korisnika";
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Location = new System.Drawing.Point(20, 119);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(163, 13);
+            this.emailLabel.TabIndex = 1;
+            this.emailLabel.Text = "E-mail adresa korisničkog računa";
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.Location = new System.Drawing.Point(13, 136);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(259, 20);
+            this.emailTextBox.TabIndex = 2;
+            // 
+            // newButton
+            // 
+            this.newButton.Location = new System.Drawing.Point(13, 163);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(259, 23);
+            this.newButton.TabIndex = 3;
+            this.newButton.Text = "Unesi novog";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(13, 192);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(259, 23);
+            this.editButton.TabIndex = 4;
+            this.editButton.Text = "Uredi";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(12, 221);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(259, 23);
+            this.deleteButton.TabIndex = 5;
+            this.deleteButton.Text = "Izbriši";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // studentRadioButton
             // 
@@ -85,51 +119,17 @@
             this.adminRadioButton.Text = "Administrator";
             this.adminRadioButton.UseVisualStyleBackColor = true;
             // 
-            // emailLabel
+            // userTypeGroupBox
             // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(20, 119);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(163, 13);
-            this.emailLabel.TabIndex = 1;
-            this.emailLabel.Text = "E-mail adresa korisničkog računa";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(13, 136);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // newButton
-            // 
-            this.newButton.Location = new System.Drawing.Point(13, 163);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(259, 23);
-            this.newButton.TabIndex = 3;
-            this.newButton.Text = "Unesi novog";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // editButton
-            // 
-            this.editButton.Location = new System.Drawing.Point(13, 192);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(259, 23);
-            this.editButton.TabIndex = 4;
-            this.editButton.Text = "Uredi";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Location = new System.Drawing.Point(12, 221);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(259, 23);
-            this.deleteButton.TabIndex = 5;
-            this.deleteButton.Text = "Izbriši";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.userTypeGroupBox.Controls.Add(this.adminRadioButton);
+            this.userTypeGroupBox.Controls.Add(this.lecturerRadioButton);
+            this.userTypeGroupBox.Controls.Add(this.studentRadioButton);
+            this.userTypeGroupBox.Location = new System.Drawing.Point(13, 13);
+            this.userTypeGroupBox.Name = "userTypeGroupBox";
+            this.userTypeGroupBox.Size = new System.Drawing.Size(259, 99);
+            this.userTypeGroupBox.TabIndex = 0;
+            this.userTypeGroupBox.TabStop = false;
+            this.userTypeGroupBox.Text = "Vrsta korisnika";
             // 
             // MainForm
             // 
@@ -139,7 +139,7 @@
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.newButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.userTypeGroupBox);
             this.Name = "MainForm";
@@ -152,15 +152,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox userTypeGroupBox;
-        private System.Windows.Forms.RadioButton adminRadioButton;
-        private System.Windows.Forms.RadioButton lecturerRadioButton;
-        private System.Windows.Forms.RadioButton studentRadioButton;
         private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.RadioButton studentRadioButton;
+        private System.Windows.Forms.RadioButton lecturerRadioButton;
+        private System.Windows.Forms.RadioButton adminRadioButton;
+        private System.Windows.Forms.GroupBox userTypeGroupBox;
     }
 }

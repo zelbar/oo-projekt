@@ -21,9 +21,9 @@ namespace StudIS.Desktop.Controllers
             _mainFormController = mainFormController;
         }
 
-        public bool Login(string email, string passwordHash)
+        public bool Login(string email, string password)
         {
-            var result = _loginService.LoginUser(email, passwordHash);
+            var result = _loginService.LoginUser(email, password);
 
             if (result != null)
             {

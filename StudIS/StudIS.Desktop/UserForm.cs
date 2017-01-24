@@ -12,17 +12,21 @@ using StudIS.Models.Users;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.DAL;
 using StudIS.DAL.Repositories;
+using StudIS.Desktop.Controllers;
 
 namespace StudIS.Desktop
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        private readonly UserFormController _userFormController;
+
+        public UserForm(
+            UserFormController userFormController,
+            User user, 
+            IList<Course> courses)
         {
+            _userFormController = userFormController;
             InitializeComponent();
-            IUserRepository userRepo = new MockUserRepository();
-            ICourseRepository courseRepo = new MockCourseRepository();
-            var user = userRepo.GetAll()[0];
 
             this.nameTextBox.Text = user.Name;
             this.surnameTextBox.Text = user.Surname;
@@ -38,15 +42,21 @@ namespace StudIS.Desktop
                 this.studentIdentificationNumberTextBox.Enabled = false;
             }
 
+            if (user is Administrator)
+            {
+                this.coursesCheckedListBox.Enabled = false;
+                this.coursesGroupBox.Enabled = false;
+            }
+
             this.emailTextBox.Text = user.Email;
 
-            ((ListBox)coursesCheckedListBox).DataSource = courseRepo.GetAll();
+            ((ListBox)coursesCheckedListBox).DataSource = courses.ToList();
             ((ListBox)coursesCheckedListBox).DisplayMember = "NaturalIdentifier";
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            //_userFormController.Save
         }
     }
 }

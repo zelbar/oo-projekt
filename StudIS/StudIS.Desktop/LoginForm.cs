@@ -30,7 +30,7 @@ namespace StudIS.Desktop
             var email = this.emailTextBox.Text;
             var password = this.passwordTextBox.Text;
 
-            var loginResult = _controller.Login(email, password.GetHashCode().ToString());
+            var loginResult = _controller.Login(email, password);
         }
     }
 }
