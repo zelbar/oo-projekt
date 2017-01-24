@@ -63,13 +63,31 @@ namespace StudIS.Desktop
             };
 
 
+            Component medjuispit = new Component()
+            {
+                CourseId = 1,
+                MaximumPoints = 30,
+                MinimumPointsToPass = 15,
+                Name = "Međuispit"
+            };
+            Component zavrsni = new Component()
+            {
+                CourseId = 1,
+                MaximumPoints = 40,
+                MinimumPointsToPass = 25,
+                Name = "Završni ispit"
+            };
+            var componentList = new List<Component>();
+            componentList.Add(medjuispit);
+            componentList.Add(zavrsni);
+
             Course MockCourse = new Course()
             {
                 Id = 1,
                 Name = "Objektno oblikovanje",
                 NaturalIdentifier = "ObjOblFER2016OO",
                 EctsCredits = 5,
-                Components = null,
+                Components = componentList,
                 LecturersInCharge = null,
                 StudentsEnrolled = null
             };
@@ -94,8 +112,18 @@ namespace StudIS.Desktop
                 PasswordHash = EncryptionService.EncryptSHA1("jabuka")
 
             };
-            var service = new UserServices(userRepository);
-            service.createUser(ja);
+            var rep = new ScoreRepository(nhService);
+            var score = new Score()
+            {
+                Component = new ComponentRepository(nhService).GetById(10),
+                Student = (Student)userRepository.GetById(4),
+                Value = 20
+            };
+            rep.CreateOrUpdate(score);
+
+            
+            //var service = new UserServices(userRepository);
+            //service.createUser(ja);
 
             // userRepository.Create(MockUser);
             //userRepository.Create(MockUser2);
@@ -107,7 +135,7 @@ namespace StudIS.Desktop
             //MockCourse.StudentsEnrolled = studentList;
             //userRepository.GetByCourse(MockCourse);
 
-            ////courseRep.Create(MockCourse);
+           // courseRep.Update(MockCourse);
             ////courseRep.Create(MockCourse2);
             #endregion
 

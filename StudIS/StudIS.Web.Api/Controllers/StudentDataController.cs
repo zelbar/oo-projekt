@@ -34,7 +34,8 @@ namespace StudIS.Web.Api.Controllers
         /// <returns></returns>
         public List<SimpleCourseModel> GetCoursesByStudentId(int id)
         {
-            var courses=_corRep.GetByUserId(id);
+            var courseServices = new CourseServices(_corRep);
+            var courses = courseServices.GetCoursesByUserId(id);          
             if (courses == null)
                 return null;
             else

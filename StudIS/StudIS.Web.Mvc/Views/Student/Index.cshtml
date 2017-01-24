@@ -1,1 +1,16 @@
-﻿OVo je bod student index viewa
+﻿@using StudIS.Web.Mvc.Models;
+@model List<StudentCourseViewModel>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Upisani predmeti</h1>
+    </div>
+
+    <div class="list-group">
+        @foreach (var course in Model)
+        {
+            <a href="/Student/ScoreInfo/@course.Id" class="list-group-item">@course.Name (@course.NaturalIdentifier)</a>
+        }
+
+    </div>
+</div>

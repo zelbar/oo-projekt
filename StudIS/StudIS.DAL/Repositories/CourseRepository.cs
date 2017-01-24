@@ -84,6 +84,8 @@ namespace StudIS.DAL.Repositories
                              .Right.JoinQueryOver<User>(c => c.StudentsEnrolled)
                              .Where(u => u.Id == userId)
                              .List();
+            if (users[0] == null)
+                return null;
 
 
             return users;

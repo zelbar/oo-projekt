@@ -1,0 +1,36 @@
+﻿@using StudIS.Web.Mvc.Models
+@model ScoredCourseViewModel
+
+
+
+<div class="container">
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">@Model.Name</div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Komponenta</th>
+                        <th>Broj bodova</th>
+                        <th>Maksimalan broj bodova</th>
+                        <th>Prag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var score in Model.scoreList)
+                    {
+                        <tr>
+
+                            <td>@score.ComponentName</td>
+                            <td>@score.Value</td>
+                            <td>@score.ComponentMax</td>
+                            <td>@score.ComponentMinToPass</td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

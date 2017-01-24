@@ -7,6 +7,7 @@ using StudIS.Models;
 using StudIS.Models.RepositoryInterfaces;
 using NHibernate;
 using NHibernate.Criterion;
+using StudIS.Models.Users;
 
 namespace StudIS.DAL.Repositories
 {
@@ -62,11 +63,11 @@ namespace StudIS.DAL.Repositories
             return _session.Get<Score>(id);
         }
 
-        public Score GetByStudentIdAndComponentId(int studentId, int componentId)
+        public Score GetByStudentIdAndComponentId(Student student,Component component)
         {
-            // return _session.QueryOver<Score>().Where(c=>c.Student.Id==studentId).Where(c=>c.Component.Id==componentId).SingleOrDefault();
-            var varijabla = _session.QueryOver<Score>().Where(c => c.Student.Id == studentId).List<Score>();
-            return null;
+
+            var varijabla = _session.QueryOver<Score>().Where(sc => sc.Student == student).Where(sc => sc.Component == component).SingleOrDefault();
+            return varijabla;
         }
     }
 }
