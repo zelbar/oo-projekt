@@ -7,6 +7,8 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using StudIS.DAL.Mappings;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace StudIS.DAL
 {
@@ -35,13 +37,23 @@ namespace StudIS.DAL
 
         private ISessionFactory OpenSessionFactory()
         {
+            var rawStr = "Data Source = (LocalDB)\\MSSQLLocalDB; Integrated Security = True";
+
+            var currentPath = Environment.CurrentDirectory;
+            var pathArray = currentPath.Split('\\');
+            var rootPath = string.Join("\\", pathArray.Take(pathArray.Length - 3).ToList());
+            
+            var conBuilder = new SqlConnectionStringBuilder(rawStr);
+            conBuilder.AttachDBFilename = Path.GetFullPath(
+                Path.Combine(rootPath, "StudIS_DB.mdf"));
+            
             var nhConfig = Fluently.Configure()
                 .Diagnostics(diag => diag.Enable().OutputToConsole())
                 //.Database(SQLiteConfiguration.Standard
                 //    .ConnectionString("Data Source=TestNHibernate_fluent.db;Version=3")
                 //    .AdoNetBatchSize(100))
                 .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\data\\StudIS\\StudIS_DB.mdf;Integrated Security=True")
+                    .ConnectionString(conBuilder.ToString())
                     .AdoNetBatchSize(100))
                 .Mappings(mappings => mappings.FluentMappings.Add<AdministratorMap>())
                 .Mappings(mappings => mappings.FluentMappings.Add<LecturerMap>())
