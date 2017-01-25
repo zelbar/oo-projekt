@@ -19,6 +19,7 @@ namespace StudIS.Desktop
     public partial class UserForm : Form
     {
         private readonly UserFormController _userFormController;
+        private User _user;
 
         public UserForm(
             UserFormController userFormController,
@@ -26,7 +27,7 @@ namespace StudIS.Desktop
             IList<Course> courses)
         {
             _userFormController = userFormController;
-            InitializeComponent();
+            _user = user;
 
             this.nameTextBox.Text = user.Name;
             this.surnameTextBox.Text = user.Surname;
@@ -35,28 +36,34 @@ namespace StudIS.Desktop
             if (user is Student)
             {
                 this.studentIdentificationNumberTextBox
-                    .Text = ((Student)user).StudentIdentificationNumber;
+                    .Text = ((Student)_user).StudentIdentificationNumber;
             }
             else
             {
                 this.studentIdentificationNumberTextBox.Enabled = false;
             }
 
-            if (user is Administrator)
+            if (_user is Administrator)
             {
                 this.coursesCheckedListBox.Enabled = false;
                 this.coursesGroupBox.Enabled = false;
             }
 
-            this.emailTextBox.Text = user.Email;
+            this.emailTextBox.Text = _user.Email;
 
             ((ListBox)coursesCheckedListBox).DataSource = courses.ToList();
             ((ListBox)coursesCheckedListBox).DisplayMember = "NaturalIdentifier";
+
+            InitializeComponent();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //_userFormController.Save
+            _user.Name = this.nameTextBox.Text;
+            _user.Surname = this.surnameTextBox.Text;
+
+
+            _userFormController.SaveUser(_user);
         }
     }
 }

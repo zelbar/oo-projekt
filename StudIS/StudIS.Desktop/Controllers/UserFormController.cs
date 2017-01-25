@@ -68,5 +68,18 @@ namespace StudIS.Desktop.Controllers
 
             return _userRepository.DeleteById(user.Id);
         }
+
+        public bool SaveUser(User user)
+        {
+            try
+            {
+                _userRepository.Update(user);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
