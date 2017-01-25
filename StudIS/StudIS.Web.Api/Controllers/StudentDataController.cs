@@ -30,12 +30,13 @@ namespace StudIS.Web.Api.Controllers
         /// <summary>
         /// Returns simpleCourse model for student with given id, returns null otherwise
         /// </summary>
-        /// <param name="id">id of the student</param>
+        /// <param name="studentId">id of the student</param>
         /// <returns></returns>
-        public List<SimpleCourseModel> GetCoursesByStudentId(int id)
+        [Route("api/StudentData/GetCoursesByStudentId/{studentId}")]
+        public List<SimpleCourseModel> GetCoursesByStudentId(int studentId)
         {
             var courseServices = new CourseServices(_corRep);
-            var courses = courseServices.GetCoursesByUserId(id);          
+            var courses = courseServices.GetCoursesByUserId(studentId);          
             if (courses == null)
                 return null;
             else
@@ -51,14 +52,35 @@ namespace StudIS.Web.Api.Controllers
 
 
         }
-
-        public IList<Score> GetScoreData(int studentId,int courseId)
+        [Route("api/StudentData/GetScoreData/{studentId}/{courseId}")]
+        public ScoredCourse GetScoreData(int studentId,int courseId)
         {
-            var scoreServices = new ScoreServices(_scrRep,_corRep);
-            var scoreList=scoreServices.GetScorebyStudentAndCourse(studentId, courseId);
-            return scoreList;
-        }
+            
+            var scoreServcies = new ScoreServices(_scrRep, _corRep, _usrRep);
+            var courseServices = new CourseServices(_corRep);
 
+            var course = courseServices.GetCourseById(courseId);
+
+            var scores = scoreServcies.GetScorebyStudentAndCourse(studentId, courseId);
+            var scoresViewModel = new List<SimpleScore>();
+            foreach (var score in scores)
+            {
+                scoresViewModel.Add(new SimpleScore(score));
+            }
+            scoresViewModel.Sort((m1, m2) => m1.ComponentName.CompareTo(m2.ComponentName));
+
+
+
+            var scoredCourse = new ScoredCourse()
+            {
+                Name = course.Name,
+                ScoreList = scoresViewModel
+
+            };
+
+            return scoredCourse;
+        }
+        [Route("api/StudentData/GetStudentData/{id}")]
         public SimpleStudentModel GetStudentData(int id)
         {
             var studentServices = new StudentServices(_usrRep);

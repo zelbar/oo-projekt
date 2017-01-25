@@ -10,12 +10,12 @@ namespace StudIS.Services
 {
     public class CourseServices
     {
-        
+
         private ICourseRepository _courseRepository;
 
-        public CourseServices( ICourseRepository courseRepository)
+        public CourseServices(ICourseRepository courseRepository)
         {
-           
+
             _courseRepository = courseRepository;
 
         }
@@ -25,10 +25,14 @@ namespace StudIS.Services
             if (courses == null)
                 return null;
 
-            var coursesList=courses.ToList();
+            var coursesList = courses.ToList();
             coursesList.Sort((c1, c2) => c1.Name.CompareTo(c2.Name));
             return coursesList;
+
         }
 
+        public Course GetCourseById(int courseId) {
+            return _courseRepository.GetById(courseId);
+        }
     }
 }

@@ -34,6 +34,9 @@ namespace StudIS.Web.Mvc.Controllers
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
+            ViewBag.Email = Session["email"];
+            ViewBag.Title = "Predmeti";
+
             int userId = (int)Session["userId"];
             List<StudentCourseViewModel> courseList = new List<StudentCourseViewModel>();
 
@@ -52,16 +55,22 @@ namespace StudIS.Web.Mvc.Controllers
             return View(courseList);
         }
 
-        //courseid
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Course id</param>
+        /// <returns></returns>
         public ActionResult ScoreInfo(int id)
         {
+            ViewBag.Email = Session["email"];
+            ViewBag.Title = "Bodovi";
             var studentId = (int)Session["userId"];
             var scoreServcies = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
             var courseServices = new CourseServices(_courseRepository);
 
-            //var courseName=courseServices.
-           
-            var scores=scoreServcies.GetScorebyStudentAndCourse(studentId,id);
+            var course = courseServices.GetCourseById(id);
+
+           var scores=scoreServcies.GetScorebyStudentAndCourse(studentId,id);
             var scoresViewModel = new List<ScoreViewModel>();
             foreach(var score in scores)
             {
@@ -69,10 +78,11 @@ namespace StudIS.Web.Mvc.Controllers
             }
             scoresViewModel.Sort((m1, m2) => m1.ComponentName.CompareTo(m2.ComponentName));
 
+           
 
             var scoredCourse = new ScoredCourseViewModel()
             {
-                Name = "IME PREDMETA",
+                Name = course.Name,
                 scoreList = scoresViewModel
 
             };
