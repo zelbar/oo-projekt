@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.userInfoGroupBox = new System.Windows.Forms.GroupBox();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.surnameLabel = new System.Windows.Forms.Label();
-            this.surnameTextBox = new System.Windows.Forms.TextBox();
-            this.coursesGroupBox = new System.Windows.Forms.GroupBox();
-            this.nationalIdentificationNumberLabel = new System.Windows.Forms.Label();
-            this.nationalIdentificationNumberTextBox = new System.Windows.Forms.TextBox();
-            this.studentIdentificationNumberLabel = new System.Windows.Forms.Label();
             this.studentIdentificationNumberTextBox = new System.Windows.Forms.TextBox();
+            this.studentIdentificationNumberLabel = new System.Windows.Forms.Label();
+            this.nationalIdentificationNumberTextBox = new System.Windows.Forms.TextBox();
+            this.nationalIdentificationNumberLabel = new System.Windows.Forms.Label();
+            this.surnameTextBox = new System.Windows.Forms.TextBox();
+            this.surnameLabel = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.coursesGroupBox = new System.Windows.Forms.GroupBox();
+            this.coursesCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.accountGroupBox = new System.Windows.Forms.GroupBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.passwordLabel = new System.Windows.Forms.Label();
-            this.passwordButton = new System.Windows.Forms.Button();
-            this.coursesCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.userInfoGroupBox.SuspendLayout();
             this.coursesGroupBox.SuspendLayout();
             this.accountGroupBox.SuspendLayout();
@@ -60,92 +60,114 @@
             this.userInfoGroupBox.Controls.Add(this.surnameLabel);
             this.userInfoGroupBox.Controls.Add(this.nameTextBox);
             this.userInfoGroupBox.Controls.Add(this.nameLabel);
-            this.userInfoGroupBox.Location = new System.Drawing.Point(13, 13);
+            this.userInfoGroupBox.Location = new System.Drawing.Point(17, 16);
+            this.userInfoGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.userInfoGroupBox.Name = "userInfoGroupBox";
-            this.userInfoGroupBox.Size = new System.Drawing.Size(315, 138);
+            this.userInfoGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.userInfoGroupBox.Size = new System.Drawing.Size(420, 170);
             this.userInfoGroupBox.TabIndex = 0;
             this.userInfoGroupBox.TabStop = false;
             this.userInfoGroupBox.Text = "Podaci o korisniku";
             // 
-            // nameLabel
+            // studentIdentificationNumberTextBox
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(9, 23);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(24, 13);
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "Ime";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.Location = new System.Drawing.Point(112, 19);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(197, 20);
-            this.nameTextBox.TabIndex = 1;
-            // 
-            // surnameLabel
-            // 
-            this.surnameLabel.AutoSize = true;
-            this.surnameLabel.Location = new System.Drawing.Point(9, 50);
-            this.surnameLabel.Name = "surnameLabel";
-            this.surnameLabel.Size = new System.Drawing.Size(44, 13);
-            this.surnameLabel.TabIndex = 2;
-            this.surnameLabel.Text = "Prezime";
-            // 
-            // surnameTextBox
-            // 
-            this.surnameTextBox.Location = new System.Drawing.Point(112, 47);
-            this.surnameTextBox.Name = "surnameTextBox";
-            this.surnameTextBox.Size = new System.Drawing.Size(197, 20);
-            this.surnameTextBox.TabIndex = 3;
-            // 
-            // coursesGroupBox
-            // 
-            this.coursesGroupBox.Controls.Add(this.coursesCheckedListBox);
-            this.coursesGroupBox.Location = new System.Drawing.Point(335, 13);
-            this.coursesGroupBox.Name = "coursesGroupBox";
-            this.coursesGroupBox.Size = new System.Drawing.Size(253, 286);
-            this.coursesGroupBox.TabIndex = 12;
-            this.coursesGroupBox.TabStop = false;
-            this.coursesGroupBox.Text = "Predmeti";
-            // 
-            // nationalIdentificationNumberLabel
-            // 
-            this.nationalIdentificationNumberLabel.AutoSize = true;
-            this.nationalIdentificationNumberLabel.Location = new System.Drawing.Point(9, 77);
-            this.nationalIdentificationNumberLabel.Name = "nationalIdentificationNumberLabel";
-            this.nationalIdentificationNumberLabel.Size = new System.Drawing.Size(25, 13);
-            this.nationalIdentificationNumberLabel.TabIndex = 4;
-            this.nationalIdentificationNumberLabel.Text = "OIB";
-            // 
-            // nationalIdentificationNumberTextBox
-            // 
-            this.nationalIdentificationNumberTextBox.Location = new System.Drawing.Point(112, 74);
-            this.nationalIdentificationNumberTextBox.Name = "nationalIdentificationNumberTextBox";
-            this.nationalIdentificationNumberTextBox.Size = new System.Drawing.Size(197, 20);
-            this.nationalIdentificationNumberTextBox.TabIndex = 5;
+            this.studentIdentificationNumberTextBox.Location = new System.Drawing.Point(149, 128);
+            this.studentIdentificationNumberTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.studentIdentificationNumberTextBox.Name = "studentIdentificationNumberTextBox";
+            this.studentIdentificationNumberTextBox.Size = new System.Drawing.Size(261, 22);
+            this.studentIdentificationNumberTextBox.TabIndex = 7;
             // 
             // studentIdentificationNumberLabel
             // 
             this.studentIdentificationNumberLabel.AutoSize = true;
-            this.studentIdentificationNumberLabel.Location = new System.Drawing.Point(9, 107);
+            this.studentIdentificationNumberLabel.Location = new System.Drawing.Point(12, 132);
+            this.studentIdentificationNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.studentIdentificationNumberLabel.Name = "studentIdentificationNumberLabel";
-            this.studentIdentificationNumberLabel.Size = new System.Drawing.Size(43, 13);
+            this.studentIdentificationNumberLabel.Size = new System.Drawing.Size(55, 17);
             this.studentIdentificationNumberLabel.TabIndex = 6;
             this.studentIdentificationNumberLabel.Text = "JMBAG";
             // 
-            // studentIdentificationNumberTextBox
+            // nationalIdentificationNumberTextBox
             // 
-            this.studentIdentificationNumberTextBox.Location = new System.Drawing.Point(112, 104);
-            this.studentIdentificationNumberTextBox.Name = "studentIdentificationNumberTextBox";
-            this.studentIdentificationNumberTextBox.Size = new System.Drawing.Size(197, 20);
-            this.studentIdentificationNumberTextBox.TabIndex = 7;
+            this.nationalIdentificationNumberTextBox.Location = new System.Drawing.Point(149, 91);
+            this.nationalIdentificationNumberTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nationalIdentificationNumberTextBox.Name = "nationalIdentificationNumberTextBox";
+            this.nationalIdentificationNumberTextBox.Size = new System.Drawing.Size(261, 22);
+            this.nationalIdentificationNumberTextBox.TabIndex = 5;
+            // 
+            // nationalIdentificationNumberLabel
+            // 
+            this.nationalIdentificationNumberLabel.AutoSize = true;
+            this.nationalIdentificationNumberLabel.Location = new System.Drawing.Point(12, 95);
+            this.nationalIdentificationNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.nationalIdentificationNumberLabel.Name = "nationalIdentificationNumberLabel";
+            this.nationalIdentificationNumberLabel.Size = new System.Drawing.Size(31, 17);
+            this.nationalIdentificationNumberLabel.TabIndex = 4;
+            this.nationalIdentificationNumberLabel.Text = "OIB";
+            // 
+            // surnameTextBox
+            // 
+            this.surnameTextBox.Location = new System.Drawing.Point(149, 58);
+            this.surnameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.surnameTextBox.Name = "surnameTextBox";
+            this.surnameTextBox.Size = new System.Drawing.Size(261, 22);
+            this.surnameTextBox.TabIndex = 3;
+            // 
+            // surnameLabel
+            // 
+            this.surnameLabel.AutoSize = true;
+            this.surnameLabel.Location = new System.Drawing.Point(12, 62);
+            this.surnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.surnameLabel.Name = "surnameLabel";
+            this.surnameLabel.Size = new System.Drawing.Size(59, 17);
+            this.surnameLabel.TabIndex = 2;
+            this.surnameLabel.Text = "Prezime";
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Location = new System.Drawing.Point(149, 23);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(261, 22);
+            this.nameTextBox.TabIndex = 1;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(12, 28);
+            this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(30, 17);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "Ime";
+            // 
+            // coursesGroupBox
+            // 
+            this.coursesGroupBox.Controls.Add(this.coursesCheckedListBox);
+            this.coursesGroupBox.Location = new System.Drawing.Point(447, 16);
+            this.coursesGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.coursesGroupBox.Name = "coursesGroupBox";
+            this.coursesGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.coursesGroupBox.Size = new System.Drawing.Size(337, 352);
+            this.coursesGroupBox.TabIndex = 12;
+            this.coursesGroupBox.TabStop = false;
+            this.coursesGroupBox.Text = "Predmeti";
+            // 
+            // coursesCheckedListBox
+            // 
+            this.coursesCheckedListBox.FormattingEnabled = true;
+            this.coursesCheckedListBox.Location = new System.Drawing.Point(8, 23);
+            this.coursesCheckedListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.coursesCheckedListBox.Name = "coursesCheckedListBox";
+            this.coursesCheckedListBox.Size = new System.Drawing.Size(320, 310);
+            this.coursesCheckedListBox.TabIndex = 13;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(13, 261);
+            this.saveButton.Location = new System.Drawing.Point(17, 321);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 14;
             this.saveButton.Text = "Pohrani";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -153,68 +175,67 @@
             // 
             // accountGroupBox
             // 
-            this.accountGroupBox.Controls.Add(this.passwordButton);
+            this.accountGroupBox.Controls.Add(this.passwordTextBox);
             this.accountGroupBox.Controls.Add(this.passwordLabel);
             this.accountGroupBox.Controls.Add(this.emailTextBox);
             this.accountGroupBox.Controls.Add(this.emailLabel);
-            this.accountGroupBox.Location = new System.Drawing.Point(13, 158);
+            this.accountGroupBox.Location = new System.Drawing.Point(17, 194);
+            this.accountGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.accountGroupBox.Name = "accountGroupBox";
-            this.accountGroupBox.Size = new System.Drawing.Size(315, 97);
+            this.accountGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.accountGroupBox.Size = new System.Drawing.Size(420, 119);
             this.accountGroupBox.TabIndex = 9;
             this.accountGroupBox.TabStop = false;
             this.accountGroupBox.Text = "Podaci o računu";
             // 
-            // emailLabel
-            // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(7, 20);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(35, 13);
-            this.emailLabel.TabIndex = 0;
-            this.emailLabel.Text = "E-mail";
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.Location = new System.Drawing.Point(112, 17);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(197, 20);
-            this.emailTextBox.TabIndex = 10;
-            // 
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(7, 49);
+            this.passwordLabel.Location = new System.Drawing.Point(9, 60);
+            this.passwordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(44, 13);
+            this.passwordLabel.Size = new System.Drawing.Size(57, 17);
             this.passwordLabel.TabIndex = 2;
             this.passwordLabel.Text = "Lozinka";
             // 
-            // passwordButton
+            // emailTextBox
             // 
-            this.passwordButton.Location = new System.Drawing.Point(112, 44);
-            this.passwordButton.Name = "passwordButton";
-            this.passwordButton.Size = new System.Drawing.Size(197, 23);
-            this.passwordButton.TabIndex = 11;
-            this.passwordButton.Text = "Generiraj novu";
-            this.passwordButton.UseVisualStyleBackColor = true;
+            this.emailTextBox.Location = new System.Drawing.Point(149, 21);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(261, 22);
+            this.emailTextBox.TabIndex = 10;
             // 
-            // coursesCheckedListBox
+            // emailLabel
             // 
-            this.coursesCheckedListBox.FormattingEnabled = true;
-            this.coursesCheckedListBox.Location = new System.Drawing.Point(6, 19);
-            this.coursesCheckedListBox.Name = "coursesCheckedListBox";
-            this.coursesCheckedListBox.Size = new System.Drawing.Size(241, 259);
-            this.coursesCheckedListBox.TabIndex = 13;
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Location = new System.Drawing.Point(9, 25);
+            this.emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(47, 17);
+            this.emailLabel.TabIndex = 0;
+            this.emailLabel.Text = "E-mail";
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.Location = new System.Drawing.Point(149, 60);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
+            this.passwordTextBox.Size = new System.Drawing.Size(261, 22);
+            this.passwordTextBox.TabIndex = 11;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
             // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.saveButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 306);
+            this.ClientSize = new System.Drawing.Size(792, 377);
             this.Controls.Add(this.accountGroupBox);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.coursesGroupBox);
             this.Controls.Add(this.userInfoGroupBox);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserForm";
             this.Text = "Korisnik";
             this.userInfoGroupBox.ResumeLayout(false);
@@ -242,8 +263,8 @@
         private System.Windows.Forms.GroupBox accountGroupBox;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.Button passwordButton;
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.CheckedListBox coursesCheckedListBox;
+        private System.Windows.Forms.TextBox passwordTextBox;
     }
 }

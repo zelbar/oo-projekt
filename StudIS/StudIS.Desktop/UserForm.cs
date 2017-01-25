@@ -13,6 +13,7 @@ using StudIS.Models.RepositoryInterfaces;
 using StudIS.DAL;
 using StudIS.DAL.Repositories;
 using StudIS.Desktop.Controllers;
+using StudIS.Services;
 
 namespace StudIS.Desktop
 {
@@ -28,6 +29,10 @@ namespace StudIS.Desktop
         {
             _userFormController = userFormController;
             _user = user;
+
+            InitializeComponent();
+
+            this.Text = user.FullName + " (" + user.Email + ")";
 
             this.nameTextBox.Text = user.Name;
             this.surnameTextBox.Text = user.Surname;
@@ -53,17 +58,44 @@ namespace StudIS.Desktop
 
             ((ListBox)coursesCheckedListBox).DataSource = courses.ToList();
             ((ListBox)coursesCheckedListBox).DisplayMember = "NaturalIdentifier";
-
-            InitializeComponent();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             _user.Name = this.nameTextBox.Text;
             _user.Surname = this.surnameTextBox.Text;
+            _user.NationalIdentificationNumber = this.nationalIdentificationNumberTextBox.Text;
+            _user.Email = this.emailTextBox.Text;
 
+            var password = this.passwordTextBox.Text;
+            if (password.Length > 0)
+            {
+                _user.PasswordHash = EncryptionService.EncryptSHA1(password);
+            }
+            
+            if(_user is Student)
+            {
+                ((Student)_user).StudentIdentificationNumber = this.studentIdentificationNumberTextBox.Text;
+            }
 
-            _userFormController.SaveUser(_user);
+            var success = _userFormController.SaveUser(_user);
+
+            if (success)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Pohrana nije uspjela.");
+            }
+        }
+
+        private void passwordTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.passwordTextBox.TextLength > 0)
+            {
+                this.passwordLabel.Text = "Lozinka (*)";
+            }
         }
     }
 }
