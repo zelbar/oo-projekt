@@ -1,4 +1,5 @@
 ﻿using StudIS.Models.RepositoryInterfaces;
+using StudIS.Models.Users;
 using StudIS.Services;
 using StudIS.Web.Mvc.Models;
 using System;
@@ -62,6 +63,9 @@ namespace StudIS.Web.Mvc.Controllers
         /// <returns></returns>
         public ActionResult ScoreInfo(int id)
         {
+            if (Session["userId"] == null)
+                return RedirectToAction("Index", "Home");
+
             ViewBag.Email = Session["email"];
             ViewBag.Title = "Bodovi";
             var studentId = (int)Session["userId"];
@@ -87,6 +91,26 @@ namespace StudIS.Web.Mvc.Controllers
 
             };
             return View(scoredCourse);
+        }
+
+        public ActionResult PersonalData()
+        {
+            if (Session["userId"] == null)
+                return RedirectToAction("Index", "Home");
+
+            ViewBag.Email = Session["email"];
+            ViewBag.Title = "Osobni podaci";
+            var studentId = (int)Session["userId"];
+            var user = _userRepository.GetById(studentId);
+
+            if(user==null || !UserServices.isUserStudent(user))
+                return RedirectToAction("Index", "Home");
+
+            return View(new StudentViewModel((Student)user));
+
+
+          
+
         }
 
     }
