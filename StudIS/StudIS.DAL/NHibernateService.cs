@@ -38,14 +38,12 @@ namespace StudIS.DAL
         private ISessionFactory OpenSessionFactory()
         {
             var rawStr = "Data Source = (LocalDB)\\MSSQLLocalDB; Integrated Security = True";
-
-            var currentPath = Environment.CurrentDirectory;
-            var pathArray = currentPath.Split('\\');
-            var rootPath = string.Join("\\", pathArray.Take(pathArray.Length - 3).ToList());
+            
+            var path = "C:\\Users\\Public\\databases";
             
             var conBuilder = new SqlConnectionStringBuilder(rawStr);
             conBuilder.AttachDBFilename = Path.GetFullPath(
-                Path.Combine(rootPath, "StudIS_DB.mdf"));
+                Path.Combine(path, "StudIS_DB.mdf"));
             
             var nhConfig = Fluently.Configure()
                 .Diagnostics(diag => diag.Enable().OutputToConsole())
