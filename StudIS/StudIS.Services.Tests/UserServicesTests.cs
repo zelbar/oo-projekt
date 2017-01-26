@@ -3,12 +3,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudIS.Models.Users;
 using StudIS.DAL.Repositories;
 using StudIS.DAL.SQL;
+using StudIS.DAL;
 
 namespace StudIS.Services.Tests
 {
     [TestClass]
     public class UserServicesTests
     {
+        INHibernateService _nhs;
+        public UserServicesTests()
+        {
+            _nhs = new NHibernateService2();
+        }
+
         [TestMethod]
         public void IsUserAdministrator_True()
         {
@@ -19,7 +26,7 @@ namespace StudIS.Services.Tests
         [TestMethod]
         public void IsUserAdministrator_False()
         {
-           Student student = new Student();
+            Student student = new Student();
             Assert.IsFalse(UserServices.isUserAdministrator(student));
         }
 
@@ -61,11 +68,12 @@ namespace StudIS.Services.Tests
         [TestMethod]
         public void CreateUser_ReturnsSavedUser()
         {
-            var nhs = new NHibernateService2();
-            var userRep = new UserRepository(nhs);
+
+            var userRep = new UserRepository(_nhs);
             var userServices = new UserServices(userRep);
             var student = new Student()
             {
+               
                 Name = "Zlatko",
                 Surname = "Hrastić",
                 Email = "zlatko.hrastic@fer.hr",
@@ -76,7 +84,7 @@ namespace StudIS.Services.Tests
 
             };
 
-            var saved=userServices.createUser(student);
+            var saved = userServices.createUser(student);
 
             Assert.IsNotNull(saved.Id);
         }

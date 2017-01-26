@@ -16,6 +16,8 @@ namespace StudIS.Services
         {
             _userRepository = userRepository;
 
+
+
         }
 
         public Student getStudentdata(int id)

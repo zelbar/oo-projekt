@@ -9,7 +9,7 @@ namespace StudIS.Models
     public class Component
     {
         public virtual int Id { get; set; }
-        public virtual int CourseId { get; set; }
+        public virtual Course Course { get; set; }
         public virtual string Name { get; set; }
         public virtual float MaximumPoints { get; set; }
         public virtual float MinimumPointsToPass { get; set; }

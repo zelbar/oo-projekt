@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentServices.cs" />
     <Compile Include="CourseServices.cs" />
     <Compile Include="EncryptionService.cs" />
     <Compile Include="LoginService.cs" />

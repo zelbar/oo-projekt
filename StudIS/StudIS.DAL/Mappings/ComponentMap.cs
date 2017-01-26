@@ -16,6 +16,7 @@ namespace StudIS.DAL.Mappings
             Map(x => x.Name).Not.Nullable();
             Map(x => x.MinimumPointsToPass);
             Map(x => x.MaximumPoints);
+            References(x => x.Course);
         }
     }
 }
