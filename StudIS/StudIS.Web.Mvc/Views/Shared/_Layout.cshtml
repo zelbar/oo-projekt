@@ -20,13 +20,13 @@
                 <a class="navbar-brand" href="/Home/Index">StudIs</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Student/PersonalData">@ViewBag.Email</a></li>
-                  <li>  @Html.ActionLink("Odjavi se", "Index", "Logout")</li>
+                    <li>@Html.Partial("_StudentPartial")</li>
+                    <li>@Html.Partial("_LecturerPartial")</li>
+                    <li>@Html.ActionLink("Odjavi se", "Index", "Logout")</li>
                 </ul>
-</div>
+            </div>
         </div>
     </div>
     <div class="container body-content">

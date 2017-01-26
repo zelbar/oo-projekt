@@ -1,6 +1,5 @@
 ﻿@using StudIS.Web.Mvc.Models
-@model StudentViewModel
-
+@model LecturerViewModel
 
 <div class="container">
     <div class="page-header">
@@ -11,14 +10,12 @@
             <b>Ime: </b> <br />
             <b>Prezime: </b> <br />
             <b>Email:</b> <br />
-            <b>JMAG: </b> <br />
             <b>OIB: </b> <br />
         </div>
         <div style="float:left;">
             @Model.Name <br />
             @Model.Surname<br />
             @Model.Email<br />
-            @Model.StudentIdentificationNumber<br />
             @Model.NationalIdentificationNumber<br />
         </div>
     </div>
@@ -26,3 +23,4 @@
     <hr />
     Za sve promjene podataka obratite se studentskoj službi.
 </div>
+

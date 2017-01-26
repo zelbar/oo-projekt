@@ -1,0 +1,6 @@
+﻿@if (Session["userType"].ToString() == "Lecturer") {
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/Lecturer/PersonalData">@ViewBag.Email</a></li>
+    </ul>
+}
+

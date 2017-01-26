@@ -8,30 +8,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace StudIS.Web.Mvc.Controllers
-{
-    public class StudentController : Controller
-    {
+namespace StudIS.Web.Mvc.Controllers {
+    public class StudentController : Controller {
 
         private ICourseRepository _courseRepository;
         private IScoreRepository _scoreRepository;
         private IUserRepository _userRepository;
 
-        public StudentController(ICourseRepository courseRepository,IScoreRepository scoreRepository,IUserRepository userRepository)
-        {
+        public StudentController(ICourseRepository courseRepository, IScoreRepository scoreRepository, IUserRepository userRepository) {
             _courseRepository = courseRepository;
             _scoreRepository = scoreRepository;
             _userRepository = userRepository;
 
         }
 
-        // GET: Student
         /// <summary>
         /// Show the list of available courses
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
@@ -39,20 +34,16 @@ namespace StudIS.Web.Mvc.Controllers
             ViewBag.Title = "Predmeti";
 
             int userId = (int)Session["userId"];
-            List<StudentCourseViewModel> courseList = new List<StudentCourseViewModel>();
+            List<CourseViewModel> courseList = new List<CourseViewModel>();
 
             var courseServices = new CourseServices(_courseRepository);
             var courses = courseServices.GetCoursesByUserId(userId);
 
-            if (courses != null)
-            {
-                foreach (var course in courses)
-                {
-                    courseList.Add(new StudentCourseViewModel(course));
+            if (courses != null) {
+                foreach (var course in courses) {
+                    courseList.Add(new CourseViewModel(course));
                 }
             }
-
-
             return View(courseList);
         }
 
@@ -61,8 +52,7 @@ namespace StudIS.Web.Mvc.Controllers
         /// </summary>
         /// <param name="id">Course id</param>
         /// <returns></returns>
-        public ActionResult ScoreInfo(int id)
-        {
+        public ActionResult ScoreInfo(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
@@ -74,18 +64,14 @@ namespace StudIS.Web.Mvc.Controllers
 
             var course = courseServices.GetCourseById(id);
 
-           var scores=scoreServcies.GetScorebyStudentAndCourse(studentId,id);
+            var scores = scoreServcies.GetScorebyStudentAndCourse(studentId, id);
             var scoresViewModel = new List<ScoreViewModel>();
-            foreach(var score in scores)
-            {
+            foreach (var score in scores) {
                 scoresViewModel.Add(new ScoreViewModel(score));
             }
             scoresViewModel.Sort((m1, m2) => m1.ComponentName.CompareTo(m2.ComponentName));
 
-           
-
-            var scoredCourse = new ScoredCourseViewModel()
-            {
+            var scoredCourse = new ScoredCourseViewModel() {
                 Name = course.Name,
                 scoreList = scoresViewModel
 
@@ -93,8 +79,7 @@ namespace StudIS.Web.Mvc.Controllers
             return View(scoredCourse);
         }
 
-        public ActionResult PersonalData()
-        {
+        public ActionResult PersonalData() {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
@@ -103,13 +88,10 @@ namespace StudIS.Web.Mvc.Controllers
             var studentId = (int)Session["userId"];
             var user = _userRepository.GetById(studentId);
 
-            if(user==null || !UserServices.isUserStudent(user))
+            if (user == null || !UserServices.isUserStudent(user))
                 return RedirectToAction("Index", "Home");
 
             return View(new StudentViewModel((Student)user));
-
-
-          
 
         }
 
