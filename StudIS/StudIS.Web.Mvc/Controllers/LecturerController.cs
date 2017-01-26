@@ -14,11 +14,13 @@ namespace StudIS.Web.Mvc.Controllers {
         private ICourseRepository _courseRepository;
         private IScoreRepository _scoreRepository;
         private IUserRepository _userRepository;
+        private IComponentRepository _componentRepository;
 
-        public LecturerController(ICourseRepository courseRepository, IScoreRepository scoreRepository, IUserRepository userRepository) {
+        public LecturerController(ICourseRepository courseRepository, IScoreRepository scoreRepository, IUserRepository userRepository,IComponentRepository componentRepository) {
             _courseRepository = courseRepository;
             _scoreRepository = scoreRepository;
             _userRepository = userRepository;
+            _componentRepository = componentRepository;
 
         }
         /// <summary>
@@ -33,14 +35,14 @@ namespace StudIS.Web.Mvc.Controllers {
             ViewBag.Title = "Predmeti";
 
             int userId = (int)Session["userId"];
-            List<CourseViewModel> courseList = new List<CourseViewModel>();
+            List<StudentCourseViewModel> courseList = new List<StudentCourseViewModel>();
 
-            var courseServices = new CourseServices(_courseRepository);
+            var courseServices = new CourseServices(_courseRepository,_userRepository,_componentRepository);
             var courses = courseServices.GetCoursesByUserId(userId);
 
             if (courses != null) {
                 foreach (var course in courses) {
-                    courseList.Add(new CourseViewModel(course));
+                    courseList.Add(new StudentCourseViewModel(course));
                 }
             }
             return View(courseList);
