@@ -17,20 +17,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">StudIs</a>
+                <a class="navbar-brand" href="/Home/Index">StudIs</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Student/PersonalData">@ViewBag.Email</a></li>
-                  <li>  @Html.ActionLink("Odjavi se", "Index", "Logout")</li>
+                    <li>@Html.Partial("_StudentPartial")</li>
+                    <li>@Html.Partial("_LecturerPartial")</li>
+                    <li>@Html.ActionLink("Odjavi se", "Index", "Logout")</li>
                 </ul>
-                    @*@Html.Partial("_LoginPartial")*@
-</div>
+            </div>
         </div>
     </div>
     <div class="container body-content">

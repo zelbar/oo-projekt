@@ -6,7 +6,7 @@ using System.Web;
 
 namespace StudIS.Web.Mvc.Models
 {
-    public class StudentCourseViewModel
+    public class CourseViewModel
     {
 
         public int Id { get; set; }
@@ -14,11 +14,11 @@ namespace StudIS.Web.Mvc.Models
         public string Name { get; set; }
         public int EctsCredits { get; set; }
 
-        public StudentCourseViewModel()
+        public CourseViewModel()
         {
 
         }
-        public StudentCourseViewModel(Course course)
+        public CourseViewModel(Course course)
         {
             Id = course.Id;
             NaturalIdentifier = course.NaturalIdentifier;
