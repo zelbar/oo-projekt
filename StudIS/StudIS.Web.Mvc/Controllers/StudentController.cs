@@ -16,12 +16,14 @@ namespace StudIS.Web.Mvc.Controllers
         private ICourseRepository _courseRepository;
         private IScoreRepository _scoreRepository;
         private IUserRepository _userRepository;
+        IComponentRepository _componentRepository;
 
-        public StudentController(ICourseRepository courseRepository,IScoreRepository scoreRepository,IUserRepository userRepository)
+        public StudentController(ICourseRepository courseRepository,IScoreRepository scoreRepository,IUserRepository userRepository,IComponentRepository componentRepository)
         {
             _courseRepository = courseRepository;
             _scoreRepository = scoreRepository;
             _userRepository = userRepository;
+            _componentRepository = componentRepository;
 
         }
 
@@ -41,7 +43,7 @@ namespace StudIS.Web.Mvc.Controllers
             int userId = (int)Session["userId"];
             List<StudentCourseViewModel> courseList = new List<StudentCourseViewModel>();
 
-            var courseServices = new CourseServices(_courseRepository);
+            var courseServices = new CourseServices(_courseRepository,_userRepository,_componentRepository);
             var courses = courseServices.GetCoursesByUserId(userId);
 
             if (courses != null)
@@ -70,7 +72,7 @@ namespace StudIS.Web.Mvc.Controllers
             ViewBag.Title = "Bodovi";
             var studentId = (int)Session["userId"];
             var scoreServcies = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
-            var courseServices = new CourseServices(_courseRepository);
+            var courseServices = new CourseServices(_courseRepository,_userRepository,_componentRepository);
 
             var course = courseServices.GetCourseById(id);
 

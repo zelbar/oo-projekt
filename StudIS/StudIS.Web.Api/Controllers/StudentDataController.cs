@@ -18,12 +18,14 @@ namespace StudIS.Web.Api.Controllers
         private IUserRepository _usrRep;
         private ICourseRepository _corRep;
         private IScoreRepository _scrRep;
+        private IComponentRepository _comRep;
 
-        public StudentDataController(IUserRepository usrRep,ICourseRepository corRep,IScoreRepository scrRep)
+        public StudentDataController(IUserRepository usrRep,ICourseRepository corRep,IScoreRepository scrRep,IComponentRepository comRep)
         {
             _usrRep = usrRep;
             _corRep = corRep;
             _scrRep = scrRep;
+            _comRep = comRep;
 
         }
 
@@ -35,7 +37,7 @@ namespace StudIS.Web.Api.Controllers
         [Route("api/StudentData/GetCoursesByStudentId/{studentId}")]
         public List<SimpleCourseModel> GetCoursesByStudentId(int studentId)
         {
-            var courseServices = new CourseServices(_corRep);
+            var courseServices = new CourseServices(_corRep,_usrRep,_comRep);
             var courses = courseServices.GetCoursesByUserId(studentId);          
             if (courses == null)
                 return null;
@@ -57,7 +59,7 @@ namespace StudIS.Web.Api.Controllers
         {
             
             var scoreServcies = new ScoreServices(_scrRep, _corRep, _usrRep);
-            var courseServices = new CourseServices(_corRep);
+            var courseServices = new CourseServices(_corRep,_usrRep,_comRep);
 
             var course = courseServices.GetCourseById(courseId);
 

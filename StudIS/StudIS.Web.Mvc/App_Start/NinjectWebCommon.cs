@@ -68,6 +68,7 @@ namespace StudIS.Web.Mvc.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>().WithConstructorArgument("nhs", nhService);
             kernel.Bind<ICourseRepository>().To<CourseRepository>().WithConstructorArgument("nhs", nhService);
             kernel.Bind<IScoreRepository>().To<ScoreRepository>().WithConstructorArgument("nhs", nhService);
+            kernel.Bind<IComponentRepository>().To<ComponentRepository>().WithConstructorArgument("nhs", nhService);
         }        
     }
 }
