@@ -1,4 +1,5 @@
-﻿using StudIS.Models.RepositoryInterfaces;
+﻿using StudIS.Models;
+using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,11 @@ namespace StudIS.Services
         public bool DeleteUserById(int id)
         {
             return _userRepository.DeleteById(id);
+        }
+
+        public IList<Student> GetStudentsByCourse(Course course)
+        {
+            return _userRepository.GetByCourse(course);
         }
 
     }

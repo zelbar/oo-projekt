@@ -68,18 +68,14 @@ namespace StudIS.DAL.Repositories
             }
         }
 
-        public IList<User> GetByCourse(Course course)
+        public IList<Student> GetByCourse(Course course)
         {
            var users =_session.QueryOver<Student>()
                                         .Right.JoinQueryOver<Course>(x => x.CoursesEnrolledIn)
                                         .Where(c => c.Id==course.Id)
                                         .List();
-            var returnUsers = new List<User>();
-            foreach(var single in users)
-            {
-                returnUsers.Add((User)single);
-            }
-            return returnUsers;
+
+            return users;
         }
 
         public User GetByEmail(string email)

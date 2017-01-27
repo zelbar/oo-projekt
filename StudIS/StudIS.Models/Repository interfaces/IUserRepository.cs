@@ -14,7 +14,7 @@ namespace StudIS.Models.RepositoryInterfaces
         User GetById(int id);
         User GetByEmail(string email);
         User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe);
-        IList<User> GetByCourse(Course course);
+        IList<Student> GetByCourse(Course course);
         bool DeleteById(int id);
         bool DeleteByNationalIdentificationNumber(string nationalIdentificationNumbe);
         User Update(User user);
