@@ -91,6 +91,20 @@ namespace StudIS.DAL.Repositories
             return users;
         }
 
+        public IList<Course> GetByLecturerInChargerId(int lecturerId)
+        {
+
+            var coursesInCharge = _session.QueryOver<Course>()
+                             .Right.JoinQueryOver<User>(c => c.LecturersInCharge)
+                             .Where(u => u.Id == lecturerId)
+                             .List();
+            if (coursesInCharge[0] == null)
+                return null;
+
+
+            return coursesInCharge;
+        }
+
         public Course Update(Course course)
         {
             using (var transaction = _session.BeginTransaction())

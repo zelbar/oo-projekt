@@ -26,7 +26,27 @@ namespace StudIS.Services
         }
         public List<Course> GetCoursesByUserId(int id)
         {
+            var student = _userRepository.GetById(id);
+            if (student == null || UserServices.isUserStudent(student))
+                return null;
+
             var courses = _courseRepository.GetByUserId(id);
+            if (courses == null)
+                return null;
+
+            var coursesList = courses.ToList();
+            coursesList.Sort((c1, c2) => c1.Name.CompareTo(c2.Name));
+            return coursesList;
+
+        }
+
+        public List<Course> GetCoursesByLecturerId(int id)
+        { 
+            var lecturer= _userRepository.GetById(id);
+            if (lecturer==null || UserServices.isUserLecturer(lecturer))
+                return null;
+
+            var courses = _courseRepository.GetByLecturerInChargerId(id);
             if (courses == null)
                 return null;
 
