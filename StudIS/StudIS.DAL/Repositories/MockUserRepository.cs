@@ -81,5 +81,10 @@ namespace StudIS.DAL.Repositories
         {
             throw new NotImplementedException();
         }
+
+        IList<Student> IUserRepository.GetByCourse(Course course)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
