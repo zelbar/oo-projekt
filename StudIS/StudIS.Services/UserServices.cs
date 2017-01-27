@@ -71,10 +71,7 @@ namespace StudIS.Services
             return _userRepository.DeleteById(id);
         }
 
-        public IList<Student> GetStudentsByCourse(Course course)
-        {
-            return _userRepository.GetByCourse(course);
-        }
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using StudIS.Models.RepositoryInterfaces;
+﻿using StudIS.Models;
+using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,11 @@ namespace StudIS.Services
                 return (Student)user;
             return null;
 
+        }
 
+        public IList<Student> GetStudentsByCourse(Course course)
+        {
+            return _userRepository.GetByCourse(course);
         }
     }
 }
