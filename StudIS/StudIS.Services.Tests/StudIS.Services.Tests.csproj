@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="StudentServicesTests.cs" />
     <Compile Include="ScoreServicesTests.cs" />
+    <Compile Include="LoginServiceTest.cs" />
     <Compile Include="UserServicesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
