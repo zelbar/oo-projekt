@@ -77,7 +77,7 @@ namespace StudIS.DAL.Repositories
                 .UniqueResult<Course>();
         }
 
-        public IList<Course> GetByUserId(int userId)
+        public IList<Course> GetByStudentEnroledId(int userId)
         {
 
             var users = _session.QueryOver<Course>()

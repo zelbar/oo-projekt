@@ -13,7 +13,7 @@ namespace StudIS.Models.RepositoryInterfaces
         IList<Course> GetAll();
         Course GetById(int id);
         Course GetByNaturalIdentifier(string naturalIdentifier);
-        IList<Course> GetByUserId(int userId);
+        IList<Course> GetByStudentEnroledId(int userId);
         IList<Course> GetByLecturerInChargerId(int lecturerId);
         bool DeleteById(int id);
         bool DeleteByNaturalIdentifier(string naturalIdentifier);

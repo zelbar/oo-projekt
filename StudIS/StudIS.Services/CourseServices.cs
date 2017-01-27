@@ -27,10 +27,10 @@ namespace StudIS.Services
         public List<Course> GetCoursesByUserId(int id)
         {
             var student = _userRepository.GetById(id);
-            if (student == null || UserServices.isUserStudent(student))
+            if (student == null || !UserServices.isUserStudent(student))
                 return null;
 
-            var courses = _courseRepository.GetByUserId(id);
+            var courses = _courseRepository.GetByStudentEnroledId(id);
             if (courses == null)
                 return null;
 
@@ -43,7 +43,7 @@ namespace StudIS.Services
         public List<Course> GetCoursesByLecturerId(int id)
         { 
             var lecturer= _userRepository.GetById(id);
-            if (lecturer==null || UserServices.isUserLecturer(lecturer))
+            if (lecturer==null || !UserServices.isUserLecturer(lecturer))
                 return null;
 
             var courses = _courseRepository.GetByLecturerInChargerId(id);

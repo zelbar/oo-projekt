@@ -66,7 +66,7 @@ namespace StudIS.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Course> GetByUserId(int userId)
+        public IList<Course> GetByStudentEnroledId(int userId)
         {
             Course MockCourse = new Course()
             {
@@ -99,5 +99,9 @@ namespace StudIS.DAL.Repositories
             throw new NotImplementedException();
         }
 
+        public IList<Course> GetByLecturerInChargerId(int lecturerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
