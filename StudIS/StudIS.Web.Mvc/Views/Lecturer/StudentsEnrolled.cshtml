@@ -1,0 +1,48 @@
+﻿@model IEnumerable<StudIS.Web.Mvc.Models.StudentEnrollementViewModel>
+
+<h1>@ViewBag.Title</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            Ime
+        </th>
+        <th>
+            Prezime
+        </th>
+        <th>
+            JMBAG
+        </th>
+        @if (Model.First().scores.Count() > 0) {
+            foreach (var c in Model.First().scores) {
+                <th>
+                    @c.Component.Name
+                </th>
+            }
+        }
+    </tr>
+
+    @foreach (var item in Model) {
+        foreach (var i in item.scores) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Student.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Student.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Student.StudentIdentificationNumber)
+                </td>
+                @if (Model.First().scores.Count() > 0) {
+                    foreach (var c in item.scores) {
+                        <td>
+                            puno bodova
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    }
+
+</table>

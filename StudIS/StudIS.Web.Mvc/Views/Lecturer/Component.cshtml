@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<StudIS.Web.Mvc.Models.ComponentViewModel>
 
-<h1>@Model.First().CourseName</h1>
+<h1>@ViewBag.Title</h1>
 
 <table class="table">
     <tr>
@@ -40,5 +40,5 @@
 </table>
 
 <p>
-    @Html.ActionLink("Dodaj novu komponentu", "CreateComponent", new { id = Model.First().CourseId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Dodaj novu komponentu", "CreateComponent", new { id = ViewBag.Id }, new { @class = "btn btn-info" })
 </p>

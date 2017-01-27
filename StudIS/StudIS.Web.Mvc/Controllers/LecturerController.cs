@@ -55,7 +55,9 @@ namespace StudIS.Web.Mvc.Controllers {
             ViewBag.Email = Session["email"];
             ViewBag.Title = "Osobni podaci";
             var lecturerId = (int)Session["userId"];
-            var user = _userRepository.GetById(lecturerId);
+
+            var userServices = new UserServices(_userRepository);
+            var user = userServices.getById(lecturerId);
 
             if (user == null || !UserServices.isUserLecturer(user))
                 return RedirectToAction("Index", "Home");
@@ -68,9 +70,12 @@ namespace StudIS.Web.Mvc.Controllers {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
-            var course = _courseRepository.GetById(id);
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
+            var course = courseServices.GetCourseById(id);
+
             ViewBag.Title = course.Name;
             ViewBag.Email = Session["email"];
+            ViewBag.Id = course.Id;
 
             if (course == null)
                 return RedirectToAction("Index", "Home");
@@ -87,7 +92,9 @@ namespace StudIS.Web.Mvc.Controllers {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
-            var component = _componentRepository.GetById(id);
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            var component = componentServices.GetById(id);
+
             ViewBag.Title = component.Name + " " + component.Course.Name;
             ViewBag.Email = Session["email"];
 
@@ -96,16 +103,9 @@ namespace StudIS.Web.Mvc.Controllers {
 
         [HttpPost]
         public ActionResult EditComponent(ComponentViewModel comp) {
-            var course = _courseRepository.GetById(comp.CourseId);
-            Component newComponent = new Component() {
-                Id = comp.Id,
-                Name = comp.Name,
-                Course = course,
-                MaximumPoints = comp.MaximumPoints,
-                MinimumPointsToPass = comp.MinimumPointsToPass
-            };
 
-            var component = _componentRepository.Update(newComponent);
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            var component = componentServices.UpdateComponent(comp.Name, comp.Id, comp.MinimumPointsToPass, comp.MaximumPoints);
 
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
@@ -115,7 +115,9 @@ namespace StudIS.Web.Mvc.Controllers {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
-            var component = _componentRepository.GetById(id);
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            var component = componentServices.GetById(id);
+
             ViewBag.Title = component.Name + " " + component.Course.Name;
             ViewBag.Email = Session["email"];
 
@@ -127,8 +129,11 @@ namespace StudIS.Web.Mvc.Controllers {
         public ActionResult DeleteComponentConfirmed(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
-            var component = _componentRepository.DeleteById(id);
-            return RedirectToAction("Component", "Lecturer", new { id = id });
+
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            componentServices.DeleteComponent(id);
+
+            return RedirectToAction("Index", "Lecturer");
         }
 
         public ActionResult CreateComponent(int id) {
@@ -138,7 +143,9 @@ namespace StudIS.Web.Mvc.Controllers {
             ViewBag.Title = "Nova komponenta";
             ViewBag.Email = Session["email"];
 
-            var course = _courseRepository.GetById(id);
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
+            var course = courseServices.GetCourseById(id);
+
             Component newComponent = new Component() {
                 Course = course
             };
@@ -147,14 +154,11 @@ namespace StudIS.Web.Mvc.Controllers {
 
         [HttpPost]
         public ActionResult CreateComponent(ComponentViewModel comp) {
-            var course = _courseRepository.GetById(comp.CourseId);
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
+            var course = courseServices.GetCourseById(comp.Id);
 
-            Component newComponent = new Component() {
-                Name = comp.Name,
-                Course = course,
-                MaximumPoints = comp.MaximumPoints,
-                MinimumPointsToPass = comp.MinimumPointsToPass
-            };
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            var component = componentServices.CreateComponent(comp.Name, comp.CourseId, comp.MinimumPointsToPass, comp.MaximumPoints);
 
             var component = _componentRepository.Create(newComponent);
 
