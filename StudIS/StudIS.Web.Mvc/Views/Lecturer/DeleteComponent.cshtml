@@ -1,0 +1,50 @@
+﻿@model StudIS.Web.Mvc.Models.ComponentViewModel
+
+<h1>@Model.Name</h1>
+
+<h3>Da li ste sigurni da želite pobrisati ovu komponentu kolegija?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ime:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+           Bodovi:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaximumPoints)
+        </dd>
+
+        <dt>
+           Prag:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimumPointsToPass)
+        </dd>
+
+        <dt>
+            Kolegij:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-info" />
+        </div>
+    }
+</div>

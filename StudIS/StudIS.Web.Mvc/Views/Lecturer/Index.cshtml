@@ -1,15 +1,28 @@
 ﻿@using StudIS.Web.Mvc.Models;
-@model List<CourseViewModel>
+@model List<LecturerCourseViewModel>
 
 <div class="container">
     <div class="page-header">
         <h1>Predavani predmeti</h1>
     </div>
-
-    <div class="list-group">
-        @foreach (var course in Model) {
-            <a href="/Student/ScoreInfo/@course.Id" class="list-group-item">@course.Name (@course.NaturalIdentifier)</a>
-        }
-
+    <div class="panel panel-default">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Predmet</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>@item.Name (@item.NaturalIdentifier)</td>
+                        <td><a href="/Lecturer/Component/@item.Id" class="list-group-item">Komponente</a></td>
+                        <td><a href="/Lecturer/StudentsEnrolled/@item.Id" class="list-group-item">Studenti</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

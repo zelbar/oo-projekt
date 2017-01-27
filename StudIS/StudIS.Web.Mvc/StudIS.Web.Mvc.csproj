@@ -205,7 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComponentViewModel.cs" />
     <Compile Include="Models\Credentials.cs" />
+    <Compile Include="Models\LecturerCourseViewModel.cs" />
     <Compile Include="Models\LecturerViewModel.cs" />
     <Compile Include="Models\ScoredCourseViewModel.cs" />
     <Compile Include="Models\ScoreViewModel.cs" />
@@ -272,6 +274,10 @@
     <Content Include="Views\Shared\_LecturerPartial.cshtml" />
     <Content Include="Views\Shared\_PartialLayout.cshtml" />
     <Content Include="Views\Lecturer\PersonalData.cshtml" />
+    <Content Include="Views\Lecturer\Component.cshtml" />
+    <Content Include="Views\Lecturer\EditComponent.cshtml" />
+    <Content Include="Views\Lecturer\DeleteComponent.cshtml" />
+    <Content Include="Views\Lecturer\CreateComponent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

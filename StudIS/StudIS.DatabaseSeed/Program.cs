@@ -75,6 +75,7 @@ namespace StudIS.DatabaseSeed
                 LecturersInCharge = new List<Lecturer>(),
                 StudentsEnrolled = new List<Student>()
             };
+
             Course MockCourse2 = new Course()
             {
                 Id = 2,
