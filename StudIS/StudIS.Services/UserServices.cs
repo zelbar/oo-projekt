@@ -15,38 +15,60 @@ namespace StudIS.Services
         public UserServices(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-
         }
 
-
-        public static Boolean isUserAdministrator(User user)
+        public static bool IsUserAdministrator(User user)
         {
             if (user.GetType() == typeof(Administrator))
                 return true;
             else return false;
-
-
         }
-        public static Boolean isUserLecturer(User user)
+
+        public static bool IsUserLecturer(User user)
         {
             if (user.GetType() == typeof(Lecturer))
                 return true;
             else return false;
 
         }
-        public static Boolean isUserStudent(User user)
+
+        public static bool IsUserStudent(User user)
         {
             if (user.GetType() == typeof(Student))
                 return true;
             else return false;
 
         }
-        public User createUser(User user)
+
+        public User CreateUser(User user)
         {
             return _userRepository.Create(user);
         }
 
-       
+        public IList<User> GetAllUsers()
+        {
+            return _userRepository.GetAll();
+        }
+
+        public User GetUserById(int id)
+        {
+            return _userRepository.GetById(id);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetByEmail(email);
+        }
+
+        public User UpdateUser(User user)
+        {
+            return _userRepository.Update(user);
+        }
+
+        public bool DeleteUserById(int id)
+        {
+            return _userRepository.DeleteById(id);
+        }
 
     }
 }

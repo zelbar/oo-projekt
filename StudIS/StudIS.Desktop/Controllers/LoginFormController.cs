@@ -30,7 +30,7 @@ namespace StudIS.Desktop.Controllers
 
             if (user != null)
             {
-                if (!UserServices.isUserAdministrator(user))
+                if (!UserServices.IsUserAdministrator(user))
                 {
                     MessageBox.Show(user.FullName + " nije u ulozi administratora", "Nedovoljna prava", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;

@@ -41,8 +41,8 @@ namespace StudIS.Services.Tests
                 NationalIdentificationNumber = "123456"
             };
 
-            userServices.createUser(student);
-            userServices.createUser(administrator);
+            userServices.CreateUser(student);
+            userServices.CreateUser(administrator);
         }
 
         [TestMethod]

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using StudIS.Models;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models.Users;
+using StudIS.Services;
 using StudIS.DAL;
 using StudIS.DAL.Repositories;
 
@@ -13,18 +14,18 @@ namespace StudIS.Desktop.Controllers
 {
     public class CourseFormController
     {
-        private readonly ICourseRepository _courseRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly CourseServices _courseServices;
+        private readonly UserServices _userServices;
 
-        public CourseFormController(ICourseRepository courseRepository, IUserRepository userRepository)
+        public CourseFormController(CourseServices courseServices, UserServices userServices)
         {
-            _courseRepository = courseRepository;
-            _userRepository = userRepository;
+            _courseServices = courseServices;
+            _userServices = userServices;
         }
 
         private void getLecturersAndStudents(out List<User> lecturers, out List<User> students)
         {
-            var users = _userRepository.GetAll();
+            var users = _userServices.GetAllUsers();
             lecturers = users.Where(t => t is Lecturer).ToList();
             students = users.Where(t => t is Student).ToList();
         }
@@ -41,7 +42,7 @@ namespace StudIS.Desktop.Controllers
 
         public void OpenFormEditCourse(int id)
         {
-            var course = _courseRepository.GetById(id);
+            var course = _courseServices.GetCourseById(id);
             List<User> lecturers, students;
             getLecturersAndStudents(out lecturers, out students);
             
@@ -51,7 +52,7 @@ namespace StudIS.Desktop.Controllers
 
         public bool UpdateCourse(Course course)
         {
-            _courseRepository.Update(course);
+            _courseServices.UpdateCourse(course.Id, course.Name, course.Name, course.EctsCredits);
             return true;
         }
 
@@ -59,13 +60,13 @@ namespace StudIS.Desktop.Controllers
         {
             try
             {
-                if (_courseRepository.GetByNaturalIdentifier(course.NaturalIdentifier) == null)
+                if (_courseServices.GetCourseByNaturalIdentifier(course.NaturalIdentifier) == null)
                 {
-                    _courseRepository.Create(course);
+                    _courseServices.CreateCourse(course.Name, course.NaturalIdentifier, course.EctsCredits);
                 }
                 else
                 {
-                    _courseRepository.Update(course);
+                    _courseServices.UpdateCourse(course.Id, course.NaturalIdentifier, course.NaturalIdentifier, course.EctsCredits);
                 }
                 return true;
             }
@@ -77,7 +78,7 @@ namespace StudIS.Desktop.Controllers
 
         public bool DeleteCourse(int id)
         {
-            var course = _courseRepository.GetById(id);
+            var course = _courseServices.GetCourseById(id);
 
             if(course == null)
             {
@@ -87,7 +88,7 @@ namespace StudIS.Desktop.Controllers
             {
                 try
                 {
-                    _courseRepository.DeleteById(id);
+                    _courseServices.DeleteCourse(id);
                     return true;
                 }
                 catch (Exception)

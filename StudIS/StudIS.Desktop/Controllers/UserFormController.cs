@@ -1,38 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StudIS.Models;
 using StudIS.Models.Users;
-using StudIS.Models.RepositoryInterfaces;
-using StudIS.DAL;
-using StudIS.DAL.Repositories;
 using StudIS.Services;
 
 namespace StudIS.Desktop.Controllers
 {
     public class UserFormController
     {
-        private readonly ICourseRepository _courseRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly UserServices _userServices;
+        private readonly CourseServices _courseServices;
 
-        public UserFormController(IUserRepository userRepository, ICourseRepository courseRepository)
+        public UserFormController(UserServices userServices, CourseServices courseServices)
         {
-            _userRepository = userRepository;
-            _courseRepository = courseRepository;
+            _userServices = userServices;
+            _courseServices = courseServices;
         }
 
         public bool OpenFormNewUser(User user)
         {
-            var existingUser = _userRepository.GetByEmail(user.Email);
+            var existingUser = _userServices.GetUserByEmail(user.Email);
 
             if (existingUser != null)
             {
                 return false;
             }
             
-            var courses = _courseRepository.GetAll();
+            var courses = _courseServices.GetAllCourses();
             var userForm = new UserForm(this, user, courses);
             userForm.Show();
 
@@ -41,8 +33,8 @@ namespace StudIS.Desktop.Controllers
 
         public bool OpenFormEditUser(string email)
         {
-            var courses = _courseRepository.GetAll();
-            var user = _userRepository.GetByEmail(email);
+            var courses = _courseServices.GetAllCourses();
+            var user = _userServices.GetUserByEmail(email);
 
             if (user == null)
             {
@@ -56,27 +48,27 @@ namespace StudIS.Desktop.Controllers
 
         public bool DeleteUser(string email)
         {
-            var user = _userRepository.GetByEmail(email);
+            var user = _userServices.GetUserByEmail(email);
 
             if (user == null)
             {
                 return false;
             }
 
-            return _userRepository.DeleteById(user.Id);
+            return _userServices.DeleteUserById(user.Id);
         }
 
         public bool SaveUser(User user)
         {
             try
             {
-                if (_userRepository.GetByEmail(user.Email) == null)
+                if (_userServices.GetUserByEmail(user.Email) == null)
                 {
-                    _userRepository.Create(user);
+                    _userServices.CreateUser(user);
                 }
                 else
                 {
-                    _userRepository.Update(user);
+                    _userServices.UpdateUser(user);
                 }
                 return true;
             }

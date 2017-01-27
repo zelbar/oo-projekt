@@ -1,11 +1,8 @@
 ﻿using StudIS.Models;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models.Users;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudIS.Services
 {
@@ -24,10 +21,21 @@ namespace StudIS.Services
             _componentRepository = componentRepository;
 
         }
+
+        public IList<Course> GetAllCourses()
+        {
+            return _courseRepository.GetAll();
+        }
+
+        public Course GetCourseByNaturalIdentifier(string naturalIdentifier)
+        {
+            return _courseRepository.GetByNaturalIdentifier(naturalIdentifier);
+        }
+
         public List<Course> GetCoursesByUserId(int id)
         {
             var student = _userRepository.GetById(id);
-            if (student == null || !UserServices.isUserStudent(student))
+            if (student == null || !UserServices.IsUserStudent(student))
                 return null;
 
             var courses = _courseRepository.GetByStudentEnroledId(id);
@@ -43,7 +51,7 @@ namespace StudIS.Services
         public List<Course> GetCoursesByLecturerId(int id)
         { 
             var lecturer= _userRepository.GetById(id);
-            if (lecturer==null || !UserServices.isUserLecturer(lecturer))
+            if (lecturer==null || !UserServices.IsUserLecturer(lecturer))
                 return null;
 
             var courses = _courseRepository.GetByLecturerInChargerId(id);
@@ -83,7 +91,7 @@ namespace StudIS.Services
             course.Name = name;
             course.NaturalIdentifier = naturalIdentifier;
             course.EctsCredits = ectsCredits;
-            return _courseRepository.Create(course);
+            return _courseRepository.Update(course);
 
         }
 
@@ -96,7 +104,7 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var lecturer = _userRepository.GetById(lecturerId);
 
-            if (course == null || lecturer == null || !UserServices.isUserLecturer(lecturer))
+            if (course == null || lecturer == null || !UserServices.IsUserLecturer(lecturer))
                 return null;
             course.LecturersInCharge.Add((Lecturer)lecturer);
             return _courseRepository.Update(course);
@@ -107,7 +115,7 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var lecturer = _userRepository.GetById(lecturerId);
 
-            if (course == null || lecturer == null || !UserServices.isUserLecturer(lecturer))
+            if (course == null || lecturer == null || !UserServices.IsUserLecturer(lecturer))
                 return null;
             course.LecturersInCharge.Remove((Lecturer)lecturer);
             return _courseRepository.Update(course);
@@ -119,7 +127,7 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var student = _userRepository.GetById(studentId);
 
-            if (course == null || student == null || !UserServices.isUserStudent(student))
+            if (course == null || student == null || !UserServices.IsUserStudent(student))
                 return null;
             course.StudentsEnrolled.Add((Student)student);
             return _courseRepository.Update(course);
@@ -130,7 +138,7 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var student = _userRepository.GetById(studentId);
 
-            if (course == null || student == null || !UserServices.isUserStudent(student))
+            if (course == null || student == null || !UserServices.IsUserStudent(student))
                 return null;
             course.StudentsEnrolled.Remove((Student)student);
             return _courseRepository.Update(course);

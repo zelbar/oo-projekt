@@ -28,7 +28,7 @@ namespace StudIS.Services
             
 
             var student = _userRepository.GetById(studentId);
-            if (student==null || !UserServices.isUserStudent(student))
+            if (student==null || !UserServices.IsUserStudent(student))
                 return new List<Score>();
             
 

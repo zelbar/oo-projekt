@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using StudIS.Models;
-using StudIS.Models.RepositoryInterfaces;
-using StudIS.DAL;
-using StudIS.DAL.Repositories;
+using StudIS.Services;
 
 namespace StudIS.Desktop.Controllers
 {
     public class MainFormController
     {
-        private readonly IUserRepository _userRepository;
-        private readonly ICourseRepository _courseRepository;
+        private readonly UserServices _userServices;
+        private readonly CourseServices _courseServices;
 
-        public MainFormController(IUserRepository userRepository, ICourseRepository courseRepository)
+        public MainFormController(UserServices userServices, CourseServices courseServices)
         {
-            _userRepository = userRepository;
-            _courseRepository = courseRepository;
+            _userServices = userServices;
+            _courseServices = courseServices;
         }
 
         public IList<Course> GetAllCourses()
         {
-            return _courseRepository.GetAll();
+            return _courseServices.GetAllCourses();
         }
     }
 }

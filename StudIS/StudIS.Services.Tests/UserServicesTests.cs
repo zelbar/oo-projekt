@@ -22,14 +22,14 @@ namespace StudIS.Services.Tests
         public void IsUserAdministrator_True()
         {
             Administrator admin = new Administrator();
-            Assert.IsTrue(UserServices.isUserAdministrator(admin));
+            Assert.IsTrue(UserServices.IsUserAdministrator(admin));
         }
 
         [TestMethod]
         public void IsUserAdministrator_False()
         {
             Student student = new Student();
-            Assert.IsFalse(UserServices.isUserAdministrator(student));
+            Assert.IsFalse(UserServices.IsUserAdministrator(student));
         }
 
 
@@ -37,7 +37,7 @@ namespace StudIS.Services.Tests
         public void IsUserStudent_True()
         {
             Student student = new Student();
-            Assert.IsTrue(UserServices.isUserStudent(student));
+            Assert.IsTrue(UserServices.IsUserStudent(student));
 
 
         }
@@ -46,7 +46,7 @@ namespace StudIS.Services.Tests
         public void IsUserStudent_False()
         {
             Administrator admin = new Administrator();
-            Assert.IsFalse(UserServices.isUserStudent(admin));
+            Assert.IsFalse(UserServices.IsUserStudent(admin));
         }
 
 
@@ -55,7 +55,7 @@ namespace StudIS.Services.Tests
         public void IsUserLecturer_True()
         {
             Lecturer lecturer = new Lecturer();
-            Assert.IsTrue(UserServices.isUserLecturer(lecturer));
+            Assert.IsTrue(UserServices.IsUserLecturer(lecturer));
 
 
         }
@@ -64,7 +64,7 @@ namespace StudIS.Services.Tests
         public void IsUserLecturer_False()
         {
             Administrator admin = new Administrator();
-            Assert.IsFalse(UserServices.isUserLecturer(admin));
+            Assert.IsFalse(UserServices.IsUserLecturer(admin));
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace StudIS.Services.Tests
             var userServices = new UserServices(usrRep.Object);
 
 
-            var saved = userServices.createUser(student);
+            var saved = userServices.CreateUser(student);
 
             Assert.IsNotNull(saved);
             Assert.IsNotNull(saved.Id);

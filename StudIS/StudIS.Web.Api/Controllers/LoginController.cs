@@ -37,7 +37,7 @@ namespace StudIS.Web.Api.Controllers
             var user = service.LoginUser(email, passwordHash);
             if (user == null)
                 return null;
-            else if (UserServices.isUserStudent(user))
+            else if (UserServices.IsUserStudent(user))
                 return new SimpleStudentModel((Student)user);
             else
                 return null;

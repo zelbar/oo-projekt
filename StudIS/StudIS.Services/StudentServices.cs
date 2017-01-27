@@ -23,7 +23,7 @@ namespace StudIS.Services
         public Student getStudentdata(int id)
         {
             var user = _userRepository.GetById(id);
-            if (user != null && UserServices.isUserStudent(user))
+            if (user != null && UserServices.IsUserStudent(user))
                 return (Student)user;
             return null;
 

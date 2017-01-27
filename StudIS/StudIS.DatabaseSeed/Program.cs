@@ -95,9 +95,9 @@ namespace StudIS.DatabaseSeed
             };
 
             var service = new UserServices(userRepository);
-            service.createUser(student);
-            service.createUser(lecturer);
-            service.createUser(administrator);
+            service.CreateUser(student);
+            service.CreateUser(lecturer);
+            service.CreateUser(administrator);
 
             MockCourse.StudentsEnrolled.Add(student);
             MockCourse.LecturersInCharge.Add(lecturer);

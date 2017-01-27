@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudIS.DAL;
-using StudIS.Models;
-using StudIS.Models.Users;
 using StudIS.DAL.Repositories;
 using StudIS.Services;
 using StudIS.Desktop.Controllers;
@@ -28,11 +23,13 @@ namespace StudIS.Desktop
             var scoreRepository = new ScoreRepository(nhService);
 
             var loginService = new LoginService(userRepository);
+            var userServices = new UserServices(userRepository);
+            var courseServices = new CourseServices(courseRepository, userRepository, componentRepository);
 
-            var mainFormController = new MainFormController(userRepository, courseRepository);
+            var mainFormController = new MainFormController(userServices, courseServices);
             var loginFormController = new LoginFormController(mainFormController, loginService);
-            var courseFormController = new CourseFormController(courseRepository, userRepository);
-            var userFormController = new UserFormController(userRepository, courseRepository);
+            var courseFormController = new CourseFormController(courseServices, userServices);
+            var userFormController = new UserFormController(userServices, courseServices);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
