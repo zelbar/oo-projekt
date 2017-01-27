@@ -97,7 +97,7 @@ namespace StudIS.Services
 
         public bool DeleteCourse(int id)
         {
-            return _componentRepository.DeleteById(id);
+            return _courseRepository.DeleteById(id);
         }
         public Course AddLecturer(int courseId, int lecturerId)
         {
