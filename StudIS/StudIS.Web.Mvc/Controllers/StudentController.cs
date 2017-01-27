@@ -105,7 +105,7 @@ namespace StudIS.Web.Mvc.Controllers
             var studentId = (int)Session["userId"];
             var user = _userRepository.GetById(studentId);
 
-            if(user==null || !UserServices.isUserStudent(user))
+            if(user==null || !UserServices.IsUserStudent(user))
                 return RedirectToAction("Index", "Home");
 
             return View(new StudentViewModel((Student)user));

@@ -57,9 +57,9 @@ namespace StudIS.Web.Mvc.Controllers {
             var lecturerId = (int)Session["userId"];
 
             var userServices = new UserServices(_userRepository);
-            var user = userServices.getById(lecturerId);
+            var user = userServices.GetUserById(lecturerId);
 
-            if (user == null || !UserServices.isUserLecturer(user))
+            if (user == null || !UserServices.IsUserLecturer(user))
                 return RedirectToAction("Index", "Home");
 
             return View(new LecturerViewModel((Lecturer)user));
@@ -159,8 +159,6 @@ namespace StudIS.Web.Mvc.Controllers {
 
             var componentServices = new ComponentServices(_componentRepository, _courseRepository);
             var component = componentServices.CreateComponent(comp.Name, comp.CourseId, comp.MinimumPointsToPass, comp.MaximumPoints);
-
-            var component = _componentRepository.Create(newComponent);
 
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId});
         }

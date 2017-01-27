@@ -28,20 +28,20 @@ namespace StudIS.Web.Mvc.Controllers
                 var encryptedPassword = EncryptionService.EncryptSHA1(credentials.Password);
                 var user = loginService.LoginUser(credentials.Email, encryptedPassword);
 
-                if (user == null || UserServices.isUserAdministrator(user))
+                if (user == null || UserServices.IsUserAdministrator(user))
                     return RedirectToAction("Index", "Home",new {error=true });
                 else
                 {
                     Session.Add("userId", user.Id);
                     Session.Add("email", user.Email);
 
-                    if (UserServices.isUserStudent(user))
+                    if (UserServices.IsUserStudent(user))
                     {
                         Session.Add("userType", "Student");
                         return RedirectToAction("Index", "Student");
                     }
 
-                    if (UserServices.isUserLecturer(user))
+                    if (UserServices.IsUserLecturer(user))
                     {
                         Session.Add("userType", "Lecturer");
                         return RedirectToAction("Index", "Lecturer");
