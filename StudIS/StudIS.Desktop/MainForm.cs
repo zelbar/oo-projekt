@@ -50,23 +50,23 @@ namespace StudIS.Desktop
             if (this.studentRadioButton.Checked)
             {
                 user = new Student();
-                return true;
             }
             else if (this.lecturerRadioButton.Checked)
             {
                 user = new Lecturer();
-                return true;
             }
             else if (this.adminRadioButton.Checked)
             {
                 user = new Administrator();
-                return true;
             }
             else
             {
                 MessageBox.Show("Odaberite vrstu korisnika.");
                 return false;
             }
+
+            user.Email = email;
+            return true;
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace StudIS.Desktop
             {
                 try
                 {
-                    var success = _userFormController.NewUser(email, user);
+                    var success = _userFormController.OpenFormNewUser(user);
                 }
                 catch (Exception)
                 {
@@ -100,7 +100,7 @@ namespace StudIS.Desktop
             {
                 try
                 {
-                    var success = _userFormController.EditUser(email);
+                    var success = _userFormController.OpenFormEditUser(email);
                 }
                 catch(Exception)
                 {

@@ -21,6 +21,10 @@ namespace StudIS.Desktop.Controllers
             _userRepository = userRepository;
         }
 
-
+        public bool UpdateCourse(Course course)
+        {
+            _courseRepository.Update(course);
+            return true;
+        }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.saveButton = new System.Windows.Forms.Button();
             this.studentsGroupBox = new System.Windows.Forms.GroupBox();
+            this.studentsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.naturalIdentifierTextBox = new System.Windows.Forms.TextBox();
             this.naturalIdentifierLabel = new System.Windows.Forms.Label();
             this.EctsPointsLabel = new System.Windows.Forms.Label();
@@ -37,8 +38,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.courseInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.ectsCreditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.LecturerscheckedListBox = new System.Windows.Forms.CheckedListBox();
-            this.studentsCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.lecturerscheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.lecturersLabel = new System.Windows.Forms.Label();
             this.studentsGroupBox.SuspendLayout();
             this.courseInfoGroupBox.SuspendLayout();
@@ -47,61 +47,79 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 252);
+            this.saveButton.Location = new System.Drawing.Point(16, 310);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 18;
             this.saveButton.Text = "Pohrani";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // studentsGroupBox
             // 
             this.studentsGroupBox.Controls.Add(this.studentsCheckedListBox);
-            this.studentsGroupBox.Location = new System.Drawing.Point(334, 12);
+            this.studentsGroupBox.Location = new System.Drawing.Point(445, 15);
+            this.studentsGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.studentsGroupBox.Name = "studentsGroupBox";
-            this.studentsGroupBox.Size = new System.Drawing.Size(238, 271);
+            this.studentsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentsGroupBox.Size = new System.Drawing.Size(317, 334);
             this.studentsGroupBox.TabIndex = 17;
             this.studentsGroupBox.TabStop = false;
             this.studentsGroupBox.Text = "Upisani studenti";
             // 
+            // studentsCheckedListBox
+            // 
+            this.studentsCheckedListBox.FormattingEnabled = true;
+            this.studentsCheckedListBox.Location = new System.Drawing.Point(9, 23);
+            this.studentsCheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentsCheckedListBox.Name = "studentsCheckedListBox";
+            this.studentsCheckedListBox.Size = new System.Drawing.Size(299, 293);
+            this.studentsCheckedListBox.TabIndex = 0;
+            // 
             // naturalIdentifierTextBox
             // 
-            this.naturalIdentifierTextBox.Location = new System.Drawing.Point(112, 47);
+            this.naturalIdentifierTextBox.Location = new System.Drawing.Point(149, 58);
+            this.naturalIdentifierTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.naturalIdentifierTextBox.Name = "naturalIdentifierTextBox";
-            this.naturalIdentifierTextBox.Size = new System.Drawing.Size(197, 20);
+            this.naturalIdentifierTextBox.Size = new System.Drawing.Size(261, 22);
             this.naturalIdentifierTextBox.TabIndex = 2;
             // 
             // naturalIdentifierLabel
             // 
             this.naturalIdentifierLabel.AutoSize = true;
-            this.naturalIdentifierLabel.Location = new System.Drawing.Point(9, 50);
+            this.naturalIdentifierLabel.Location = new System.Drawing.Point(12, 62);
+            this.naturalIdentifierLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.naturalIdentifierLabel.Name = "naturalIdentifierLabel";
-            this.naturalIdentifierLabel.Size = new System.Drawing.Size(28, 13);
+            this.naturalIdentifierLabel.Size = new System.Drawing.Size(37, 17);
             this.naturalIdentifierLabel.TabIndex = 2;
             this.naturalIdentifierLabel.Text = "Šifra";
             // 
             // EctsPointsLabel
             // 
             this.EctsPointsLabel.AutoSize = true;
-            this.EctsPointsLabel.Location = new System.Drawing.Point(9, 77);
+            this.EctsPointsLabel.Location = new System.Drawing.Point(12, 95);
+            this.EctsPointsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EctsPointsLabel.Name = "EctsPointsLabel";
-            this.EctsPointsLabel.Size = new System.Drawing.Size(70, 13);
+            this.EctsPointsLabel.Size = new System.Drawing.Size(90, 17);
             this.EctsPointsLabel.TabIndex = 4;
             this.EctsPointsLabel.Text = "ECTS bodovi";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(112, 19);
+            this.nameTextBox.Location = new System.Drawing.Point(149, 23);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(197, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(261, 22);
             this.nameTextBox.TabIndex = 1;
             // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(9, 23);
+            this.nameLabel.Location = new System.Drawing.Point(12, 28);
+            this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(34, 13);
+            this.nameLabel.Size = new System.Drawing.Size(43, 17);
             this.nameLabel.TabIndex = 0;
             this.nameLabel.Text = "Naziv";
             // 
@@ -113,55 +131,53 @@
             this.courseInfoGroupBox.Controls.Add(this.naturalIdentifierLabel);
             this.courseInfoGroupBox.Controls.Add(this.nameTextBox);
             this.courseInfoGroupBox.Controls.Add(this.nameLabel);
-            this.courseInfoGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.courseInfoGroupBox.Location = new System.Drawing.Point(16, 15);
+            this.courseInfoGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.courseInfoGroupBox.Name = "courseInfoGroupBox";
-            this.courseInfoGroupBox.Size = new System.Drawing.Size(315, 111);
+            this.courseInfoGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.courseInfoGroupBox.Size = new System.Drawing.Size(420, 137);
             this.courseInfoGroupBox.TabIndex = 0;
             this.courseInfoGroupBox.TabStop = false;
             this.courseInfoGroupBox.Text = "Podaci o predmetu";
             // 
             // ectsCreditsNumericUpDown
             // 
-            this.ectsCreditsNumericUpDown.Location = new System.Drawing.Point(112, 77);
+            this.ectsCreditsNumericUpDown.Location = new System.Drawing.Point(149, 95);
+            this.ectsCreditsNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ectsCreditsNumericUpDown.Name = "ectsCreditsNumericUpDown";
-            this.ectsCreditsNumericUpDown.Size = new System.Drawing.Size(197, 20);
+            this.ectsCreditsNumericUpDown.Size = new System.Drawing.Size(263, 22);
             this.ectsCreditsNumericUpDown.TabIndex = 3;
             // 
-            // LecturerscheckedListBox
+            // lecturerscheckedListBox
             // 
-            this.LecturerscheckedListBox.FormattingEnabled = true;
-            this.LecturerscheckedListBox.Location = new System.Drawing.Point(124, 136);
-            this.LecturerscheckedListBox.Name = "LecturerscheckedListBox";
-            this.LecturerscheckedListBox.Size = new System.Drawing.Size(197, 139);
-            this.LecturerscheckedListBox.TabIndex = 5;
-            // 
-            // studentsCheckedListBox
-            // 
-            this.studentsCheckedListBox.FormattingEnabled = true;
-            this.studentsCheckedListBox.Location = new System.Drawing.Point(7, 19);
-            this.studentsCheckedListBox.Name = "studentsCheckedListBox";
-            this.studentsCheckedListBox.Size = new System.Drawing.Size(225, 244);
-            this.studentsCheckedListBox.TabIndex = 0;
+            this.lecturerscheckedListBox.FormattingEnabled = true;
+            this.lecturerscheckedListBox.Location = new System.Drawing.Point(165, 167);
+            this.lecturerscheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lecturerscheckedListBox.Name = "lecturerscheckedListBox";
+            this.lecturerscheckedListBox.Size = new System.Drawing.Size(261, 157);
+            this.lecturerscheckedListBox.TabIndex = 5;
             // 
             // lecturersLabel
             // 
             this.lecturersLabel.AutoSize = true;
-            this.lecturersLabel.Location = new System.Drawing.Point(14, 136);
+            this.lecturersLabel.Location = new System.Drawing.Point(19, 167);
+            this.lecturersLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lecturersLabel.Name = "lecturersLabel";
-            this.lecturersLabel.Size = new System.Drawing.Size(55, 13);
+            this.lecturersLabel.Size = new System.Drawing.Size(71, 17);
             this.lecturersLabel.TabIndex = 19;
             this.lecturersLabel.Text = "Predavači";
             // 
             // CourseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 296);
-            this.Controls.Add(this.LecturerscheckedListBox);
+            this.ClientSize = new System.Drawing.Size(779, 364);
+            this.Controls.Add(this.lecturerscheckedListBox);
             this.Controls.Add(this.lecturersLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.studentsGroupBox);
             this.Controls.Add(this.courseInfoGroupBox);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CourseForm";
             this.Text = "Predmet";
             this.studentsGroupBox.ResumeLayout(false);
@@ -183,7 +199,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.GroupBox courseInfoGroupBox;
         private System.Windows.Forms.NumericUpDown ectsCreditsNumericUpDown;
-        private System.Windows.Forms.CheckedListBox LecturerscheckedListBox;
+        private System.Windows.Forms.CheckedListBox lecturerscheckedListBox;
         private System.Windows.Forms.CheckedListBox studentsCheckedListBox;
         private System.Windows.Forms.Label lecturersLabel;
     }

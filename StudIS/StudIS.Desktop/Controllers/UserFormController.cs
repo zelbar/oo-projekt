@@ -8,6 +8,7 @@ using StudIS.Models.Users;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.DAL;
 using StudIS.DAL.Repositories;
+using StudIS.Services;
 
 namespace StudIS.Desktop.Controllers
 {
@@ -22,17 +23,16 @@ namespace StudIS.Desktop.Controllers
             _courseRepository = courseRepository;
         }
 
-        public bool NewUser(string email, User user)
+        public bool OpenFormNewUser(User user)
         {
-            var existingUser = _userRepository.GetByEmail(email);
+            var existingUser = _userRepository.GetByEmail(user.Email);
 
             if (existingUser != null)
             {
                 throw new Exception();
                 return false;
             }
-
-
+            
             var courses = _courseRepository.GetAll();
             var userForm = new UserForm(this, user, courses);
             userForm.Show();
@@ -40,7 +40,7 @@ namespace StudIS.Desktop.Controllers
             return true;
         }
 
-        public bool EditUser(string email)
+        public bool OpenFormEditUser(string email)
         {
             var courses = _courseRepository.GetAll();
             var user = _userRepository.GetByEmail(email);
@@ -73,10 +73,17 @@ namespace StudIS.Desktop.Controllers
         {
             try
             {
-                _userRepository.Update(user);
+                if (_userRepository.GetByEmail(user.Email) == null)
+                {
+                    _userRepository.Create(user);
+                }
+                else
+                {
+                    _userRepository.Update(user);
+                }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

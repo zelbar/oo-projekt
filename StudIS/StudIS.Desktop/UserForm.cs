@@ -21,6 +21,7 @@ namespace StudIS.Desktop
     {
         private readonly UserFormController _userFormController;
         private User _user;
+        private readonly IList<Course> _courses;
 
         public UserForm(
             UserFormController userFormController,
@@ -29,6 +30,7 @@ namespace StudIS.Desktop
         {
             _userFormController = userFormController;
             _user = user;
+            _courses = courses;
 
             InitializeComponent();
 
@@ -56,8 +58,28 @@ namespace StudIS.Desktop
 
             this.emailTextBox.Text = _user.Email;
 
-            ((ListBox)coursesCheckedListBox).DataSource = courses.ToList();
-            ((ListBox)coursesCheckedListBox).DisplayMember = "NaturalIdentifier";
+            List<Course> checkedCourses = new List<Course>();
+            if (_user is Student)
+            {
+                checkedCourses = ((Student)_user).CoursesEnrolledIn.ToList();
+            }
+            else if (_user is Lecturer)
+            {
+                checkedCourses = ((Lecturer)_user).CoursesInChargeOf.ToList();
+            }
+
+            ListBox coursesListBox = ((ListBox)coursesCheckedListBox);
+            coursesListBox.DataSource = courses.ToList();
+            coursesListBox.DisplayMember = "NaturalIdentifier";
+
+            for (int i = 0; i < coursesListBox.Items.Count; ++i)
+            {
+                var course = (Course)coursesListBox.Items[i];
+                if (checkedCourses.Contains(course))
+                {
+                    coursesCheckedListBox.SetItemChecked(i, true);
+                }
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -75,7 +97,15 @@ namespace StudIS.Desktop
             
             if(_user is Student)
             {
-                ((Student)_user).StudentIdentificationNumber = this.studentIdentificationNumberTextBox.Text;
+                Student student = (Student)_user;
+                student.StudentIdentificationNumber = this.studentIdentificationNumberTextBox.Text;
+                student.CoursesEnrolledIn = new List<Course>();
+            }
+
+            if(_user is Lecturer)
+            {
+                Lecturer lecturer = (Lecturer)_user;
+                lecturer.CoursesInChargeOf = new List<Course>();
             }
 
             var success = _userFormController.SaveUser(_user);
