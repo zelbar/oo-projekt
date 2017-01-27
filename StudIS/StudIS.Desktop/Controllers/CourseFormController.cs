@@ -60,13 +60,13 @@ namespace StudIS.Desktop.Controllers
         {
             try
             {
-                if (_courseServices.GetCourseByNaturalIdentifier(course.NaturalIdentifier) == null)
+                if (_courseServices.GetCourseById(course.Id) == null)
                 {
                     _courseServices.CreateCourse(course.Name, course.NaturalIdentifier, course.EctsCredits);
                 }
                 else
                 {
-                    _courseServices.UpdateCourse(course.Id, course.NaturalIdentifier, course.NaturalIdentifier, course.EctsCredits);
+                    _courseServices.UpdateCourse(course.Id, course.Name, course.NaturalIdentifier, course.EctsCredits);
                 }
                 return true;
             }
@@ -88,10 +88,9 @@ namespace StudIS.Desktop.Controllers
             {
                 try
                 {
-                    _courseServices.DeleteCourse(id);
-                    return true;
+                    return _courseServices.DeleteCourse(id);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return false;
                 }

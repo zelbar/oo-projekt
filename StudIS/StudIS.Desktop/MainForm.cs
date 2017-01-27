@@ -128,10 +128,9 @@ namespace StudIS.Desktop
                 }
 
                 var success = _userFormController.DeleteUser(email);
-
                 if (success)
                 {
-                    MessageBox.Show("Korisnik izbrisan!");
+                    MessageBox.Show("Korisnik izbrisan!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -153,6 +152,8 @@ namespace StudIS.Desktop
 
         private void deleteCourseButton_Click(object sender, EventArgs e)
         {
+            var courseId = (int)this.coursesListBox.SelectedValue;
+
             var prompt = MessageBox.Show("Izbrisati predmet i sve rezultate?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (prompt == DialogResult.No)
@@ -160,7 +161,6 @@ namespace StudIS.Desktop
                 return;
             }
 
-            var courseId = (int)this.coursesListBox.SelectedValue;
             try
             {
                 _courseFormController.DeleteCourse(courseId);

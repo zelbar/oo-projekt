@@ -50,6 +50,13 @@ namespace StudIS.Desktop
             _course.Name = this.nameTextBox.Text;
             _course.NaturalIdentifier = this.naturalIdentifierTextBox.Text;
             _course.EctsCredits = (int)this.ectsCreditsNumericUpDown.Value;
+            _course.LecturersInCharge = new List<Lecturer>();
+
+            if (_course.Name.Length == 0 || _course.NaturalIdentifier.Length == 0)
+            {
+                MessageBox.Show("Nisu popunjena sva obavezna polja", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             var success = _courseFormController.SaveCourse(_course);
             if (success)

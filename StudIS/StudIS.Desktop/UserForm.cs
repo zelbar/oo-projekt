@@ -94,6 +94,14 @@ namespace StudIS.Desktop
             {
                 _user.PasswordHash = EncryptionService.EncryptSHA1(password);
             }
+
+            if (_user.Email.Length == 0 || _user.Name.Length == 0 || _user.Surname.Length == 0
+                || _user.NationalIdentificationNumber.Length == 0 || 
+                (_user.PasswordHash == null || _user.PasswordHash.Length == 0))
+            {
+                MessageBox.Show("Nisu popunjena sva polja", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             
             if(_user is Student)
             {
