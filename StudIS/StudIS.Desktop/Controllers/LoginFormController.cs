@@ -32,7 +32,7 @@ namespace StudIS.Desktop.Controllers
             {
                 if (!UserServices.isUserAdministrator(user))
                 {
-                    MessageBox.Show(user.FullName + " nije u ulozi administratora");
+                    MessageBox.Show(user.FullName + " nije u ulozi administratora", "Nedovoljna prava", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
                 else
@@ -42,7 +42,7 @@ namespace StudIS.Desktop.Controllers
             }
             else
             {
-                MessageBox.Show("Neispravni podaci korisnika");
+                MessageBox.Show("Neispravni podaci korisnika", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
         }

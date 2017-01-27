@@ -49,7 +49,7 @@ namespace StudIS.Desktop
 
             if (email.Length == 0)
             {
-                MessageBox.Show("Unesite e-mail adresu.");
+                MessageBox.Show("Unesite e-mail adresu", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
@@ -69,7 +69,7 @@ namespace StudIS.Desktop
             }
             else
             {
-                MessageBox.Show("Odaberite vrstu korisnika.");
+                MessageBox.Show("Odaberite vrstu korisnika", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
@@ -89,7 +89,7 @@ namespace StudIS.Desktop
                 var success = _userFormController.OpenFormNewUser(user);
                 if (!success)
                 {
-                    MessageBox.Show("Korisnik s unesenom e-mail adresom već postoji.");
+                    MessageBox.Show("Korisnik s unesenom e-mail adresom već postoji", "Korisnik postoji", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -106,14 +106,13 @@ namespace StudIS.Desktop
                 var success = _userFormController.OpenFormEditUser(email);
                 if (!success)
                 {
-                    MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.");
+                    MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.", "Ne postoji taj korisnik", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
-
             User user;
             string email;
 
@@ -121,6 +120,13 @@ namespace StudIS.Desktop
 
             if (valid)
             {
+                var prompt = MessageBox.Show("Zaista izbristi korisnika i sve njegove rezultate?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (prompt == DialogResult.No)
+                {
+                    return;
+                }
+
                 var success = _userFormController.DeleteUser(email);
 
                 if (success)
@@ -129,7 +135,7 @@ namespace StudIS.Desktop
                 }
                 else
                 {
-                    MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.");
+                    MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji", "Nema tog korisnika", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -149,12 +155,21 @@ namespace StudIS.Desktop
         {
             var prompt = MessageBox.Show("Izbrisati predmet i sve rezultate?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (prompt == DialogResult.Yes)
+            if (prompt == DialogResult.No)
             {
-                var courseId = (int)this.coursesListBox.SelectedValue;
-                _courseFormController.DeleteCourse(courseId);
-                populateCoursesListBox();
+                return;
             }
+
+            var courseId = (int)this.coursesListBox.SelectedValue;
+            try
+            {
+                _courseFormController.DeleteCourse(courseId);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Došlo je do greške prilikom brisanja", "Neuspjeh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            populateCoursesListBox();
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
