@@ -4,6 +4,8 @@ using StudIS.Models.Users;
 using StudIS.DAL.Repositories;
 using StudIS.DAL.SQL;
 using StudIS.DAL;
+using Moq;
+using StudIS.Models.RepositoryInterfaces;
 
 namespace StudIS.Services.Tests
 {
@@ -68,12 +70,9 @@ namespace StudIS.Services.Tests
         [TestMethod]
         public void CreateUser_ReturnsSavedUser()
         {
-
-            var userRep = new UserRepository(_nhs);
-            var userServices = new UserServices(userRep);
             var student = new Student()
             {
-               
+
                 Name = "Zlatko",
                 Surname = "Hrastić",
                 Email = "zlatko.hrastic@fer.hr",
@@ -84,8 +83,16 @@ namespace StudIS.Services.Tests
 
             };
 
+            Mock<IUserRepository> usrRep = new Mock<IUserRepository>();
+            usrRep.Setup(r => r.Create(It.IsAny<User>())).Returns(student);
+
+           
+            var userServices = new UserServices(usrRep.Object);
+
+
             var saved = userServices.createUser(student);
 
+            Assert.IsNotNull(saved);
             Assert.IsNotNull(saved.Id);
         }
     }

@@ -10,7 +10,7 @@ namespace StudIS.Services.Tests
     [TestClass]
     public class StudentServicesTests
     {
-        INHibernateService _nhs;
+        private INHibernateService _nhs;
         public StudentServicesTests()
         {
             _nhs = new NHibernateService2();

@@ -25,7 +25,7 @@ namespace StudIS.Services
 
         public IList<Score> GetScorebyStudentAndCourse(int studentId, int courseId)
         {
-            //var scoreList = _scoreRepository.GetByStudentAndCourse(studentId, courseId);
+            
 
             var student = _userRepository.GetById(studentId);
             if (student==null || !UserServices.isUserStudent(student))
