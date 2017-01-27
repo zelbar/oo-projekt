@@ -29,7 +29,6 @@ namespace StudIS.Desktop.Controllers
 
             if (existingUser != null)
             {
-                throw new Exception();
                 return false;
             }
             
@@ -47,7 +46,6 @@ namespace StudIS.Desktop.Controllers
 
             if (user == null)
             {
-                throw new Exception();
                 return false;
             }
 
@@ -62,7 +60,6 @@ namespace StudIS.Desktop.Controllers
 
             if (user == null)
             {
-                throw new Exception();
                 return false;
             }
 

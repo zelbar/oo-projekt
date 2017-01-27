@@ -78,11 +78,8 @@ namespace StudIS.Desktop
 
             if (valid)
             {
-                try
-                {
-                    var success = _userFormController.OpenFormNewUser(user);
-                }
-                catch (Exception)
+                var success = _userFormController.OpenFormNewUser(user);
+                if (!success)
                 {
                     MessageBox.Show("Korisnik s unesenom e-mail adresom već postoji.");
                 }
@@ -98,11 +95,8 @@ namespace StudIS.Desktop
 
             if (valid)
             {
-                try
-                {
-                    var success = _userFormController.OpenFormEditUser(email);
-                }
-                catch(Exception)
+                var success = _userFormController.OpenFormEditUser(email);
+                if (!success)
                 {
                     MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.");
                 }
@@ -119,15 +113,13 @@ namespace StudIS.Desktop
 
             if (valid)
             {
-                try
+                var success = _userFormController.DeleteUser(email);
+
+                if (success)
                 {
-                    var success = _userFormController.DeleteUser(email);
-                    if (success)
-                    {
-                        MessageBox.Show("Korisnik izbrisan!");
-                    }
+                    MessageBox.Show("Korisnik izbrisan!");
                 }
-                catch (Exception)
+                else
                 {
                     MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.");
                 }

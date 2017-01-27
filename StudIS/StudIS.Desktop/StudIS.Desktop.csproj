@@ -128,6 +128,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SQLliteConfig\SQLliteConfig.csproj">
+      <Project>{a4f714bc-d576-49ba-8365-3b43868b8d27}</Project>
+      <Name>SQLliteConfig</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj">
       <Project>{56c50b21-477e-48ae-9629-8201726d259f}</Project>
       <Name>StudIS.DAL</Name>
