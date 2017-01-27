@@ -38,7 +38,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-info" />
+                <input type="submit" value="Spremi" class="btn btn-success" />
+                @Html.ActionLink("Natrag", "Component", new { id = Model.CourseId }, new { @class = "btn btn-info" })
             </div>
         </div>
     </div>

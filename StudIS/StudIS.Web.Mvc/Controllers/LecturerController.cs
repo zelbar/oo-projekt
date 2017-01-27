@@ -107,7 +107,7 @@ namespace StudIS.Web.Mvc.Controllers {
 
             var component = _componentRepository.Update(newComponent);
 
-            return RedirectToAction("Index", "Lecturer");
+            return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
 
         public ActionResult DeleteComponent(int id) {
@@ -128,7 +128,7 @@ namespace StudIS.Web.Mvc.Controllers {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
             var component = _componentRepository.DeleteById(id);
-            return RedirectToAction("Index", "Lecturer");
+            return RedirectToAction("Component", "Lecturer", new { id = id });
         }
 
         public ActionResult CreateComponent(int id) {
@@ -158,7 +158,7 @@ namespace StudIS.Web.Mvc.Controllers {
 
             var component = _componentRepository.Create(newComponent);
 
-            return RedirectToAction("Index", "Lecturer");
+            return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId});
         }
     }
 }

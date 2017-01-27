@@ -39,7 +39,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-info" />
+                <input type="submit" value="Uredi" class="btn btn-success" />
+                @Html.ActionLink("Natrag", "Component", new { id = Model.CourseId }, new { @class = "btn btn-info" })
             </div>
         </div>
     </div>
