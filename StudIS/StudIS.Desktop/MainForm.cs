@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using StudIS.Desktop.Controllers;
 using StudIS.Models;
 using StudIS.Models.Users;
-using StudIS.DAL;
-using StudIS.DAL.Repositories;
 
 namespace StudIS.Desktop
 {
@@ -34,6 +32,14 @@ namespace StudIS.Desktop
             _userFormController = userFormController;
 
             InitializeComponent();
+            populateCoursesListBox();
+        }
+
+        private void populateCoursesListBox()
+        {
+            this.coursesListBox.DataSource = _mainFormController.GetAllCourses();
+            this.coursesListBox.DisplayMember = "Naturalidentifier";
+            this.coursesListBox.ValueMember = "Id";
         }
 
         private bool getSelectedAccountTypeAndEmail(out User user, out string email)
@@ -50,10 +56,12 @@ namespace StudIS.Desktop
             if (this.studentRadioButton.Checked)
             {
                 user = new Student();
+                ((Student)user).CoursesEnrolledIn = new List<Course>();
             }
             else if (this.lecturerRadioButton.Checked)
             {
                 user = new Lecturer();
+                ((Lecturer)user).CoursesInChargeOf = new List<Course>();
             }
             else if (this.adminRadioButton.Checked)
             {
@@ -69,7 +77,7 @@ namespace StudIS.Desktop
             return true;
         }
 
-        private void newButton_Click(object sender, EventArgs e)
+        private void newUserButton_Click(object sender, EventArgs e)
         {
             User user;
             string email;
@@ -86,7 +94,7 @@ namespace StudIS.Desktop
             }
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void editUserButton_Click(object sender, EventArgs e)
         {
             User user;
             string email;
@@ -103,7 +111,7 @@ namespace StudIS.Desktop
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void deleteUserButton_Click(object sender, EventArgs e)
         {
 
             User user;
@@ -124,6 +132,34 @@ namespace StudIS.Desktop
                     MessageBox.Show("Korisnik s unesenom e-mail adresom ne postoji.");
                 }
             }
+        }
+
+        private void newCourseButton_Click(object sender, EventArgs e)
+        {
+            _courseFormController.OpenFormNewCourse();
+        }
+
+        private void editCourseButton_Click(object sender, EventArgs e)
+        {
+            var courseId = (int)this.coursesListBox.SelectedValue;
+            _courseFormController.OpenFormEditCourse(courseId);
+        }
+
+        private void deleteCourseButton_Click(object sender, EventArgs e)
+        {
+            var prompt = MessageBox.Show("Izbrisati predmet i sve rezultate?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (prompt == DialogResult.Yes)
+            {
+                var courseId = (int)this.coursesListBox.SelectedValue;
+                _courseFormController.DeleteCourse(courseId);
+                populateCoursesListBox();
+            }
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            populateCoursesListBox();
         }
     }
 }

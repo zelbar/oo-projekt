@@ -17,14 +17,14 @@ namespace StudIS.Desktop
     {
         private readonly CourseFormController _courseFormController;
         private Course _course;
-        private readonly IList<Lecturer> _lecturers;
-        private readonly IList<Student> _students;
+        private readonly IList<User> _lecturers;
+        private readonly IList<User> _students;
         
         public CourseForm(
             CourseFormController courseFormController,
             Course course,
-            IList<Lecturer> lecturers,
-            IList<Student> students)
+            IList<User> lecturers,
+            IList<User> students)
         {
             _courseFormController = courseFormController;
             _course = course;
@@ -32,6 +32,11 @@ namespace StudIS.Desktop
             _students = students;
 
             InitializeComponent();
+
+            this.Name = _course.Name + "("+ _course.NaturalIdentifier + ")";
+            this.nameTextBox.Text = _course.Name;
+            this.naturalIdentifierTextBox.Text = _course.NaturalIdentifier;
+            this.ectsCreditsNumericUpDown.Value = _course.EctsCredits;
 
             ((ListBox)lecturerscheckedListBox).DataSource = _lecturers;
             ((ListBox)lecturerscheckedListBox).DisplayMember = "FullName";
@@ -42,7 +47,19 @@ namespace StudIS.Desktop
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //_courseFormController.Save();
+            _course.Name = this.nameTextBox.Text;
+            _course.NaturalIdentifier = this.naturalIdentifierTextBox.Text;
+            _course.EctsCredits = (int)this.ectsCreditsNumericUpDown.Value;
+
+            var success = _courseFormController.SaveCourse(_course);
+            if (success)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Pohrana nije uspjela");
+            }
         }
     }
 }

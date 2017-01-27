@@ -20,5 +20,10 @@ namespace StudIS.Desktop.Controllers
             _userRepository = userRepository;
             _courseRepository = courseRepository;
         }
+
+        public IList<Course> GetAllCourses()
+        {
+            return _courseRepository.GetAll();
+        }
     }
 }

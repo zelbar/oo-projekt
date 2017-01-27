@@ -48,7 +48,7 @@
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(16, 310);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 18;
@@ -60,9 +60,9 @@
             // 
             this.studentsGroupBox.Controls.Add(this.studentsCheckedListBox);
             this.studentsGroupBox.Location = new System.Drawing.Point(445, 15);
-            this.studentsGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.studentsGroupBox.Name = "studentsGroupBox";
-            this.studentsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentsGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.studentsGroupBox.Size = new System.Drawing.Size(317, 334);
             this.studentsGroupBox.TabIndex = 17;
             this.studentsGroupBox.TabStop = false;
@@ -72,7 +72,7 @@
             // 
             this.studentsCheckedListBox.FormattingEnabled = true;
             this.studentsCheckedListBox.Location = new System.Drawing.Point(9, 23);
-            this.studentsCheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentsCheckedListBox.Margin = new System.Windows.Forms.Padding(4);
             this.studentsCheckedListBox.Name = "studentsCheckedListBox";
             this.studentsCheckedListBox.Size = new System.Drawing.Size(299, 293);
             this.studentsCheckedListBox.TabIndex = 0;
@@ -80,7 +80,7 @@
             // naturalIdentifierTextBox
             // 
             this.naturalIdentifierTextBox.Location = new System.Drawing.Point(149, 58);
-            this.naturalIdentifierTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.naturalIdentifierTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.naturalIdentifierTextBox.Name = "naturalIdentifierTextBox";
             this.naturalIdentifierTextBox.Size = new System.Drawing.Size(261, 22);
             this.naturalIdentifierTextBox.TabIndex = 2;
@@ -108,7 +108,7 @@
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(149, 23);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(261, 22);
             this.nameTextBox.TabIndex = 1;
@@ -132,9 +132,9 @@
             this.courseInfoGroupBox.Controls.Add(this.nameTextBox);
             this.courseInfoGroupBox.Controls.Add(this.nameLabel);
             this.courseInfoGroupBox.Location = new System.Drawing.Point(16, 15);
-            this.courseInfoGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.courseInfoGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.courseInfoGroupBox.Name = "courseInfoGroupBox";
-            this.courseInfoGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.courseInfoGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.courseInfoGroupBox.Size = new System.Drawing.Size(420, 137);
             this.courseInfoGroupBox.TabIndex = 0;
             this.courseInfoGroupBox.TabStop = false;
@@ -143,7 +143,7 @@
             // ectsCreditsNumericUpDown
             // 
             this.ectsCreditsNumericUpDown.Location = new System.Drawing.Point(149, 95);
-            this.ectsCreditsNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ectsCreditsNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.ectsCreditsNumericUpDown.Name = "ectsCreditsNumericUpDown";
             this.ectsCreditsNumericUpDown.Size = new System.Drawing.Size(263, 22);
             this.ectsCreditsNumericUpDown.TabIndex = 3;
@@ -152,7 +152,7 @@
             // 
             this.lecturerscheckedListBox.FormattingEnabled = true;
             this.lecturerscheckedListBox.Location = new System.Drawing.Point(165, 167);
-            this.lecturerscheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lecturerscheckedListBox.Margin = new System.Windows.Forms.Padding(4);
             this.lecturerscheckedListBox.Name = "lecturerscheckedListBox";
             this.lecturerscheckedListBox.Size = new System.Drawing.Size(261, 157);
             this.lecturerscheckedListBox.TabIndex = 5;
@@ -169,6 +169,7 @@
             // 
             // CourseForm
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 364);
@@ -177,7 +178,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.studentsGroupBox);
             this.Controls.Add(this.courseInfoGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CourseForm";
             this.Text = "Predmet";
             this.studentsGroupBox.ResumeLayout(false);
