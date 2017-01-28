@@ -88,7 +88,7 @@ namespace StudIS.Desktop
                 checkedLecturers.Add(_lecturers.First(x => x.Id == lecturerId));
             }
 
-            var checkedStudentsIndices = this.lecturersCheckedListBox.CheckedIndices;
+            var checkedStudentsIndices = this.studentsCheckedListBox.CheckedIndices;
             var checkedStudents = new List<Student>();
             foreach (int studentIndex in checkedStudentsIndices)
             {

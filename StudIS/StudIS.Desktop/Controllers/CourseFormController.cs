@@ -67,9 +67,9 @@ namespace StudIS.Desktop.Controllers
             {
                 if (_courseServices.GetCourseById(course.Id) == null)
                 {
-                    _courseServices.CreateCourse(course.Name, course.NaturalIdentifier, course.EctsCredits);
-                    _courseServices.UpdateLecturers(course.Id, course.LecturersInCharge);
-                    _courseServices.UpdateStudents(course.Id, course.StudentsEnrolled);
+                    var courseId = _courseServices.CreateCourse(course.Name, course.NaturalIdentifier, course.EctsCredits).Id;
+                    _courseServices.UpdateLecturers(courseId, course.LecturersInCharge);
+                    _courseServices.UpdateStudents(courseId, course.StudentsEnrolled);
                 }
                 else
                 {

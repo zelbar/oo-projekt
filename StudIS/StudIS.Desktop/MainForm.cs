@@ -160,15 +160,12 @@ namespace StudIS.Desktop
             {
                 return;
             }
-
-            try
-            {
-                _courseFormController.DeleteCourse(courseId);
-            }
-            catch (Exception)
-            {
+            
+            bool success = _courseFormController.DeleteCourse(courseId);
+            if(!success) {
                 MessageBox.Show("Došlo je do greške prilikom brisanja", "Neuspjeh", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             populateCoursesListBox();
         }
 

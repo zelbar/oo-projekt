@@ -126,6 +126,11 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var toBeRemoved = new List<Lecturer>();
 
+            if (course.LecturersInCharge == null)
+            {
+                course.LecturersInCharge = new List<Lecturer>();
+            }
+
             foreach (var lecturer in course.LecturersInCharge)
             {
                 if (!lecturers.Contains(lecturer))
@@ -137,6 +142,7 @@ namespace StudIS.Services
             {
                 RemoveLecturer(courseId, lecturer.Id);
             }
+
             foreach (var lecturer in lecturers)
             {
                 if (!course.LecturersInCharge.Contains(lecturer))
@@ -154,6 +160,11 @@ namespace StudIS.Services
             var course = _courseRepository.GetById(courseId);
             var toBeRemoved = new List<Student>();
 
+            if (course.StudentsEnrolled == null)
+            {
+                course.StudentsEnrolled = new List<Student>();
+            }
+
             foreach (var student in course.StudentsEnrolled)
             {
                 if (!students.Contains(student))
@@ -165,6 +176,7 @@ namespace StudIS.Services
             {
                 RemoveStudent(courseId, student.Id);
             }
+
             foreach (var student in students)
             {
                 if (!course.StudentsEnrolled.Contains(student))
