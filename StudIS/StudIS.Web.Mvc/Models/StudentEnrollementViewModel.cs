@@ -11,8 +11,7 @@ namespace StudIS.Web.Mvc.Models {
         public StudentEnrollementViewModel() {
         }
         public StudentEnrollementViewModel(IList<Score> scores) {
-            this.scores = new List<Score>();
-            this.scores.Concat(scores);
+            this.scores = scores;
         }
 
     }

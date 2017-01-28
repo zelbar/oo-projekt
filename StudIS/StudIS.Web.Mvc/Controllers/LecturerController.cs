@@ -24,10 +24,7 @@ namespace StudIS.Web.Mvc.Controllers {
             _componentRepository = componentRepository;
 
         }
-        /// <summary>
-        /// Show the list of available courses
-        /// </summary>
-        /// <returns></returns>
+
         public ActionResult Index() {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -160,7 +157,50 @@ namespace StudIS.Web.Mvc.Controllers {
             var componentServices = new ComponentServices(_componentRepository, _courseRepository);
             var component = componentServices.CreateComponent(comp.Name, comp.CourseId, comp.MinimumPointsToPass, comp.MaximumPoints);
 
-            return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId});
+            return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
+        }
+
+        public ActionResult StudentsEnrolled(int id) {
+            if (Session["userId"] == null)
+                return RedirectToAction("Index", "Home");
+
+            ViewBag.Email = Session["email"];
+
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
+            var course = courseServices.GetCourseById(id);
+
+            ViewBag.Title = course.Name;
+
+            var studentServices = new StudentServices(_userRepository);
+            var scoreServices = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
+            IList<Student> enrolledStudents = studentServices.GetStudentsByCourse(course);
+            IList<StudentEnrollementViewModel> enroll = new List<StudentEnrollementViewModel>();
+
+            foreach (Student s in enrolledStudents) {
+                IList<Score> score = scoreServices.GetScorebyStudentAndCourse(s.Id, course.Id);
+                enroll.Add(new StudentEnrollementViewModel(score));
+            }
+            return View(enroll);
+        }
+        [HttpPost]
+        public ActionResult StudentsEnrolled(IEnumerable<StudentEnrollementViewModel> list) {
+
+            var scoreServices = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
+            var componentServices = new ComponentServices(_componentRepository, _courseRepository);
+            var userServices = new UserServices(_userRepository);
+
+            foreach (var s in list) {
+                foreach (var scor in s.scores) {
+                    Score ss = new Score() {
+                        Id = scor.Id,
+                        Value = scor.Value,
+                        Component = componentServices.GetById(scor.Component.Id),
+                        Student = (Student)userServices.GetUserById(scor.Student.Id)
+                    };
+                    scoreServices.SaveScore(ss);
+                }
+            }
+            return RedirectToAction("Index", "Lecturer");
         }
     }
 }
