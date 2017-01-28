@@ -15,7 +15,7 @@
             <th>
                 JMBAG
             </th>
-            @if (Model.First().scores.Count() > 0) {
+            @if (Model != null) {
                 foreach (var c in Model.First().scores) {
                     <th>
                         @c.Component.Name
@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => Model[i].scores.First().Student.StudentIdentificationNumber)
                 </td>
 
-                @if (Model.First().scores.Count() > 0) {
+                @if (Model != null) {
                     for(int j = 0; j < Model[i].scores.Count(); j++) {
                         <td>
                             @Html.EditorFor(modelItem => Model[i].scores[j].Value, new { htmlAttributes = new { @class = "form-control" } })
