@@ -121,6 +121,61 @@ namespace StudIS.Services
             return _courseRepository.Update(course);
         }
 
+        public Course UpdateLecturers(int courseId, IList<Lecturer> lecturers)
+        {
+            var course = _courseRepository.GetById(courseId);
+            var toBeRemoved = new List<Lecturer>();
+
+            foreach (var lecturer in course.LecturersInCharge)
+            {
+                if (!lecturers.Contains(lecturer))
+                {
+                    toBeRemoved.Add(lecturer);
+                }
+            }
+            foreach (var lecturer in toBeRemoved)
+            {
+                RemoveLecturer(courseId, lecturer.Id);
+            }
+            foreach (var lecturer in lecturers)
+            {
+                if (!course.LecturersInCharge.Contains(lecturer))
+                {
+                    AddLecturer(courseId, lecturer.Id);
+                }
+            }
+
+            course.LecturersInCharge = lecturers;
+            return course;
+        }
+
+        public Course UpdateStudents(int courseId, IList<Student> students)
+        {
+            var course = _courseRepository.GetById(courseId);
+            var toBeRemoved = new List<Student>();
+
+            foreach (var student in course.StudentsEnrolled)
+            {
+                if (!students.Contains(student))
+                {
+                    RemoveStudent(courseId, student.Id);
+                }
+            }
+            foreach (var student in toBeRemoved)
+            {
+                RemoveStudent(courseId, student.Id);
+            }
+            foreach (var student in students)
+            {
+                if (!course.StudentsEnrolled.Contains(student))
+                {
+                    AddStudent(courseId, student.Id);
+                }
+            }
+
+            course.StudentsEnrolled = students;
+            return course;
+        }
 
         public Course AddStudent(int courseId, int studentId)
         {

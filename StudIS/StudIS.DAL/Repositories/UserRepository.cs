@@ -28,6 +28,21 @@ namespace StudIS.DAL.Repositories
             return _session.QueryOver<User>().List();
         }
 
+        public IList<Administrator> GetAllAdministrators()
+        {
+            return _session.QueryOver<Administrator>().List();
+        }
+
+        public IList<Lecturer> GetAllLecturers()
+        {
+            return _session.QueryOver<Lecturer>().List();
+        }
+
+        public IList<Student> GetAllStudents()
+        {
+            return _session.QueryOver<Student>().List();
+        }
+
         public User Create(User user)
         {
             using (var transaction = _session.BeginTransaction())

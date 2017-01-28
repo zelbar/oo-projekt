@@ -11,6 +11,9 @@ namespace StudIS.Models.RepositoryInterfaces
     public interface IUserRepository
     {
         IList<User> GetAll();
+        IList<Administrator> GetAllAdministrators();
+        IList<Lecturer> GetAllLecturers();
+        IList<Student> GetAllStudents();
         User GetById(int id);
         User GetByEmail(string email);
         User GetByNationalIdentificationNumbe(string nationalIdentificationNumbe);

@@ -86,5 +86,20 @@ namespace StudIS.DAL.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public IList<Administrator> GetAllAdministrators()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Lecturer> GetAllLecturers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Student> GetAllStudents()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

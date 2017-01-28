@@ -51,6 +51,21 @@ namespace StudIS.Services
             return _userRepository.GetAll();
         }
 
+        public IList<Administrator> GetAllAdministrators()
+        {
+            return _userRepository.GetAllAdministrators();
+        }
+
+        public IList<Lecturer> GetAllLecturers()
+        {
+            return _userRepository.GetAllLecturers();
+        }
+
+        public IList<Student> GetAllStudents()
+        {
+            return _userRepository.GetAllStudents();
+        }
+
         public User GetUserById(int id)
         {
             return _userRepository.GetById(id);
