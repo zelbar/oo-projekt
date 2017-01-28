@@ -39,38 +39,31 @@ namespace StudIS.Desktop
             this.nameTextBox.Text = user.Name;
             this.surnameTextBox.Text = user.Surname;
             this.nationalIdentificationNumberTextBox.Text = user.NationalIdentificationNumber;
-
-            if (user is Student)
-            {
-                this.studentIdentificationNumberTextBox
-                    .Text = ((Student)_user).StudentIdentificationNumber;
-            }
-            else
-            {
-                this.studentIdentificationNumberTextBox.Enabled = false;
-            }
-
-            if (_user is Administrator)
-            {
-                this.coursesCheckedListBox.Enabled = false;
-                this.coursesGroupBox.Enabled = false;
-            }
-
             this.emailTextBox.Text = _user.Email;
 
             var checkedCoursesIds = new List<int>();
+
             if (_user is Student)
             {
+                this.studentIdentificationNumberTextBox
+                    .Text = ((Student)_user).StudentIdentificationNumber;
                 checkedCoursesIds = ((Student)_user)
                     .CoursesEnrolledIn.Select(x => x.Id).ToList();
             }
             else if (_user is Lecturer)
             {
+                this.studentIdentificationNumberTextBox.Enabled = false;
                 checkedCoursesIds = ((Lecturer)_user)
                     .CoursesInChargeOf.Select(x => x.Id).ToList();
             }
-
-            ListBox coursesListBox = ((ListBox)coursesCheckedListBox);
+            else
+            {
+                this.studentIdentificationNumberTextBox.Enabled = false;
+                this.coursesCheckedListBox.Enabled = false;
+                this.coursesGroupBox.Enabled = false;
+            }
+            
+            ListBox coursesListBox = coursesCheckedListBox;
             coursesListBox.DataSource = courses.ToList();
             coursesListBox.DisplayMember = "NaturalIdentifier";
 

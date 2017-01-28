@@ -17,14 +17,14 @@ namespace StudIS.Desktop
     {
         private readonly CourseFormController _courseFormController;
         private Course _course;
-        private readonly IList<User> _lecturers;
-        private readonly IList<User> _students;
+        private readonly IList<Lecturer> _lecturers;
+        private readonly IList<Student> _students;
         
         public CourseForm(
             CourseFormController courseFormController,
             Course course,
-            IList<User> lecturers,
-            IList<User> students)
+            IList<Lecturer> lecturers,
+            IList<Student> students)
         {
             _courseFormController = courseFormController;
             _course = course;
@@ -38,11 +38,33 @@ namespace StudIS.Desktop
             this.naturalIdentifierTextBox.Text = _course.NaturalIdentifier;
             this.ectsCreditsNumericUpDown.Value = _course.EctsCredits;
 
-            ((ListBox)lecturerscheckedListBox).DataSource = _lecturers;
-            ((ListBox)lecturerscheckedListBox).DisplayMember = "FullName";
+            ((ListBox)lecturersCheckedListBox).DataSource = _lecturers;
+            ((ListBox)lecturersCheckedListBox).DisplayMember = "FullName";
+            var checkedLecturersIds = course.LecturersInCharge
+                .Select(x => x.Id).ToList();
+
+            for (int i = 0; i < lecturersCheckedListBox.Items.Count; ++i)
+            {
+                var lecturer = (User)lecturersCheckedListBox.Items[i];
+                if (checkedLecturersIds.Contains(lecturer.Id))
+                {
+                    lecturersCheckedListBox.SetItemChecked(i, true);
+                }
+            }
 
             ((ListBox)studentsCheckedListBox).DataSource = _students;
             ((ListBox)studentsCheckedListBox).DisplayMember = "FullName";
+            var checkedStudentsIds = course.StudentsEnrolled
+                .Select(x => x.Id).ToList();
+
+            for (int i = 0; i < studentsCheckedListBox.Items.Count; ++i)
+            {
+                var lecturer = (User)studentsCheckedListBox.Items[i];
+                if (checkedStudentsIds.Contains(lecturer.Id))
+                {
+                    studentsCheckedListBox.SetItemChecked(i, true);
+                }
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -57,6 +79,25 @@ namespace StudIS.Desktop
                 MessageBox.Show("Nisu popunjena sva obavezna polja", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            var checkedLecturersIndices = this.lecturersCheckedListBox.CheckedIndices;
+            var checkedLecturers = new List<Lecturer>();
+            foreach (int lecturerIndex in checkedLecturersIndices)
+            {
+                var lecturerId = ((Lecturer)this.lecturersCheckedListBox.Items[lecturerIndex]).Id;
+                checkedLecturers.Add(_lecturers.First(x => x.Id == lecturerId));
+            }
+
+            var checkedStudentsIndices = this.lecturersCheckedListBox.CheckedIndices;
+            var checkedStudents = new List<Student>();
+            foreach (int studentIndex in checkedStudentsIndices)
+            {
+                var studentId = ((Student)this.studentsCheckedListBox.Items[studentIndex]).Id;
+                checkedStudents.Add(_students.First(x => x.Id == studentId));
+            }
+
+            _course.LecturersInCharge = checkedLecturers;
+            _course.StudentsEnrolled = checkedStudents;
 
             var success = _courseFormController.SaveCourse(_course);
             if (success)

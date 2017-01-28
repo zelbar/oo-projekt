@@ -23,17 +23,21 @@ namespace StudIS.Desktop.Controllers
             _userServices = userServices;
         }
 
-        private void getLecturersAndStudents(out List<User> lecturers, out List<User> students)
+        private void getLecturersAndStudents(out IList<Lecturer> lecturers, out IList<Student> students)
         {
-            var users = _userServices.GetAllUsers();
-            lecturers = users.Where(t => t is Lecturer).ToList();
-            students = users.Where(t => t is Student).ToList();
+            lecturers = _userServices.GetAllLecturers();
+            students = _userServices.GetAllStudents();
         }
 
         public void OpenFormNewCourse()
         {
             var course = new Course();
-            List<User> lecturers, students;
+            course.LecturersInCharge = new List<Lecturer>();
+            course.StudentsEnrolled = new List<Student>();
+            course.Components = new List<Component>();
+
+            IList<Lecturer> lecturers;
+            IList<Student> students;
             getLecturersAndStudents(out lecturers, out students);
 
             var courseForm = new CourseForm(this, course, lecturers, students);
@@ -43,7 +47,8 @@ namespace StudIS.Desktop.Controllers
         public void OpenFormEditCourse(int id)
         {
             var course = _courseServices.GetCourseById(id);
-            List<User> lecturers, students;
+            IList<Lecturer> lecturers;
+            IList<Student> students;
             getLecturersAndStudents(out lecturers, out students);
             
             var courseForm = new CourseForm(this, course, lecturers, students);
@@ -63,10 +68,14 @@ namespace StudIS.Desktop.Controllers
                 if (_courseServices.GetCourseById(course.Id) == null)
                 {
                     _courseServices.CreateCourse(course.Name, course.NaturalIdentifier, course.EctsCredits);
+                    _courseServices.UpdateLecturers(course.Id, course.LecturersInCharge);
+                    _courseServices.UpdateStudents(course.Id, course.StudentsEnrolled);
                 }
                 else
                 {
                     _courseServices.UpdateCourse(course.Id, course.Name, course.NaturalIdentifier, course.EctsCredits);
+                    _courseServices.UpdateLecturers(course.Id, course.LecturersInCharge);
+                    _courseServices.UpdateStudents(course.Id, course.StudentsEnrolled);
                 }
                 return true;
             }

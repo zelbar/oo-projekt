@@ -38,7 +38,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.courseInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.ectsCreditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.lecturerscheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.lecturersCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.lecturersLabel = new System.Windows.Forms.Label();
             this.studentsGroupBox.SuspendLayout();
             this.courseInfoGroupBox.SuspendLayout();
@@ -148,14 +148,14 @@
             this.ectsCreditsNumericUpDown.Size = new System.Drawing.Size(263, 22);
             this.ectsCreditsNumericUpDown.TabIndex = 3;
             // 
-            // lecturerscheckedListBox
+            // lecturersCheckedListBox
             // 
-            this.lecturerscheckedListBox.FormattingEnabled = true;
-            this.lecturerscheckedListBox.Location = new System.Drawing.Point(165, 167);
-            this.lecturerscheckedListBox.Margin = new System.Windows.Forms.Padding(4);
-            this.lecturerscheckedListBox.Name = "lecturerscheckedListBox";
-            this.lecturerscheckedListBox.Size = new System.Drawing.Size(261, 157);
-            this.lecturerscheckedListBox.TabIndex = 5;
+            this.lecturersCheckedListBox.FormattingEnabled = true;
+            this.lecturersCheckedListBox.Location = new System.Drawing.Point(165, 167);
+            this.lecturersCheckedListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lecturersCheckedListBox.Name = "lecturersCheckedListBox";
+            this.lecturersCheckedListBox.Size = new System.Drawing.Size(261, 157);
+            this.lecturersCheckedListBox.TabIndex = 5;
             // 
             // lecturersLabel
             // 
@@ -173,7 +173,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 364);
-            this.Controls.Add(this.lecturerscheckedListBox);
+            this.Controls.Add(this.lecturersCheckedListBox);
             this.Controls.Add(this.lecturersLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.studentsGroupBox);
@@ -200,7 +200,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.GroupBox courseInfoGroupBox;
         private System.Windows.Forms.NumericUpDown ectsCreditsNumericUpDown;
-        private System.Windows.Forms.CheckedListBox lecturerscheckedListBox;
+        private System.Windows.Forms.CheckedListBox lecturersCheckedListBox;
         private System.Windows.Forms.CheckedListBox studentsCheckedListBox;
         private System.Windows.Forms.Label lecturersLabel;
     }
