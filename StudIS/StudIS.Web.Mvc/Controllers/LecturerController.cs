@@ -4,9 +4,11 @@ using StudIS.Models.Users;
 using StudIS.Services;
 using StudIS.Web.Mvc.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace StudIS.Web.Mvc.Controllers {
@@ -210,6 +212,37 @@ namespace StudIS.Web.Mvc.Controllers {
                 }
             }
             return RedirectToAction("Index", "Lecturer");
+        }
+
+        public ActionResult ComponentStatistics(int id) {
+            if (Session["userId"] == null)
+                return RedirectToAction("Index", "Home");
+
+            ViewBag.Email = Session["email"];
+            ViewBag.Title = "Statistics";
+
+            var courseService = new CourseServices(_courseRepository, _userRepository, _componentRepository);
+            var componentService = new ComponentServices(_componentRepository, _courseRepository);
+            var scoreService = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
+
+            var course = courseService.GetCourseById(id);
+
+            IList<Component> comp = new List<Component>();
+            foreach (var c in course.Components) {
+                comp.Add(c);
+            }
+            IList<ComponentStatisticsViewModel> results = new List<ComponentStatisticsViewModel>();
+            foreach (var c in comp) {
+                var scores = scoreService.GetByComponent(c.Id);
+                float sum = 0;
+                float maxSum = 0;
+                foreach (var s in scores) {
+                    sum += s.Value;
+                    maxSum += c.MaximumPoints;
+                }
+                results.Add(new ComponentStatisticsViewModel(c.Name, sum, maxSum));
+            }
+            return View(results);
         }
     }
 }

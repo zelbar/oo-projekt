@@ -1,0 +1,32 @@
+﻿@model IEnumerable<StudIS.Web.Mvc.Models.ComponentStatisticsViewModel>
+
+<h1>Statistika</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            Ime
+        </th>
+        <th>
+            Prosjek
+        </th>
+        <th>
+            Postotak
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComponentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Average) / @Html.DisplayFor(modelItem => item.Max)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Percentage)
+        </td>
+    </tr>
+}
+</table>
+@Html.ActionLink("Natrag", "Index", new { }, new { @class = "btn btn-info" })

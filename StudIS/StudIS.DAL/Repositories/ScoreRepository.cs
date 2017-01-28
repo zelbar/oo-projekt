@@ -62,7 +62,9 @@ namespace StudIS.DAL.Repositories
         {
             return _session.Get<Score>(id);
         }
-
+        public IList<Score> GetAll() {
+            return _session.QueryOver<Score>().JoinQueryOver<Component>(c => c.Component).List();
+        }
         public Score GetByStudentIdAndComponentId(Student student,Component component)
         {
 

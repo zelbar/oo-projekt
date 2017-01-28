@@ -15,5 +15,6 @@ namespace StudIS.Models.RepositoryInterfaces
         Score CreateOrUpdate(Score score);
         Score GetById(int id);
         Score GetByStudentIdAndComponentId(Student student, Component component);
+        IList<Score> GetAll();
     }
 }
