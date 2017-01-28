@@ -8,7 +8,7 @@ Repozitorij sadrži projekt/seminar iz Objektnog oblikovanja za grupu **Exceptio
 - Matej Peroš
 
 ## Alati i tehnologije
-Sustav je razvijen koristeći Visual Studio za prva tri te Android Studio za zadnje uz sljedeće tehnologije za pojedina sučelja:
+Sustav je razvijen koristeći Visual Studio i Android Studio uz sljedeće tehnologije za pojedina sučelja:
 - Windows Forms za desktop
 - ASP.NET MVC za korisničko web sučelje
 - ASP.NET WebAPI2 sučelje za mobilne i ostale klijente
