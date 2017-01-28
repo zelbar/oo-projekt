@@ -32,6 +32,12 @@ namespace StudIS.Desktop
             var email = this.emailTextBox.Text;
             var password = this.passwordTextBox.Text;
 
+            if (email.Length == 0 || password.Length == 0)
+            {
+                MessageBox.Show("E-mail adresa i/ili lozinka nisu uneseni", "Unesite podatke za prijavu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             var loginResult = _controller.Login(email, password);
 
             if (loginResult)
@@ -39,6 +45,11 @@ namespace StudIS.Desktop
                 this.LoginResult = true;
                 this.Close();
             }
+        }
+
+        private void studIsLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
