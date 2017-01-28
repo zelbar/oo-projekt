@@ -15,7 +15,7 @@
             <th>
                 JMBAG
             </th>
-            @if (Model != null) {
+            @if (Model.Count() > 0) {
                 foreach (var c in Model.First().scores) {
                     <th>
                         @c.Component.Name (@c.Component.MaximumPoints)
@@ -24,7 +24,7 @@
             }
         </tr>
 
-        @for(int i = 0; i < Model.Count(); i++) {
+        @for (int i = 0; i < Model.Count(); i++) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => Model[i].scores.First().Student.Name)
@@ -36,12 +36,13 @@
                     @Html.DisplayFor(modelItem => Model[i].scores.First().Student.StudentIdentificationNumber)
                 </td>
 
-                @if (Model != null) {
-                    for(int j = 0; j < Model[i].scores.Count(); j++) {
+                @if (Model.Count() > 0) {
+                    for (int j = 0; j < Model[i].scores.Count(); j++) {
                         <td>
                             @Html.EditorFor(modelItem => Model[i].scores[j].Value, new { htmlAttributes = new { @class = "form-control" } })
                         </td>
                         @Html.HiddenFor(modelItem => Model[i].scores[j].Component.Id)
+                        @Html.HiddenFor(modelItem => Model[i].scores[j].Component.Course.Id)
                         @Html.HiddenFor(modelItem => Model[i].scores[j].Student.Id)
                         @Html.HiddenFor(modelItem => Model[i].scores[j].Id)
                     }
@@ -50,7 +51,12 @@
         }
     </table>
     <hr />
-    <input type="submit" value="Spremi" class="btn btn-success" />
-    @Html.ActionLink("Natrag", "Index", new { }, new { @class = "btn btn-info" })
-
+    <div>
+        @if (Model.Count() > 0) {
+            @Html.ValidationMessage("prag_error", "", new { @class = "text-danger" })
+            <br />
+            <input type="submit" value="Spremi" class="btn btn-success" />
+            @Html.ActionLink("Natrag", "Index", new { }, new { @class = "btn btn-info" })
+        }
+    </div>
 }
