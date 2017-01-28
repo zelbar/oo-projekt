@@ -58,14 +58,16 @@ namespace StudIS.Desktop
 
             this.emailTextBox.Text = _user.Email;
 
-            List<Course> checkedCourses = new List<Course>();
+            var checkedCoursesIds = new List<int>();
             if (_user is Student)
             {
-                checkedCourses = ((Student)_user).CoursesEnrolledIn.ToList();
+                checkedCoursesIds = ((Student)_user)
+                    .CoursesEnrolledIn.Select(x => x.Id).ToList();
             }
             else if (_user is Lecturer)
             {
-                checkedCourses = ((Lecturer)_user).CoursesInChargeOf.ToList();
+                checkedCoursesIds = ((Lecturer)_user)
+                    .CoursesInChargeOf.Select(x => x.Id).ToList();
             }
 
             ListBox coursesListBox = ((ListBox)coursesCheckedListBox);
@@ -75,7 +77,7 @@ namespace StudIS.Desktop
             for (int i = 0; i < coursesListBox.Items.Count; ++i)
             {
                 var course = (Course)coursesListBox.Items[i];
-                if (checkedCourses.Contains(course))
+                if (checkedCoursesIds.Contains(course.Id))
                 {
                     coursesCheckedListBox.SetItemChecked(i, true);
                 }
@@ -102,18 +104,26 @@ namespace StudIS.Desktop
                 MessageBox.Show("Nisu popunjena sva polja", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            var checkedCoursesIndices = this.coursesCheckedListBox.CheckedIndices;
+            var checkedCourses = new List<Course>();
+            foreach (int courseIndex in checkedCoursesIndices)
+            {
+                var courseId = ((Course)this.coursesCheckedListBox.Items[courseIndex]).Id;
+                checkedCourses.Add(_courses.First(x => x.Id == courseId));
+            }
             
             if(_user is Student)
             {
                 Student student = (Student)_user;
                 student.StudentIdentificationNumber = this.studentIdentificationNumberTextBox.Text;
-                student.CoursesEnrolledIn = new List<Course>();
+                student.CoursesEnrolledIn = checkedCourses;
             }
 
             if(_user is Lecturer)
             {
                 Lecturer lecturer = (Lecturer)_user;
-                lecturer.CoursesInChargeOf = new List<Course>();
+                lecturer.CoursesInChargeOf = checkedCourses;
             }
 
             var success = _userFormController.SaveUser(_user);
