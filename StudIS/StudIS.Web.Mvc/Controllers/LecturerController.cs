@@ -107,11 +107,11 @@ namespace StudIS.Web.Mvc.Controllers {
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
 
-        public ActionResult DeleteComponent(int id, bool ? error) {
+        public ActionResult DeleteComponent(int id, bool? error) {
 
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
-            if(error == true) {
+            if (error == true) {
                 ModelState.AddModelError("error", "Ne možete pobrisati komponentu koja ima upisane bodove studentima!");
             }
             var componentServices = new ComponentServices(_componentRepository, _courseRepository);
@@ -163,11 +163,14 @@ namespace StudIS.Web.Mvc.Controllers {
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
 
-        public ActionResult StudentsEnrolled(int id) {
+        public ActionResult StudentsEnrolled(int id, bool? error) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
 
             ViewBag.Email = Session["email"];
+
+            if (error == true)
+                ModelState.AddModelError("prag_error", "Nemoguće unjeti više bodova od maksimalnog broj bodova po komponenti!");
 
             var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
             var course = courseServices.GetCourseById(id);
@@ -200,7 +203,10 @@ namespace StudIS.Web.Mvc.Controllers {
                         Component = componentServices.GetById(scor.Component.Id),
                         Student = (Student)userServices.GetUserById(scor.Student.Id)
                     };
-                    scoreServices.SaveScore(ss);
+                    if (ss.Value > ss.Component.MaximumPoints)
+                        return RedirectToAction("StudentsEnrolled", "Lecturer", new { id = ss.Component.Course.Id, error = true });
+                    else
+                        scoreServices.SaveScore(ss);
                 }
             }
             return RedirectToAction("Index", "Lecturer");
