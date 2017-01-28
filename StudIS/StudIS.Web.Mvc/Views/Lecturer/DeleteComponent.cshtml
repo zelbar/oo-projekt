@@ -39,7 +39,8 @@
         </dd>
 
     </dl>
-
+    @Html.ValidationMessage("error", "", new { @class = "text-danger" })
+    
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
@@ -49,3 +50,4 @@
         </div>
     }
 </div>
+ 

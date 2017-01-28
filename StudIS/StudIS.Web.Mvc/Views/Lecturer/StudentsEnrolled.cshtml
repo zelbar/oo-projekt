@@ -18,7 +18,7 @@
             @if (Model != null) {
                 foreach (var c in Model.First().scores) {
                     <th>
-                        @c.Component.Name
+                        @c.Component.Name (@c.Component.MaximumPoints)
                     </th>
                 }
             }

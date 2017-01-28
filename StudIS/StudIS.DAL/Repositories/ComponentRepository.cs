@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StudIS.Models;
 using NHibernate;
+using NHibernate.Exceptions;
 
 namespace StudIS.DAL.Repositories
 {
@@ -39,7 +40,11 @@ namespace StudIS.DAL.Repositories
                     return false;
 
                 _session.Delete(component);
-                transaction.Commit();
+                try {
+                    transaction.Commit();
+                } catch (GenericADOException e) {
+                    return false;
+                }
                 return true;
             }
         }

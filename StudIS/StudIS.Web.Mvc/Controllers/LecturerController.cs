@@ -107,11 +107,13 @@ namespace StudIS.Web.Mvc.Controllers {
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
 
-        public ActionResult DeleteComponent(int id) {
+        public ActionResult DeleteComponent(int id, bool ? error) {
 
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
-
+            if(error == true) {
+                ModelState.AddModelError("error", "Ne možete pobrisati komponentu koja ima upisane bodove studentima!");
+            }
             var componentServices = new ComponentServices(_componentRepository, _courseRepository);
             var component = componentServices.GetById(id);
 
@@ -128,8 +130,9 @@ namespace StudIS.Web.Mvc.Controllers {
                 return RedirectToAction("Index", "Home");
 
             var componentServices = new ComponentServices(_componentRepository, _courseRepository);
-            componentServices.DeleteComponent(id);
-
+            if (!componentServices.DeleteComponent(id)) {
+                return RedirectToAction("DeleteComponent", "Lecturer", new { id = id, error = true });
+            }
             return RedirectToAction("Index", "Lecturer");
         }
 
