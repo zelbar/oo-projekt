@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="NHibernateService2.cs" />
     <Compile Include="CourseRepositoryTests.cs" />
+    <Compile Include="ComponentRepositoryTests.cs" />
     <Compile Include="UserRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

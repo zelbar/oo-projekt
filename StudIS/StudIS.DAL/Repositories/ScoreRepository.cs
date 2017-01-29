@@ -19,14 +19,6 @@ namespace StudIS.DAL.Repositories
         {
             _session = nhs.OpenSession();
         }
-        //public IList<Score> GetByStudentAndCourse(int studentId, int courseId)
-        //{
-        //    var score = _session.QueryOver<Score>().Where(s=>s.Student.Id==studentId)
-        //                     .Right.JoinQueryOver<Component>(s => s.Component)
-        //                     .Where(c=>c.CourseId==courseId)
-        //                     .List<Score>();
-        //    return score;
-        //}
 
         public Score Create(Score score)
         {
@@ -62,10 +54,13 @@ namespace StudIS.DAL.Repositories
         {
             return _session.Get<Score>(id);
         }
-        public IList<Score> GetAll() {
+
+        public IList<Score> GetAll()
+        {
             return _session.QueryOver<Score>().JoinQueryOver<Component>(c => c.Component).List();
         }
-        public Score GetByStudentIdAndComponentId(Student student,Component component)
+
+        public Score GetByStudentIdAndComponentId(Student student, Component component)
         {
 
             var varijabla = _session.QueryOver<Score>().Where(sc => sc.Student == student).Where(sc => sc.Component == component).SingleOrDefault();
