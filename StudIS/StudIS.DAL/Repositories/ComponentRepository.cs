@@ -63,5 +63,8 @@ namespace StudIS.DAL.Repositories
                 return component;
             }
         }
+        public IList<Component> GetAll() {
+            return _session.QueryOver<Component>().List();
+        }
     }
 }

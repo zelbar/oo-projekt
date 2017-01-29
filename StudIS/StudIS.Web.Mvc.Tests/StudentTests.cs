@@ -97,7 +97,7 @@ namespace StudIS.Web.Mvc.Tests
             var result=controller.ScoreInfo(1) as ViewResult;
             var viewModel = (ScoredCourseViewModel)result.ViewData.Model;
 
-            Assert.AreEqual(viewModel.Name, "Kvantna računala");
+            Assert.AreEqual("Kvantna računala", viewModel.Name);
 
 
         }
@@ -124,7 +124,7 @@ namespace StudIS.Web.Mvc.Tests
             var viewModel = (StudentViewModel)result.ViewData.Model;
 
 
-            Assert.AreEqual(viewModel.Email, student.Email);
+            Assert.AreEqual(student.Email, viewModel.Email);
         }
     }
 }

@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LecturerTests.cs" />
     <Compile Include="StudentTests.cs" />

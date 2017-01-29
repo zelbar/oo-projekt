@@ -12,5 +12,6 @@ namespace StudIS.Models.RepositoryInterfaces
         bool DeleteById(int id);
         Component Update(Component component);
         Component Create(Component component);
+        IList<Component> GetAll();
     }
 }

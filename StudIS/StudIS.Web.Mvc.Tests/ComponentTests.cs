@@ -17,12 +17,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-
 namespace StudIS.Web.Mvc.Tests {
-
     [TestClass]
-    public class LecturerTests {
-
+    public class ComponentTests {
         private static readonly Student student = new Student() {
             Id = 1,
             Email = "example@svemir.hr",
@@ -63,7 +60,7 @@ namespace StudIS.Web.Mvc.Tests {
             Student = student,
             Value = 10
         };
-        public LecturerTests() {
+        public ComponentTests() {
             score.Component = component;
             score.Student = student;
 
@@ -75,9 +72,8 @@ namespace StudIS.Web.Mvc.Tests {
 
             lecturer.CoursesInChargeOf.Add(course);
         }
-
         [TestMethod]
-        public void MVC_LecturerTests_DisplayPersonalData() {
+        public void MVC_ComponentTests_DisplayCourseComponents() {
 
             Mock<IUserRepository> usrRepMock = new Mock<IUserRepository>();
             Mock<ICourseRepository> corRepMock = new Mock<ICourseRepository>();
@@ -85,6 +81,9 @@ namespace StudIS.Web.Mvc.Tests {
             Mock<IComponentRepository> comRepMock = new Mock<IComponentRepository>();
 
             usrRepMock.Setup(c => c.GetById(1)).Returns(lecturer);
+            corRepMock.Setup(c => c.GetById(1)).Returns(course);
+            IList<Component> components = new List<Component>();
+            comRepMock.Setup(c => c.GetAll()).Returns(components);
 
             var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
 
@@ -94,13 +93,15 @@ namespace StudIS.Web.Mvc.Tests {
 
             controller.ControllerContext = controllerContext.Object;
 
-            var result = controller.PersonalData() as ViewResult;
-            var viewModel = (LecturerViewModel)result.ViewData.Model;
+            var result = controller.Component(1) as ViewResult;
+            var viewModel = (IList<ComponentViewModel>)result.ViewData.Model;
 
-            Assert.AreEqual(lecturer.Email, viewModel.Email);
+            Assert.AreEqual(1, viewModel.Count);
+
         }
         [TestMethod]
-        public void MVC_LecturerTests_EnrolledStudents() {
+        public void MVC_ComponentTests_DisplayComponentStatistics() {
+
             Mock<IUserRepository> usrRepMock = new Mock<IUserRepository>();
             Mock<ICourseRepository> corRepMock = new Mock<ICourseRepository>();
             Mock<IScoreRepository> scrRepMock = new Mock<IScoreRepository>();
@@ -120,13 +121,15 @@ namespace StudIS.Web.Mvc.Tests {
             controllerContext.SetupGet(p => p.HttpContext.Session["email"]).Returns("sample@svemir.hr");
 
             controller.ControllerContext = controllerContext.Object;
-            var result = controller.StudentsEnrolled(1, false) as ViewResult;
-            var viewModel = (StudentEnrollementViewModel)result.ViewData.Model;
 
-            Assert.AreEqual(1, viewModel.scores.Count);
+            var result = controller.ComponentStatistics(1) as ViewResult;
+            var viewModel = (IList<ComponentStatisticsViewModel>)result.ViewData.Model;
+
+            Assert.AreEqual(1, viewModel.Count);
         }
         [TestMethod]
-        public void MVC_LecturerTests_Index() {
+        public void MVC_ComponentTests_CreateComponent() {
+
             Mock<IUserRepository> usrRepMock = new Mock<IUserRepository>();
             Mock<ICourseRepository> corRepMock = new Mock<ICourseRepository>();
             Mock<IScoreRepository> scrRepMock = new Mock<IScoreRepository>();
@@ -134,8 +137,6 @@ namespace StudIS.Web.Mvc.Tests {
 
             usrRepMock.Setup(c => c.GetById(1)).Returns(lecturer);
             corRepMock.Setup(c => c.GetById(1)).Returns(course);
-            comRepMock.Setup(c => c.GetById(1)).Returns(component);
-            scrRepMock.Setup(c => c.GetById(1)).Returns(score);
 
             var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
 
@@ -144,10 +145,59 @@ namespace StudIS.Web.Mvc.Tests {
             controllerContext.SetupGet(p => p.HttpContext.Session["email"]).Returns("sample@svemir.hr");
 
             controller.ControllerContext = controllerContext.Object;
-            var result = controller.Index() as ViewResult;
-            var viewModel = (IList<LecturerCourseViewModel>)result.ViewData.Model;
+            var result = controller.CreateComponent(1) as ViewResult;
+            var viewModel = (ComponentViewModel)result.ViewData.Model;
 
-            Assert.AreEqual(1, viewModel.Count);
+            Assert.AreEqual(1, viewModel.CourseId);
+
+        }
+        [TestMethod]
+        public void MVC_ComponentTests_DeleteComponent() {
+
+            Mock<IUserRepository> usrRepMock = new Mock<IUserRepository>();
+            Mock<ICourseRepository> corRepMock = new Mock<ICourseRepository>();
+            Mock<IScoreRepository> scrRepMock = new Mock<IScoreRepository>();
+            Mock<IComponentRepository> comRepMock = new Mock<IComponentRepository>();
+
+            usrRepMock.Setup(c => c.GetById(1)).Returns(lecturer);
+            corRepMock.Setup(c => c.GetById(1)).Returns(course);
+            comRepMock.Setup(c => c.GetById(1)).Returns(component);
+
+            var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
+
+            var controllerContext = new Mock<ControllerContext>();
+            controllerContext.SetupGet(p => p.HttpContext.Session["userId"]).Returns(1);
+            controllerContext.SetupGet(p => p.HttpContext.Session["email"]).Returns("sample@svemir.hr");
+
+            controller.ControllerContext = controllerContext.Object;
+            var result = controller.DeleteComponent(1, false) as ViewResult;
+            var viewModel = (ComponentViewModel)result.ViewData.Model;
+
+            Assert.AreEqual(1, viewModel.Id);
+
+        }
+        [TestMethod]
+        public void MVC_ComponentTests_EditComponent() {
+            Mock<IUserRepository> usrRepMock = new Mock<IUserRepository>();
+            Mock<ICourseRepository> corRepMock = new Mock<ICourseRepository>();
+            Mock<IScoreRepository> scrRepMock = new Mock<IScoreRepository>();
+            Mock<IComponentRepository> comRepMock = new Mock<IComponentRepository>();
+
+            usrRepMock.Setup(c => c.GetById(1)).Returns(lecturer);
+            corRepMock.Setup(c => c.GetById(1)).Returns(course);
+            comRepMock.Setup(c => c.GetById(1)).Returns(component);
+
+            var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
+
+            var controllerContext = new Mock<ControllerContext>();
+            controllerContext.SetupGet(p => p.HttpContext.Session["userId"]).Returns(1);
+            controllerContext.SetupGet(p => p.HttpContext.Session["email"]).Returns("sample@svemir.hr");
+
+            controller.ControllerContext = controllerContext.Object;
+            var result = controller.EditComponent(1) as ViewResult;
+            var viewModel = (ComponentViewModel)result.ViewData.Model;
+
+            Assert.AreEqual(1, viewModel.Id);
         }
     }
 }
