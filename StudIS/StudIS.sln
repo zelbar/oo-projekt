@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Models", "StudIS.Models\StudIS.Models.csproj", "{FB0EA76D-E7C2-4D8C-90E5-B059C43F2BD4}"
 EndProject
@@ -27,9 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Services.Tests", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.DAL.Tests", "StudIS.DAL.Tests\StudIS.DAL.Tests.csproj", "{77899BE9-1B29-4A61-AB5A-CCE989C53FA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Desktop.Tests", "StudIS.Desktop.Tests\StudIS.Desktop.Tests.csproj", "{41573438-AC11-498C-9543-8CB270B10386}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C23DA1D-909B-46EE-8149-C4344606F1C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Desktop.Tests", "StudIS.Desktop.Tests\StudIS.Desktop.Tests.csproj", "{0A3C26C5-DC44-4383-822C-173CEDDB56A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +85,10 @@ Global
 		{77899BE9-1B29-4A61-AB5A-CCE989C53FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77899BE9-1B29-4A61-AB5A-CCE989C53FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77899BE9-1B29-4A61-AB5A-CCE989C53FA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41573438-AC11-498C-9543-8CB270B10386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41573438-AC11-498C-9543-8CB270B10386}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41573438-AC11-498C-9543-8CB270B10386}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41573438-AC11-498C-9543-8CB270B10386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A3C26C5-DC44-4383-822C-173CEDDB56A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3C26C5-DC44-4383-822C-173CEDDB56A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3C26C5-DC44-4383-822C-173CEDDB56A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3C26C5-DC44-4383-822C-173CEDDB56A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +99,6 @@ Global
 		{A4F714BC-D576-49BA-8365-3B43868B8D27} = {9C23DA1D-909B-46EE-8149-C4344606F1C4}
 		{BFF01B5E-8D72-49D8-B862-1DBA158BFD7F} = {9C23DA1D-909B-46EE-8149-C4344606F1C4}
 		{77899BE9-1B29-4A61-AB5A-CCE989C53FA3} = {9C23DA1D-909B-46EE-8149-C4344606F1C4}
-		{41573438-AC11-498C-9543-8CB270B10386} = {9C23DA1D-909B-46EE-8149-C4344606F1C4}
+		{0A3C26C5-DC44-4383-822C-173CEDDB56A0} = {9C23DA1D-909B-46EE-8149-C4344606F1C4}
 	EndGlobalSection
 EndGlobal
