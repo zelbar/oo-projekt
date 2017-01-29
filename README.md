@@ -20,8 +20,12 @@ Sustav je razvijen koristeći Visual Studio i Android Studio uz sljedeće tehnol
 Koristi se MSSQL Express Server i file baza podataka naziva ``StudIS_DB.mdf``.
 **Datoteku je potrebno ručno stvoriti u putanji
 ``C:\Users\Public\databases``** (npr. iz Visual Studia, desni klik na projekt i *New -> Item -> Data -> Service-based Database*, nazvati ``StudIS_DB.mdf`` i nakon toga premjestiti u spomenutu putanju).
-#### Punjenje baze početnim podacima (*Seed*)
-Pokrenuti projekt ``StudIS.DatabaseSeed`` da bi se prazna baza napunila testnim podacima. Ovaj korak izvršiti samo jednom nad istom datotekom baze podataka.
+#### Schema export i punjenje baze početnim podacima (*Seed*)
+- Potrebno je u projektu ``StudIS.DAL`` u datoteci ``NHibernateService.cs`` u metodi ``ISessionFactory OpenSessionFactory()`` odkomentirati redak ``.ExposeConfiguration(cfg => new NHibernate.Tool.hbm2ddl.SchemaExport(cfg).Execute(true, true, false))`` kako bi se prilikom pokretanja izgradila shema baze podataka.
+- Pokrenuti projekt ``StudIS.DatabaseSeed`` da bi se prazna baza napunila testnim podacima (i prethodno se izvede Schema Export). Ovaj korak izvršiti samo jednom nad istom datotekom baze podataka.
+- Zakomentirati prethodno odkomentirati redak za SchemaExport
+Sada je sustav spreman za pokretanje korisničkih sučelja.
+
 ### Desktop sučelje
 Pokrenuti projekt ``StudIS.Desktop``.
 ### Web sučelje
