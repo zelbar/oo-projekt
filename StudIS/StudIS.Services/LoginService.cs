@@ -27,7 +27,7 @@ namespace StudIS.Services
             var user = _userRepositry.GetByEmail(email);
             if (user == null)
                 return null;
-            else if (user.PasswordHash == passwordHash)
+            else if (user.PasswordHash.ToUpper() == passwordHash.ToUpper())
             {
                 return user;
             }

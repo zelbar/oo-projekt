@@ -11,15 +11,22 @@ namespace StudIS.Services
     {
         public static String EncryptSHA1(String password)
         {
-            String encryptedString;
+           
             using (SHA1Managed sha1 = new SHA1Managed())
             {
                 var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-                 encryptedString= Convert.ToBase64String(hash);
 
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("X2"));
+                }
+                return sb.ToString();
             }
-            return encryptedString;
+   
            
             
         }
