@@ -54,7 +54,6 @@ namespace StudIS.Web.Mvc.Controllers
                 }
             }
 
-
             return View(courseList);
         }
 
@@ -108,10 +107,7 @@ namespace StudIS.Web.Mvc.Controllers
             if(user==null || !UserServices.IsUserStudent(user))
                 return RedirectToAction("Index", "Home");
 
-            return View(new StudentViewModel((Student)user));
-
-
-          
+            return View(new StudentViewModel((Student)user)); 
 
         }
 
