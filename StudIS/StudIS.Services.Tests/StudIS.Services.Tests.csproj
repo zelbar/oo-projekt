@@ -103,10 +103,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SQLliteConfig\SQLliteConfig.csproj">
-      <Project>{a4f714bc-d576-49ba-8365-3b43868b8d27}</Project>
-      <Name>SQLliteConfig</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj">
       <Project>{56C50B21-477E-48AE-9629-8201726D259F}</Project>
       <Name>StudIS.DAL</Name>

@@ -74,10 +74,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SQLliteConfig\SQLliteConfig.csproj">
-      <Project>{A4F714BC-D576-49BA-8365-3B43868B8D27}</Project>
-      <Name>SQLliteConfig</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj">
       <Project>{56c50b21-477e-48ae-9629-8201726d259f}</Project>
       <Name>StudIS.DAL</Name>
