@@ -26,7 +26,6 @@ namespace StudIS.Web.Mvc.Controllers {
             _componentRepository = componentRepository;
 
         }
-
         public ActionResult Index() {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -64,7 +63,6 @@ namespace StudIS.Web.Mvc.Controllers {
             return View(new LecturerViewModel((Lecturer)user));
 
         }
-
         public ActionResult Component(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -79,14 +77,13 @@ namespace StudIS.Web.Mvc.Controllers {
             if (course == null)
                 return RedirectToAction("Index", "Home");
 
-            List<ComponentViewModel> components = new List<ComponentViewModel>();
+            IList<ComponentViewModel> components = new List<ComponentViewModel>();
             foreach (var component in course.Components) {
                 components.Add(new ComponentViewModel(component));
             }
             return View(components);
 
         }
-
         public ActionResult EditComponent(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -99,7 +96,6 @@ namespace StudIS.Web.Mvc.Controllers {
 
             return View(new ComponentViewModel(component));
         }
-
         [HttpPost]
         public ActionResult EditComponent(ComponentViewModel comp) {
 
@@ -108,7 +104,6 @@ namespace StudIS.Web.Mvc.Controllers {
 
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
-
         public ActionResult DeleteComponent(int id, bool? error) {
 
             if (Session["userId"] == null)
@@ -124,7 +119,6 @@ namespace StudIS.Web.Mvc.Controllers {
 
             return View(new ComponentViewModel(component));
         }
-
         [HttpPost, ActionName("DeleteComponent")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteComponentConfirmed(int id) {
@@ -137,7 +131,6 @@ namespace StudIS.Web.Mvc.Controllers {
             }
             return RedirectToAction("Index", "Lecturer");
         }
-
         public ActionResult CreateComponent(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -153,7 +146,6 @@ namespace StudIS.Web.Mvc.Controllers {
             };
             return View(new ComponentViewModel(newComponent));
         }
-
         [HttpPost]
         public ActionResult CreateComponent(ComponentViewModel comp) {
             var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
@@ -164,7 +156,6 @@ namespace StudIS.Web.Mvc.Controllers {
 
             return RedirectToAction("Component", "Lecturer", new { id = comp.CourseId });
         }
-
         public ActionResult StudentsEnrolled(int id, bool? error) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -213,7 +204,6 @@ namespace StudIS.Web.Mvc.Controllers {
             }
             return RedirectToAction("Index", "Lecturer");
         }
-
         public ActionResult ComponentStatistics(int id) {
             if (Session["userId"] == null)
                 return RedirectToAction("Index", "Home");
@@ -240,7 +230,7 @@ namespace StudIS.Web.Mvc.Controllers {
                     sum += s.Value;
                     maxSum += c.MaximumPoints;
                 }
-                results.Add(new ComponentStatisticsViewModel(c.Name, sum, maxSum));
+                results.Add(new ComponentStatisticsViewModel(c.Name, sum, maxSum, c.Course.Id));
             }
             return View(results);
         }
