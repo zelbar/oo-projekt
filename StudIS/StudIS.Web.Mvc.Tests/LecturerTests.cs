@@ -112,6 +112,9 @@ namespace StudIS.Web.Mvc.Tests {
             comRepMock.Setup(c => c.GetAll()).Returns(components);
             IList<Score> scores = new List<Score>();
             scrRepMock.Setup(c => c.GetAll()).Returns(scores);
+            usrRepMock.Setup(c => c.GetByCourse(It.IsAny<Course>())).Returns(new List<Student>() { student});
+
+
 
             var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
 
@@ -121,9 +124,9 @@ namespace StudIS.Web.Mvc.Tests {
 
             controller.ControllerContext = controllerContext.Object;
             var result = controller.StudentsEnrolled(1, false) as ViewResult;
-            var viewModel = (StudentEnrollementViewModel)result.ViewData.Model;
+            var viewModel = (List<StudentEnrollementViewModel>)result.ViewData.Model;
 
-            Assert.AreEqual(1, viewModel.scores.Count);
+            Assert.AreEqual(1, viewModel.Count);
         }
         [TestMethod]
         public void MVC_LecturerTests_Index() {
@@ -133,9 +136,11 @@ namespace StudIS.Web.Mvc.Tests {
             Mock<IComponentRepository> comRepMock = new Mock<IComponentRepository>();
 
             usrRepMock.Setup(c => c.GetById(1)).Returns(lecturer);
-            corRepMock.Setup(c => c.GetById(1)).Returns(course);
+            corRepMock.Setup(c => c.GetByLecturerInChargerId(1)).Returns(new List<Course>() { course});
             comRepMock.Setup(c => c.GetById(1)).Returns(component);
             scrRepMock.Setup(c => c.GetById(1)).Returns(score);
+
+                //GetByLecturerInChargerId
 
             var controller = new LecturerController(corRepMock.Object, scrRepMock.Object, usrRepMock.Object, comRepMock.Object);
 
