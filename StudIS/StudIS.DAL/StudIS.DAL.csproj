@@ -102,8 +102,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComponentRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
-    <Compile Include="Repositories\MockCourseRepository.cs" />
-    <Compile Include="Repositories\MockUserRepository.cs" />
     <Compile Include="Repositories\ScoreRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
