@@ -32,3 +32,5 @@ Pokrenuti projekt ``StudIS.Desktop``.
 Pokrenuti projekt ``StudIS.Web.Mvc``.
 ### WebAPI2 sučelje
 Pokrenuti projekt ``StudIS.Web.Api``.
+### Android Aplikacija
+Pokrenuti projekt ``StudIS.Web.Api`` kao administrator, provjeriti da IIS express omogućuje povezivanje s IP-jem 127.0.0.1, otvoriti ``StudIS-Adnroid/StudIS`` projekt u Android Studiu i pokrenuti na emulatoru minimalne verzije 4.1
