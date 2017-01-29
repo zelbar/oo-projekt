@@ -103,6 +103,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StudIS.DAL.Tests\StudIS.DAL.Tests.csproj">
+      <Project>{77899BE9-1B29-4A61-AB5A-CCE989C53FA3}</Project>
+      <Name>StudIS.DAL.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj">
       <Project>{56C50B21-477E-48AE-9629-8201726D259F}</Project>
       <Name>StudIS.DAL</Name>

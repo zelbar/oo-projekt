@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudIS.DAL;
-using StudIS.DAL.SQL;
 using StudIS.DAL.Repositories;
 using StudIS.Models.Users;
 using Moq;
 using StudIS.Models.RepositoryInterfaces;
 using StudIS.Models;
 using System.Collections.Generic;
+using StudIS.DAL.Tests;
 
 namespace StudIS.Services.Tests
 {
