@@ -1,6 +1,8 @@
 # StudIS
 Repozitorij sadrži projekt/seminar iz Objektnog oblikovanja za grupu **ExceptionCollection**, ak. godina 2016./2017.
 
+Dokumentacija: [Seminar-StudIS.docx](Seminar-StudIS.docx)
+
 ## Članovi tima
 - Željko Baranek
 - *Zlatko Hrastić* (voditelj)
