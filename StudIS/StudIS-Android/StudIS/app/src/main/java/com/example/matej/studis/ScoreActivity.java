@@ -23,8 +23,8 @@ public class ScoreActivity extends AppCompatActivity {
 
         final TextView tvNaziv = (TextView) findViewById(R.id.tvNaziv);
         final TextView tvK = (TextView) findViewById(R.id.tvnazivKolegija);
-        final TextView tvPrag = (TextView) findViewById(R.id.tvpraglook);
-        final TextView tvBodovi = (TextView) findViewById(R.id.tcScorelook);
+        final TextView tvPrag = (TextView) findViewById(R.id.textView8);
+        final TextView tvBodovi = (TextView) findViewById(R.id.textView7);
         final TextView tvUkupno = (TextView) findViewById(R.id.tvUkupno);
 
         final ViewGroup.LayoutParams paramNaziv = tvNaziv.getLayoutParams();
@@ -32,13 +32,25 @@ public class ScoreActivity extends AppCompatActivity {
         final ViewGroup.LayoutParams paramPrag = tvPrag.getLayoutParams();
         final ViewGroup.LayoutParams paramUkupno = tvUkupno.getLayoutParams();
 
+        TextView bodPrikz = new TextView(ScoreActivity.this);
+        TextView pragPrikz = new TextView(ScoreActivity.this);
+        final RelativeLayout ll = (RelativeLayout) findViewById(R.id.activity_score);
+
+        tvBodovi.setMinimumWidth(100);
+        tvBodovi.setMinimumHeight(50);
+        tvPrag.setMinimumWidth(100);
+        tvPrag.setMinHeight(50);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("CourseName");
         String jsonArray = intent.getStringExtra("Scores");
         tvK.setText(name);
 
+        bodPrikz.setText("Bodovi");
+        pragPrikz.setText("Prag");
 
+        //ll.addView(bodPrikz, paramBodovi);
+        //ll.addView(pragPrikz, paramPrag);
 
         try {
             JSONArray scoreArray = new JSONArray(jsonArray);
@@ -47,7 +59,6 @@ public class ScoreActivity extends AppCompatActivity {
 
                 JSONObject komponenta = scoreArray.getJSONObject(i);
 
-                final RelativeLayout ll = (RelativeLayout) findViewById(R.id.activity_score);
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
                 TextView kompN = new TextView(ScoreActivity.this);
@@ -56,18 +67,28 @@ public class ScoreActivity extends AppCompatActivity {
                 kompN.setLayoutParams(paramNaziv);
                 ll.addView(kompN);
 
+                float y =  kompN.getY();
+
                 TextView bodoviN = new TextView(ScoreActivity.this);
                 bodoviN.setText(komponenta.getString("Value"));
-                bodoviN.setY(40 + 100*i);
+                //bodoviN.setY(40 + 100*i);
                 //bodoviN.setLayoutParams(paramBodovi);
+                bodoviN.setMinHeight(50);
+                bodoviN.setMinimumWidth(50);
+                bodoviN.setY(y);
                 ll.addView(bodoviN, paramBodovi);
 
 
                 TextView pragN = new TextView(ScoreActivity.this);
                 pragN.setText(komponenta.getString("ComponentMinToPass"));
                 //lp.addRule(RelativeLayout.ALIGN_RIGHT, tvNaziv.getId());
-                pragN.setY(40 + 100*i);
+                //float x =  tvPrag.getX();
+                pragN.setY(y);
+                //pragN.setX(x);
                 //pragN.setLayoutParams(paramPrag);
+                pragN.setMinHeight(50);
+                pragN.setMinimumWidth(50);
+                //pragN.setY(40 + 100*i);
                 ll.addView(pragN, paramPrag);
 
 

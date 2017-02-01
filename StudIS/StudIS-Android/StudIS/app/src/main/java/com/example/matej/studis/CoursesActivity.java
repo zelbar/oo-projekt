@@ -1,5 +1,7 @@
 package com.example.matej.studis;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
@@ -12,10 +14,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -48,7 +53,8 @@ public class CoursesActivity extends AppCompatActivity  {
         final Button bToLogin = (Button) findViewById(R.id.bGoToLogin);
         final Button bDeatails = (Button) findViewById(R.id.bDetails);
 
-        final List<String> lista = new ArrayList<String>();
+        final LinearLayout llcourses = (LinearLayout) findViewById(R.id.llPredmeti);
+
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("FullName");
@@ -57,9 +63,6 @@ public class CoursesActivity extends AppCompatActivity  {
 
         tvIme.setText(name);
         tvJMBAG.setText(jmbag);
-
-        final RelativeLayout ll = (RelativeLayout) findViewById(R.id.activity_courses);
-
 
         final Button myButt = new Button(this);
         myButt.setText("Add me");
@@ -73,25 +76,32 @@ public class CoursesActivity extends AppCompatActivity  {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            int sucsses = jsonResponse.length();
 
-                            if(sucsses>0){
-                                String name = jsonResponse.getString("Name");
-                                JSONArray jsonArray = jsonResponse.getJSONArray("ScoreList");
 
-                                Intent intent = new Intent(CoursesActivity.this, ScoreActivity.class);
-                                intent.putExtra("CourseName", name);
-                                intent.putExtra("Scores", jsonArray.toString());
 
-                                CoursesActivity.this.startActivity(intent);
+                            String name = jsonResponse.getString("Name");
+                            JSONArray jsonArray = jsonResponse.getJSONArray("ScoreList");
 
-                            }else {
-                                Log.d("Nema", "Nema podataka");
-                            }
+                            Intent intent = new Intent(CoursesActivity.this, ScoreActivity.class);
+                            intent.putExtra("CourseName", name);
+                            intent.putExtra("Scores", jsonArray.toString());
+
+                            CoursesActivity.this.startActivity(intent);
+
+
 
 
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            new AlertDialog.Builder(CoursesActivity.this)
+                                    .setTitle("No information")
+                                    .setMessage("No information, contact us")
+                                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // continue with delete
+                                        }
+                                    })
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
                         }
                     }
                 };
@@ -122,19 +132,20 @@ public class CoursesActivity extends AppCompatActivity  {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String nameCourse = jsonObject.getString("Name");
                         Integer id = jsonObject.getInt("Id");
+                        Space space = new Space(CoursesActivity.this);
+                        space.setMinimumHeight(20);
 
                         Button cou = new Button(CoursesActivity.this);
                         cou.setText(nameCourse);
                         cou.setId(id);
-                        cou.setY(300+200*i);
-                        cou.setOnClickListener(predmettraži);
+                         cou.setOnClickListener(predmettraži);
                         cou.setBackgroundColor(Color.GREEN);
-                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                        ll.addView(cou, lp);
-                                            }
+                        llcourses.addView(space);
+                        llcourses.addView(cou);
+                    }
 
-                    Log.d("Login", response);
+                    //Log.d("Login", response);
 
 
                 } catch (JSONException e) {

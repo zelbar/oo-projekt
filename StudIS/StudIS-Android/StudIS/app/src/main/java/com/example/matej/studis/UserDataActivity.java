@@ -1,11 +1,14 @@
 package com.example.matej.studis;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -40,30 +43,36 @@ public class UserDataActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
-                    int sucsses = jsonResponse.length();
 
-                    Log.d("DETAILS",response);
+                    //Log.d("DETAILS",response);
 
-                    if(sucsses>0){
-                        String name = jsonResponse.getString("Name");
-                        String surname = jsonResponse.getString("Surname");
-                        String email = jsonResponse.getString("Email");
-                        String jmbag = jsonResponse.getString("StudentIdentificationNumber");
-                        String oib = jsonResponse.getString("NationalIdentificationNumber");
 
-                        tvIme.setText(name);
-                        tvPrezime.setText(surname);
-                        tvEmail.setText(email);
-                        tvJMBAG.setText(jmbag);
-                        tvOIB.setText(oib);
+                    String name = jsonResponse.getString("Name");
+                    String surname = jsonResponse.getString("Surname");
+                    String email = jsonResponse.getString("Email");
+                    String jmbag = jsonResponse.getString("StudentIdentificationNumber");
+                    String oib = jsonResponse.getString("NationalIdentificationNumber");
 
-                    }else {
-                        Log.d("Nema", "Nema podataka");
-                    }
+                    tvIme.setText(name);
+                    tvPrezime.setText(surname);
+                    tvEmail.setText(email);
+                    tvJMBAG.setText(jmbag);
+                    tvOIB.setText(oib);
+
+
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    new AlertDialog.Builder(UserDataActivity.this)
+                            .setTitle("No Data")
+                            .setMessage("We have no information about you, we apoligize")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                 }
             }
         };

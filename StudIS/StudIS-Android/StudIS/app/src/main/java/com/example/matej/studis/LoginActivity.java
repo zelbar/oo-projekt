@@ -52,10 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            boolean sucsses = true;
-
-                            Log.d("Login", response);
-                            Log.d("JSON", jsonResponse.toString());
+                                                       
 
                             if(jsonResponse.length()>0){
                                 String name = jsonResponse.getString("FullName");

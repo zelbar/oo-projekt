@@ -34,13 +34,13 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Kolegij"
+        android:text="Komponente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:id="@+id/tvNaziv"
-        android:paddingLeft="10dp"
-        android:paddingRight="40dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="20dp"
         android:autoText="false"
         android:editable="false"
         android:layout_below="@+id/tvnazivKolegija"
@@ -55,12 +55,14 @@
         tools:text="Bodovi"
         android:editable="false"
         android:paddingRight="30dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginStart="13dp"
         android:layout_alignBaseline="@+id/tvNaziv"
         android:layout_alignBottom="@+id/tvNaziv"
         android:layout_toRightOf="@+id/tvNaziv"
-        android:layout_toEndOf="@+id/tvNaziv" />
+        android:layout_toEndOf="@+id/tvNaziv"
+        android:paddingTop="5dp"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:text="Prag"
@@ -69,30 +71,33 @@
         android:id="@+id/tvPrag"
         tools:text="Prag"
         android:editable="false"
-        android:paddingLeft="5dp"
-        android:paddingRight="10dp"
-        android:layout_alignBaseline="@+id/tvUkupno"
-        android:layout_alignBottom="@+id/tvUkupno"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_alignBaseline="@+id/tvBodovi"
+        android:layout_alignBottom="@+id/tvBodovi"
         android:layout_toRightOf="@+id/tvBodovi"
-        android:layout_toEndOf="@+id/tvBodovi"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_toEndOf="@+id/tvBodovi" />
 
     <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tcScorelook"
-        android:text="Bodovi"
-        android:layout_below="@+id/tvBodovi"
+        android:id="@+id/textView7"
+        android:layout_alignBaseline="@+id/tvBodovi"
+        android:layout_alignBottom="@+id/tvBodovi"
         android:layout_alignLeft="@+id/tvBodovi"
         android:layout_alignStart="@+id/tvBodovi" />
 
     <TextView
-        android:text="Prag"
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvpraglook"
-        android:layout_below="@+id/tvPrag"
+        android:id="@+id/textView8"
+        android:layout_alignBaseline="@+id/tvPrag"
+        android:layout_alignBottom="@+id/tvPrag"
         android:layout_alignLeft="@+id/tvPrag"
         android:layout_alignStart="@+id/tvPrag" />
+
 </RelativeLayout>

@@ -52,4 +52,17 @@
         android:layout_marginRight="12dp"
         android:layout_marginEnd="12dp" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SVpredmeti"
+        android:layout_below="@+id/tvCourseStudentJMBAG">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llPredmeti"></LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
