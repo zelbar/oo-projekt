@@ -12,9 +12,9 @@ namespace StudIS.Web.Mvc.Models {
         public virtual int CourseId { get; set; }
         public ComponentStatisticsViewModel(string ComponentName, float Average, float Max, int CourseId) {
             this.ComponentName = ComponentName;
-            this.Average = Average;
+            this.Average = Average * Max;
             this.Max = Max;
-            this.Percentage = (float)Average / Max * 100;
+            this.Percentage = (float)Average * 100;
             this.CourseId = CourseId;
         }
     }
