@@ -9,5 +9,6 @@ namespace StudIS.Web.Mvc.Models
     {
         public String Name { get; set; }
         public List<ScoreViewModel> scoreList{get;set;}
+        public float cumulativeScore { get; set; }
     }
 }

@@ -230,7 +230,7 @@ namespace StudIS.Web.Mvc.Controllers {
                     sum += s.Value;
                     maxSum += c.MaximumPoints;
                 }
-                results.Add(new ComponentStatisticsViewModel(c.Name, (float)sum / maxSum, c.MaximumPoints, c.Course.Id));
+                results.Add(new ComponentStatisticsViewModel(c.Name, maxSum==0?0:(float)sum / maxSum, c.MaximumPoints, c.Course.Id));
             }
             return View(results);
         }

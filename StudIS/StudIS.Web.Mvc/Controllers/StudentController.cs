@@ -18,7 +18,7 @@ namespace StudIS.Web.Mvc.Controllers
         private IUserRepository _userRepository;
         IComponentRepository _componentRepository;
 
-        public StudentController(ICourseRepository courseRepository,IScoreRepository scoreRepository,IUserRepository userRepository,IComponentRepository componentRepository)
+        public StudentController(ICourseRepository courseRepository, IScoreRepository scoreRepository, IUserRepository userRepository, IComponentRepository componentRepository)
         {
             _courseRepository = courseRepository;
             _scoreRepository = scoreRepository;
@@ -43,7 +43,7 @@ namespace StudIS.Web.Mvc.Controllers
             int userId = (int)Session["userId"];
             List<StudentCourseViewModel> courseList = new List<StudentCourseViewModel>();
 
-            var courseServices = new CourseServices(_courseRepository,_userRepository,_componentRepository);
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
             var courses = courseServices.GetCoursesByUserId(userId);
 
             if (courses != null)
@@ -71,24 +71,28 @@ namespace StudIS.Web.Mvc.Controllers
             ViewBag.Title = "Bodovi";
             var studentId = (int)Session["userId"];
             var scoreServcies = new ScoreServices(_scoreRepository, _courseRepository, _userRepository);
-            var courseServices = new CourseServices(_courseRepository,_userRepository,_componentRepository);
+            var courseServices = new CourseServices(_courseRepository, _userRepository, _componentRepository);
 
             var course = courseServices.GetCourseById(id);
 
-           var scores=scoreServcies.GetScorebyStudentAndCourse(studentId,id);
+            var scores = scoreServcies.GetScorebyStudentAndCourse(studentId, id);
             var scoresViewModel = new List<ScoreViewModel>();
-            foreach(var score in scores)
+
+            float cumScore = 0;
+            foreach (var score in scores)
             {
                 scoresViewModel.Add(new ScoreViewModel(score));
+                cumScore += score.Value;
             }
             scoresViewModel.Sort((m1, m2) => m1.ComponentName.CompareTo(m2.ComponentName));
 
-           
+
 
             var scoredCourse = new ScoredCourseViewModel()
             {
                 Name = course.Name,
-                scoreList = scoresViewModel
+                scoreList = scoresViewModel,
+                cumulativeScore=cumScore
 
             };
             return View(scoredCourse);
@@ -104,10 +108,10 @@ namespace StudIS.Web.Mvc.Controllers
             var studentId = (int)Session["userId"];
             var user = _userRepository.GetById(studentId);
 
-            if(user==null || !UserServices.IsUserStudent(user))
+            if (user == null || !UserServices.IsUserStudent(user))
                 return RedirectToAction("Index", "Home");
 
-            return View(new StudentViewModel((Student)user)); 
+            return View(new StudentViewModel((Student)user));
 
         }
 
